@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iContribute - Making a Difference - Crossroads Teens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    <style>
+        /* Lesson-specific styles */
+        .contribute-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,70 L50,30 L80,70 Z" fill="%231a2a6c"/><circle cx="50" cy="50" r="10" fill="%23FFD700"/><path d="M30,50 L70,50" stroke="%23b21f1f" stroke-width="5"/><path d="M50,30 L50,70" stroke="%23b21f1f" stroke-width="5"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: contributePulse 2s infinite;
+        }
+        
+        @keyframes contributePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .hand-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 Q60,40 50,60 Q40,40 50,20 Z" fill="%23FFD700" stroke="%238b5a2b" stroke-width="2"/><path d="M50,60 L50,80" stroke="%238b5a2b" stroke-width="5"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Contribution elements */
+        .impact-map {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .me-center {
+            width: 100px;
+            height: 100px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .impact-circle {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: circlePulse 3s infinite;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .community-circle {
+            width: 200px;
+            height: 200px;
+            background: rgba(178, 31, 31, 0.7);
+            animation-delay: 0.5s;
+        }
+        
+        .world-circle {
+            width: 250px;
+            height: 250px;
+            background: rgba(26, 42, 108, 0.5);
+            animation-delay: 1s;
+        }
+        
+        @keyframes circlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .contribution-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .contribution-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .contribution-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contribution-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .talent-discovery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .talent-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .talent-card:hover {
+            transform: translateX(5px);
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .project-planner {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #8b5a2b;
+        }
+        
+        .project-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .project-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .impact-wall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .impact-brick {
+            background: #f5ecd7;
+            border: 1px solid #d4c0a1;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 150px;
+        }
+        
+        .impact-brick:hover {
+            background: #e9dcc3;
+            transform: translateY(-3px);
+        }
+        
+        .impact-brick i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #1a2a6c;
+        }
+        
+        .contribution-ideas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .idea-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>iContribute <span class="contribute-icon"></span> Making a Difference <span class="hand-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: July 27, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To inspire teens to discover their unique gifts and use them to make meaningful contributions to their community, church, and world, living out their faith through service.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-seedling"></i>
+                    Activity: "My Contribution Seed"
+                </div>
+                <p>Teens reflect on how they've contributed to others:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "One way I've helped someone recently..."
+                    </div>
+                    <div class="prompt-card">
+                        "A talent I can use to serve others..."
+                    </div>
+                    <div class="prompt-card">
+                        "A cause I care about..."
+                    </div>
+                    <div class="prompt-card">
+                        "How I want to make a difference..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "God created each of us with unique gifts to contribute to the world. Today we'll discover how you can make a meaningful difference."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Contribution (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Why Contribution Matters</div>
+                    <p>The impact of serving others:</p>
+                    <div class="impact-map">
+                        <div class="me-center">ME</div>
+                        <div class="impact-circle community-circle">COMMUNITY</div>
+                        <div class="impact-circle world-circle">WORLD</div>
+                    </div>
+                    <div class="scripture">
+                        "Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace in its various forms."
+                        <span class="scripture-ref">1 Peter 4:10</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Biblical Examples</div>
+                    <p>Ordinary people who made a difference:</p>
+                    <div class="contribution-types">
+                        <div class="contribution-card">
+                            <i class="fas fa-bread-slice"></i>
+                            <div>The Boy with Loaves (John 6:9)</div>
+                        </div>
+                        <div class="contribution-card">
+                            <i class="fas fa-female"></i>
+                            <div>Dorcas (Acts 9:36)</div>
+                        </div>
+                        <div class="contribution-card">
+                            <i class="fas fa-home"></i>
+                            <div>Lydia (Acts 16:14-15)</div>
+                        </div>
+                        <div class="contribution-card">
+                            <i class="fas fa-hands-helping"></i>
+                            <div>Barnabas (Acts 4:36-37)</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Areas of Contribution</div>
+                    <p>Where you can make a difference:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Church ministry and service</li>
+                        <li>Local community organizations</li>
+                        <li>Global missions and causes</li>
+                        <li>School and peer groups</li>
+                        <li>Family and friends</li>
+                    </ul>
+                    <div class="scripture">
+                        "And let us consider how we may spur one another on toward love and good deeds."
+                        <span class="scripture-ref">Hebrews 10:24</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Contribution Discovery (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Activity: "My Contribution Profile"
+                </div>
+                
+                <div class="talent-discovery">
+                    <div class="talent-card">
+                        <strong>Talents & Skills:</strong> What are you good at?
+                    </div>
+                    <div class="talent-card">
+                        <strong>Passions & Interests:</strong> What do you care about?
+                    </div>
+                    <div class="talent-card">
+                        <strong>Resources:</strong> What do you have to share?
+                    </div>
+                    <div class="talent-card">
+                        <strong>Opportunities:</strong> Where can you serve?
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-clipboard-list"></i>
+                    My Contribution Plan
+                </div>
+                
+                <div class="project-planner">
+                    <div class="project-step">
+                        <div class="step-icon">1</div>
+                        <div>
+                            <strong>My Contribution Focus:</strong>
+                            <input type="text" placeholder="What cause or group will I serve?" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;">
+                        </div>
+                    </div>
+                    <div class="project-step">
+                        <div class="step-icon">2</div>
+                        <div>
+                            <strong>My Gifts to Share:</strong>
+                            <textarea placeholder="What talents, skills, or resources will I contribute?" rows="2" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;"></textarea>
+                        </div>
+                    </div>
+                    <div class="project-step">
+                        <div class="step-icon">3</div>
+                        <div>
+                            <strong>My Action Steps:</strong>
+                            <textarea placeholder="What specific actions will I take?" rows="2" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-bullseye"></i>
+                    Impact Areas
+                </div>
+                
+                <div class="impact-wall">
+                    <div class="impact-brick">
+                        <i class="fas fa-church"></i>
+                        <div>Church Ministry</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-hands-helping"></i>
+                        <div>Community Service</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-globe-americas"></i>
+                        <div>Global Causes</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-school"></i>
+                        <div>School Improvement</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-heart"></i>
+                        <div>Peer Support</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-home"></i>
+                        <div>Family Support</div>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-lightbulb"></i>
+                    Contribution Ideas
+                </div>
+                
+                <div class="contribution-ideas">
+                    <div class="idea-card">
+                        <i class="fas fa-utensils"></i>
+                        <div>Serve at a soup kitchen</div>
+                    </div>
+                    <div class="idea-card">
+                        <i class="fas fa-book"></i>
+                        <div>Tutor younger students</div>
+                    </div>
+                    <div class="idea-card">
+                        <i class="fas fa-trash"></i>
+                        <div>Organize a cleanup</div>
+                    </div>
+                    <div class="idea-card">
+                        <i class="fas fa-music"></i>
+                        <div>Join worship team</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Contribution Challenge (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    iContribute Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Contribution Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="contribution-card">Week 1: One church contribution</div>
+                        <div class="contribution-card">Week 2: One community contribution</div>
+                        <div class="contribution-card">Week 3: One school contribution</div>
+                        <div class="contribution-card">Week 4: One family contribution</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Do not neglect to do good and to share what you have, for such sacrifices are pleasing to God."
+                    <span class="scripture-ref">Hebrews 13:16</span>
+                </div>
+                
+                <div class="impact-wall" style="margin-top: 20px;">
+                    <div class="impact-brick">
+                        <i class="fas fa-calendar-check"></i>
+                        <div>Commit to regular service</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-users"></i>
+                        <div>Find a service buddy</div>
+                    </div>
+                    <div class="impact-brick">
+                        <i class="fas fa-journal-whills"></i>
+                        <div>Journal your impact</div>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for creating us to make a difference in this world. Open our eyes to see opportunities to contribute. Give us courage to step out and use our gifts to serve others. May our contributions bring glory to you and make a lasting impact in our communities. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Contribution Tips
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Start small - even little contributions matter</li>
+                        <li>Match your service to your talents and passions</li>
+                        <li>Make service a regular habit, not just occasional</li>
+                        <li>Invite friends to serve with you</li>
+                        <li>Reflect on how your contributions make a difference</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-29.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-31.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Talent card interaction
+            const talentCards = document.querySelectorAll('.talent-card');
+            
+            talentCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const type = this.textContent.includes('Talents') ? 'talents' : 
+                                this.textContent.includes('Passions') ? 'passions' :
+                                this.textContent.includes('Resources') ? 'resources' : 'opportunities';
+                    
+                    const promptText = prompt(`List your ${type}:`, "");
+                    if (promptText) {
+                        this.innerHTML += `<div style="margin-top: 10px; padding: 8px; background: #e9f0ff; border-radius: 5px;">${promptText}</div>`;
+                    }
+                });
+            });
+            
+            // Contribution icon animation
+            const contributeIcons = document.querySelectorAll('.contribute-icon');
+            
+            contributeIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    this.style.animation = 'contributePulse 0.5s ease';
+                    setTimeout(() => {
+                        this.style.animation = 'contributePulse 2s infinite';
+                    }, 500);
+                });
+            });
+            
+            // Impact map interaction
+            const meCenter = document.querySelector('.me-center');
+            
+            meCenter.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2)';
+                this.style.backgroundColor = '#b21f1f';
+                
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    this.style.backgroundColor = '#1a2a6c';
+                }, 500);
+            });
+            
+            // Impact brick interaction
+            const impactBricks = document.querySelectorAll('.impact-brick');
+            
+            impactBricks.forEach(brick => {
+                brick.addEventListener('click', function() {
+                    this.style.backgroundColor = '#d0e0ff';
+                    this.style.transform = 'scale(1.05)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

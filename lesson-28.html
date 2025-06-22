@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friends, Family & Faith - Crossroads Teens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    <style>
+        /* Lesson-specific styles */
+        .friends-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="40" r="15" fill="%231a2a6c" opacity="0.8"/><circle cx="70" cy="40" r="15" fill="%23b21f1f" opacity="0.8"/><path d="M20,70 Q30,50 50,55 Q70,50 80,70" fill="%238b5a2b" opacity="0.7"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: friendsPulse 2s infinite;
+        }
+        
+        @keyframes friendsPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .family-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M40,30 L60,30 L70,50 L60,70 L40,70 L30,50 Z" fill="%23FFD700" stroke="%238b5a2b" stroke-width="2"/><circle cx="30" cy="20" r="10" fill="%231a2a6c"/><circle cx="70" cy="20" r="10" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Relationship elements */
+        .relationship-map {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .faith-center {
+            width: 100px;
+            height: 100px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        .relationship-circle {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            animation: circlePulse 3s infinite;
+        }
+        
+        .family-circle {
+            width: 200px;
+            height: 200px;
+            background: rgba(178, 31, 31, 0.7);
+            animation-delay: 0.5s;
+        }
+        
+        .friends-circle {
+            width: 250px;
+            height: 250px;
+            background: rgba(26, 42, 108, 0.5);
+            animation-delay: 1s;
+        }
+        
+        @keyframes circlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .relationship-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .relationship-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .relationship-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .relationship-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .scenario-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .scenario-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .scenario-card:hover {
+            transform: translateX(5px);
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .solution-area {
+            background: rgba(26, 42, 108, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            min-height: 150px;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .boundary-planner {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #8b5a2b;
+        }
+        
+        .boundary-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .boundary-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .commitment-wall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .commitment-brick {
+            background: #f5ecd7;
+            border: 1px solid #d4c0a1;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 150px;
+        }
+        
+        .commitment-brick:hover {
+            background: #e9dcc3;
+            transform: translateY(-3px);
+        }
+        
+        .commitment-brick i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #1a2a6c;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Friends <span class="friends-icon"></span> Family <span class="family-icon"></span> & Faith</h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: July 13, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens navigate relationships with friends and family through the lens of faith, establishing healthy boundaries while building Christ-centered connections.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-heart"></i>
+                    Activity: "Relationship Map"
+                </div>
+                <p>Teens reflect on their important relationships:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "One person who supports my faith..."
+                    </div>
+                    <div class="prompt-card">
+                        "A family member I connect with..."
+                    </div>
+                    <div class="prompt-card">
+                        "A friend who challenges me positively..."
+                    </div>
+                    <div class="prompt-card">
+                        "Someone I need to set better boundaries with..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Our relationships deeply impact our faith journey. Today we'll learn how to build Christ-centered connections with friends and family."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Relationships (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Faith as the Foundation</div>
+                    <p>Why God comes first in relationships:</p>
+                    <div class="relationship-map">
+                        <div class="faith-center">FAITH</div>
+                        <div class="relationship-circle family-circle">FAMILY</div>
+                        <div class="relationship-circle friends-circle">FRIENDS</div>
+                    </div>
+                    <div class="scripture">
+                        "But seek first his kingdom and his righteousness, and all these things will be given to you as well."
+                        <span class="scripture-ref">Matthew 6:33</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Godly Friendships</div>
+                    <p>Characteristics of faith-building friendships:</p>
+                    <div class="relationship-types">
+                        <div class="relationship-card">
+                            <i class="fas fa-hands-helping"></i>
+                            <div>Encourage Growth</div>
+                        </div>
+                        <div class="relationship-card">
+                            <i class="fas fa-pray"></i>
+                            <div>Pray Together</div>
+                        </div>
+                        <div class="relationship-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>Accountability</div>
+                        </div>
+                        <div class="relationship-card">
+                            <i class="fas fa-heart"></i>
+                            <div>Unconditional Love</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "As iron sharpens iron, so one person sharpens another."
+                        <span class="scripture-ref">Proverbs 27:17</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Family Relationships</div>
+                    <p>Honoring family while growing in faith:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Honor your parents (Exodus 20:12)</li>
+                        <li>Communicate with respect</li>
+                        <li>Seek understanding</li>
+                        <li>Show grace in conflicts</li>
+                        <li>Be a peacemaker</li>
+                    </ul>
+                    <div class="scripture">
+                        "Children, obey your parents in the Lord, for this is right."
+                        <span class="scripture-ref">Ephesians 6:1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Healthy Boundaries (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    Activity: "Boundary Scenarios"
+                </div>
+                
+                <div class="scenario-container">
+                    <div class="scenario-card">
+                        <strong>Friendship Scenario:</strong> Your friends want you to join them in something you know is wrong
+                    </div>
+                    <div class="scenario-card">
+                        <strong>Family Scenario:</strong> Your parents don't understand your faith commitments
+                    </div>
+                    <div class="scenario-card">
+                        <strong>Social Media Scenario:</strong> A friend keeps sending inappropriate content
+                    </div>
+                    <div class="scenario-card">
+                        <strong>Time Scenario:</strong> Friends want all your free time, leaving no time for family or faith
+                    </div>
+                </div>
+                
+                <div class="solution-area" id="solutionArea">
+                    <p>Select a scenario to develop healthy boundaries and responses</p>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-drafting-compass"></i>
+                    Boundary Building Plan
+                </div>
+                
+                <div class="boundary-planner">
+                    <div class="boundary-step">
+                        <div class="step-icon">1</div>
+                        <div>
+                            <strong>Identify the Need:</strong>
+                            <input type="text" placeholder="What boundary is needed?" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;">
+                        </div>
+                    </div>
+                    <div class="boundary-step">
+                        <div class="step-icon">2</div>
+                        <div>
+                            <strong>Communicate Clearly:</strong>
+                            <textarea placeholder="How will you express this boundary?" rows="2" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;"></textarea>
+                        </div>
+                    </div>
+                    <div class="boundary-step">
+                        <div class="step-icon">3</div>
+                        <div>
+                            <strong>Maintain Consistently:</strong>
+                            <textarea placeholder="How will you uphold this boundary?" rows="2" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Faith-Centered Commitment (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-hands-praying"></i>
+                    Relationship Renewal
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">7-Day Relationship Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="relationship-card">Day 1: Pray for a family member</div>
+                        <div class="relationship-card">Day 2: Encourage a friend</div>
+                        <div class="relationship-card">Day 3: Set a healthy boundary</div>
+                        <div class="relationship-card">Day 4: Share your faith</div>
+                        <div class="relationship-card">Day 5: Resolve a conflict</div>
+                        <div class="relationship-card">Day 6: Quality family time</div>
+                        <div class="relationship-card">Day 7: Faith conversation</div>
+                    </div>
+                </div>
+                
+                <div class="commitment-wall">
+                    <div class="commitment-brick">
+                        <i class="fas fa-pray"></i>
+                        <div>Pray for relationships daily</div>
+                    </div>
+                    <div class="commitment-brick">
+                        <i class="fas fa-bible"></i>
+                        <div>Apply Scripture to relationships</div>
+                    </div>
+                    <div class="commitment-brick">
+                        <i class="fas fa-users"></i>
+                        <div>Build faith-based friendships</div>
+                    </div>
+                    <div class="commitment-brick">
+                        <i class="fas fa-heart"></i>
+                        <div>Show Christ's love to family</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Above all, love each other deeply, because love covers over a multitude of sins."
+                    <span class="scripture-ref">1 Peter 4:8</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for the gift of relationships. Help us to put you at the center of all our connections. Give us wisdom to build healthy friendships, grace to honor our families, and courage to set godly boundaries. May our relationships reflect your love and draw others to you. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Relationship Tips
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Schedule regular family meals or activities</li>
+                        <li>Find faith-based activities to do with friends</li>
+                        <li>Set aside dedicated device-free time for relationships</li>
+                        <li>Practice active listening without distractions</li>
+                        <li>Express appreciation regularly</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-27.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-29.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Scenario interaction
+            const scenarioCards = document.querySelectorAll('.scenario-card');
+            const solutionArea = document.getElementById('solutionArea');
+            
+            scenarioCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const scenarioType = this.textContent.includes('Friendship') ? 'friendship' : 
+                                        this.textContent.includes('Family') ? 'family' :
+                                        this.textContent.includes('Social Media') ? 'social' : 'time';
+                    
+                    let title, content;
+                    
+                    switch(scenarioType) {
+                        case 'friendship':
+                            title = "Friendship Boundary";
+                            content = `
+                                <h3>When Friends Pressure You</h3>
+                                <p><strong>Biblical Response:</strong> "Choose friends who respect your values. Be prepared with respectful but firm responses."</p>
+                                <div class="scripture">
+                                    "Do not be misled: 'Bad company corrupts good character.'"
+                                    <span class="scripture-ref">1 Corinthians 15:33</span>
+                                </div>
+                                <p><strong>Action Plan:</strong></p>
+                                <ul>
+                                    <li>Prepare a respectful refusal: "I respect you, but that's not for me"</li>
+                                    <li>Suggest alternative activities</li>
+                                    <li>Spend time with friends who share your values</li>
+                                </ul>
+                            `;
+                            break;
+                        case 'family':
+                            title = "Family Understanding";
+                            content = `
+                                <h3>When Family Doesn't Understand Your Faith</h3>
+                                <p><strong>Biblical Response:</strong> "Show Christ through your actions while respecting your parents."</p>
+                                <div class="scripture">
+                                    "Honor your father and mother - which is the first commandment with a promise."
+                                    <span class="scripture-ref">Ephesians 6:2</span>
+                                </div>
+                                <p><strong>Action Plan:</strong></p>
+                                <ul>
+                                    <li>Be patient and respectful in conversations</li>
+                                    <li>Demonstrate positive changes from your faith</li>
+                                    <li>Find appropriate times to share your spiritual journey</li>
+                                    <li>Pray for opportunities to show Christ's love</li>
+                                </ul>
+                            `;
+                            break;
+                        case 'social':
+                            title = "Social Media Boundaries";
+                            content = `
+                                <h3>When Friends Send Inappropriate Content</h3>
+                                <p><strong>Biblical Response:</strong> "Set clear digital boundaries to protect your mind and heart."</p>
+                                <div class="scripture">
+                                    "I will set before my eyes no vile thing."
+                                    <span class="scripture-ref">Psalm 101:3</span>
+                                </div>
+                                <p><strong>Action Plan:</strong></p>
+                                <ul>
+                                    <li>Politely ask them to stop sending such content</li>
+                                    <li>Use platform features to filter content</li>
+                                    <li>Consider unfollowing or limiting interactions if needed</li>
+                                    <li>Fill your feed with positive, faith-building content</li>
+                                </ul>
+                            `;
+                            break;
+                        case 'time':
+                            title = "Time Management Boundaries";
+                            content = `
+                                <h3>Balancing Friends, Family and Faith</h3>
+                                <p><strong>Biblical Response:</strong> "Prioritize your time according to God's wisdom."</p>
+                                <div class="scripture">
+                                    "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity."
+                                    <span class="scripture-ref">Ephesians 5:15-16</span>
+                                </div>
+                                <p><strong>Action Plan:</strong></p>
+                                <ul>
+                                    <li>Create a balanced weekly schedule</li>
+                                    <li>Communicate your commitments to friends</li>
+                                    <li>Protect time for family, faith activities, and rest</li>
+                                    <li>Learn to say "no" respectfully when needed</li>
+                                </ul>
+                            `;
+                            break;
+                    }
+                    
+                    solutionArea.innerHTML = content;
+                    
+                    // Highlight selected card
+                    scenarioCards.forEach(c => c.style.backgroundColor = '');
+                    this.style.backgroundColor = '#e9f0ff';
+                });
+            });
+            
+            // Relationship map interaction
+            const faithCenter = document.querySelector('.faith-center');
+            
+            faithCenter.addEventListener('click', function() {
+                this.style.transform = 'scale(1.2)';
+                this.style.backgroundColor = '#b21f1f';
+                
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    this.style.backgroundColor = '#1a2a6c';
+                }, 500);
+            });
+            
+            // Commitment brick interaction
+            const commitmentBricks = document.querySelectorAll('.commitment-brick');
+            
+            commitmentBricks.forEach(brick => {
+                brick.addEventListener('click', function() {
+                    this.style.backgroundColor = '#d0e0ff';
+                    this.style.transform = 'scale(1.05)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

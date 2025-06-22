@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life as a Gift - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Gift-themed styles -->
+    <style>
+        /* Gift theme elements */
+        .gift-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="25" width="60" height="50" rx="5" fill="%23b21f1f" stroke="%231a2a6c" stroke-width="2"/><rect x="15" y="40" width="70" height="10" fill="%23FFD700"/><rect x="45" y="15" width="10" height="60" fill="%23FFD700"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: giftPulse 2s infinite;
+        }
+        
+        @keyframes giftPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .heartbeat-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,50 Q30,10 50,50 Q70,90 90,50" fill="none" stroke="%23b21f1f" stroke-width="5"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Gift elements */
+        .gift-box {
+            background: linear-gradient(135deg, #b21f1f, #1a2a6c);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 5px solid #FFD700;
+        }
+        
+        .gift-box::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" opacity="0.2"><rect fill="none" stroke="%23FFD700" stroke-width="2" x="5" y="5" width="30" height="30" rx="5"/></svg>');
+            z-index: 0;
+        }
+        
+        .gift-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .gift-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .gift-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .gift-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gift-card i {
+            font-size: 2rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        /* Life elements */
+        .life-timeline {
+            height: 200px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #1a2a6c);
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .life-path {
+            width: 90%;
+            height: 8px;
+            background: #FFD700;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .life-marker {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: #f5ecd7;
+            border: 3px solid #1a2a6c;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .life-marker::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 20px;
+            background: #f5ecd7;
+        }
+        
+        /* Gratitude elements */
+        .gratitude-jar {
+            background: #f5ecd7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px solid #8b5a2b;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .gratitude-note {
+            position: absolute;
+            background: #1a2a6c;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            animation: floatNote 15s linear infinite;
+            opacity: 0.8;
+            cursor: pointer;
+            max-width: 100px;
+            text-align: center;
+        }
+        
+        @keyframes floatNote {
+            0% { transform: translateY(200px) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(-50px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Life as a <span class="gift-icon"></span> Gift <span class="heartbeat-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: April 27, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens recognize life as a precious gift from God, cultivate gratitude for their existence, and understand their inherent value and purpose according to God's plan.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-gift"></i>
+                    Activity: "The Best Gift Ever"
+                </div>
+                <p>Teens share about meaningful gifts they've received:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        What's the most memorable gift you've ever received?
+                    </div>
+                    <div class="prompt-card">
+                        What made that gift special?
+                    </div>
+                    <div class="prompt-card">
+                        How did you respond to the giver?
+                    </div>
+                </div>
+                
+                <p><strong>Transition:</strong> "Today we'll explore the greatest gift we've all received - the gift of life itself. How should we respond to the Giver of this gift?"</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Understanding Life as a Gift (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="gift-box">
+                <div class="gift-content">
+                    <h3>Life: God's Precious Gift</h3>
+                    <div class="scripture" style="background: rgba(0,0,0,0.2);">
+                        "For you created my inmost being; you knit me together in my mother's womb. I praise you because I am fearfully and wonderfully made."
+                        <span class="scripture-ref">Psalm 139:13-14</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. The Giver of Life</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>God as the source of all life (Genesis 2:7)</li>
+                        <li>Each life intentionally created</li>
+                        <li>We exist because God willed it</li>
+                    </ul>
+                    <div class="scripture">
+                        "The Spirit of God has made me; the breath of the Almighty gives me life."
+                        <span class="scripture-ref">Job 33:4</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. The Value of Life</div>
+                    <div class="gift-grid">
+                        <div class="gift-card">
+                            <i class="fas fa-heart"></i>
+                            <strong>Inherent Worth</strong>
+                            <p>Not based on achievements</p>
+                        </div>
+                        <div class="gift-card">
+                            <i class="fas fa-fingerprint"></i>
+                            <strong>Unique Design</strong>
+                            <p>No one else like you</p>
+                        </div>
+                        <div class="gift-card">
+                            <i class="fas fa-infinity"></i>
+                            <strong>Eternal Significance</strong>
+                            <p>Created for eternity</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. The Purpose of Life</div>
+                    <p>Why we've been given this gift:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>To know and love God</li>
+                        <li>To love and serve others</li>
+                        <li>To care for creation</li>
+                        <li>To fulfill God's unique plan</li>
+                    </ul>
+                    <div class="scripture">
+                        "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+                        <span class="scripture-ref">Ephesians 2:10</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Gratitude & Purpose (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-history"></i>
+                    Activity: "Life Timeline"
+                </div>
+                
+                <div class="life-timeline">
+                    <div class="life-path">
+                        <div class="life-marker" style="left: 0%;">Birth</div>
+                        <div class="life-marker" style="left: 20%;">5 yrs</div>
+                        <div class="life-marker" style="left: 40%;">Now</div>
+                        <div class="life-marker" style="left: 60%;">18 yrs</div>
+                        <div class="life-marker" style="left: 80%;">30 yrs</div>
+                        <div class="life-marker" style="left: 100%;">Eternity</div>
+                    </div>
+                </div>
+                
+                <p>Teens create their own life timelines, marking significant moments and future hopes.</p>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-jar"></i>
+                    Gratitude Jar
+                </div>
+                
+                <div class="gratitude-jar" id="gratitudeJar">
+                    <div class="gift-content">
+                        <h3 style="text-align: center; color: #1a2a6c;">My Life Blessings</h3>
+                        <p style="text-align: center;">Click to add notes of gratitude</p>
+                    </div>
+                </div>
+                
+                <div class="prompts" style="margin-top: 20px;">
+                    <div class="prompt-card">
+                        What aspects of your life are you most grateful for?
+                    </div>
+                    <div class="prompt-card">
+                        How can you express gratitude to God for these gifts?
+                    </div>
+                    <div class="prompt-card">
+                        Who in your life needs to hear they're a gift from God?
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Living Gratefully (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-hands-heart"></i>
+                    Stewarding the Gift
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Gift Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Week 1: Notice Gifts</div>
+                        <div class="prayer-card">Week 2: Express Gratitude</div>
+                        <div class="prayer-card">Week 3: Share Life</div>
+                        <div class="prayer-card">Week 4: Honor the Giver</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "I have come that they may have life, and have it to the full."
+                    <span class="scripture-ref">John 10:10</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Gracious God, thank you for the incredible gift of life. Help us to cherish each day as a precious present from you. Teach us to live with gratitude, purpose, and joy. Show us how to honor you with the life you've given us. May we always remember that our worth comes from being your beloved children. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Bring actual wrapped gifts as visual aids</li>
+                    <li>Share stories of people who overcame challenges to appreciate life</li>
+                    <li>Create a "Wall of Gratitude" with sticky notes</li>
+                    <li>Provide journals for teens to record daily blessings</li>
+                    <li>Discuss how to handle life's difficulties while maintaining gratitude</li>
+                    <li>Emphasize that every life has divine purpose</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-16.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-18.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Gratitude jar functionality
+            const gratitudeJar = document.getElementById('gratitudeJar');
+            const prompts = [
+                "I'm grateful for my family",
+                "Thankful for my friends",
+                "Grateful for my health",
+                "Thankful for nature's beauty",
+                "Grateful for my talents",
+                "Thankful for God's love",
+                "Grateful for laughter",
+                "Thankful for learning opportunities",
+                "Grateful for challenges that help me grow",
+                "Thankful for peaceful moments"
+            ];
+            
+            gratitudeJar.addEventListener('click', function(e) {
+                if (e.target === gratitudeJar) {
+                    const note = document.createElement('div');
+                    note.className = 'gratitude-note';
+                    note.textContent = prompts[Math.floor(Math.random() * prompts.length)];
+                    
+                    // Random position
+                    const leftPos = Math.random() * 80 + 10;
+                    note.style.left = `${leftPos}%`;
+                    
+                    // Random animation duration
+                    const duration = 15 + Math.random() * 15;
+                    note.style.animationDuration = `${duration}s`;
+                    
+                    gratitudeJar.appendChild(note);
+                    
+                    // Remove note after animation
+                    setTimeout(() => {
+                        note.remove();
+                    }, duration * 1000);
+                }
+            });
+            
+            // Create initial notes
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => {
+                    gratitudeJar.dispatchEvent(new MouseEvent('click'));
+                }, i * 1000);
+            }
+            
+            // Life timeline interaction
+            const lifeMarkers = document.querySelectorAll('.life-marker');
+            lifeMarkers.forEach(marker => {
+                marker.addEventListener('click', function() {
+                    const stage = this.textContent;
+                    const question = stage === "Birth" ? "What made your birth meaningful?" :
+                                    stage === "5 yrs" ? "Favorite childhood memories?" :
+                                    stage === "Now" ? "What are you grateful for today?" :
+                                    stage === "18 yrs" ? "What hopes do you have for adulthood?" :
+                                    stage === "30 yrs" ? "What legacy do you want to build?" :
+                                    "What does eternal life mean to you?";
+                    
+                    alert(`Reflection on ${stage}: ${question}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

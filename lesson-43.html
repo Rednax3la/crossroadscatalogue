@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Talents & Improve Skills - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Talent theme elements */
+        .talent-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="gold" stroke="%238b5a2b" stroke-width="2"/><path d="M30,40 L50,20 L70,40 L65,65 L35,65 Z" fill="%231a2a6c"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: talentPulse 2s infinite;
+        }
+        
+        @keyframes talentPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .skill-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,40 L50,20 L70,40 L65,65 L35,65 Z" fill="%23b21f1f"/><path d="M50,25 L50,60" stroke="gold" stroke-width="5"/><circle cx="50" cy="65" r="8" fill="%231a2a6c"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Talent elements */
+        .talent-stones {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .talent-stone {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            background: radial-gradient(circle at 30% 30%, #1a2a6c, #b21f1f);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .talent-stone:hover {
+            transform: translateY(-10px) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        .skill-path {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #1a2a6c;
+            position: relative;
+        }
+        
+        .skill-level {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+        
+        .skill-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #5a5a5a;
+        }
+        
+        /* Talent types */
+        .talent-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .talent-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .talent-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .talent-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+        }
+        
+        .talent-card i {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #1a2a6c;
+        }
+        
+        /* Growth animation */
+        @keyframes growProgress {
+            from { width: 0; }
+            to { width: var(--target-width); }
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Discover <span class="talent-icon"></span> Talents & Improve <span class="skill-icon"></span> Skills</h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: October 26, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens discover their God-given talents, identify skills they want to develop, and understand how to use these gifts for God's glory and service to others.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-star"></i>
+                    Activity: "Talent Treasure Hunt"
+                </div>
+                
+                <p>Teens complete these statements to uncover their hidden talents:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "People often compliment me on..."
+                    </div>
+                    <div class="prompt-card">
+                        "I lose track of time when I'm..."
+                    </div>
+                    <div class="prompt-card">
+                        "If I could teach anything, it would be..."
+                    </div>
+                    <div class="prompt-card">
+                        "I feel most fulfilled when I..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "God has given each of us unique talents. Today we'll discover how to recognize and develop them for His purposes."</p>
+                
+                <div class="scripture">
+                    "Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace in its various forms."
+                    <span class="scripture-ref">1 Peter 4:10</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Understanding Talents & Skills (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. God-Given Talents</div>
+                    <p>Recognizing our unique gifts:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Talents are innate abilities given by God</li>
+                        <li>Everyone has multiple talents (Romans 12:6)</li>
+                        <li>Talents are discovered, not created</li>
+                        <li>They're meant for serving others</li>
+                    </ul>
+                    <div class="talent-stones">
+                        <div class="talent-stone"><i class="fas fa-music"></i></div>
+                        <div class="talent-stone"><i class="fas fa-paint-brush"></i></div>
+                        <div class="talent-stone"><i class="fas fa-calculator"></i></div>
+                        <div class="talent-stone"><i class="fas fa-people-arrows"></i></div>
+                        <div class="talent-stone"><i class="fas fa-book"></i></div>
+                        <div class="talent-stone"><i class="fas fa-hands-helping"></i></div>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Developing Skills</div>
+                    <p>Skills are developed through practice:</p>
+                    <div class="talent-types">
+                        <div class="talent-card">
+                            <i class="fas fa-brain"></i>
+                            <div>Mental Skills<br>(Problem-solving, Learning)</div>
+                        </div>
+                        <div class="talent-card">
+                            <i class="fas fa-hands"></i>
+                            <div>Physical Skills<br>(Sports, Crafting)</div>
+                        </div>
+                        <div class="talent-card">
+                            <i class="fas fa-comments"></i>
+                            <div>Social Skills<br>(Communication, Leadership)</div>
+                        </div>
+                        <div class="talent-card">
+                            <i class="fas fa-heart"></i>
+                            <div>Emotional Skills<br>(Empathy, Self-awareness)</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank."
+                        <span class="scripture-ref">Proverbs 22:29</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. The Parable of Talents</div>
+                    <p>Biblical foundation for talent development:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>God entrusts us with talents (Matthew 25:14-30)</li>
+                        <li>We're accountable for how we use them</li>
+                        <li>Growth comes through faithful practice</li>
+                        <li>Investing talents brings reward</li>
+                    </ul>
+                    <div class="scripture">
+                        "His master replied, 'Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things.'"
+                        <span class="scripture-ref">Matthew 25:21</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Talent Discovery & Skill Building (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-search"></i>
+                    Activity: "Talent Mapping"
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h3 style="color: #1a2a6c; margin-bottom: 15px;">My Talents</h3>
+                        <div class="prompts">
+                            <div class="prompt-card talent-prompt" data-type="talent">
+                                Artistic/Creative <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="prompt-card talent-prompt" data-type="talent">
+                                Athletic/Physical <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="prompt-card talent-prompt" data-type="talent">
+                                Intellectual/Academic <i class="fas fa-plus-circle"></i>
+                            </div>
+                            <div class="prompt-card talent-prompt" data-type="talent">
+                                Social/Relational <i class="fas fa-plus-circle"></i>
+                            </div>
+                        </div>
+                        <input type="text" id="newTalent" placeholder="Add your own talent..." style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #d4c0a1; margin-top: 10px;">
+                    </div>
+                    
+                    <div>
+                        <h3 style="color: #b21f1f; margin-bottom: 15px;">Skills to Develop</h3>
+                        <div class="skill-path">
+                            <div class="activity-title">Public Speaking</div>
+                            <div class="skill-level">
+                                <div class="skill-progress" id="speakingProgress" style="--target-width: 65%;"></div>
+                            </div>
+                            <div class="skill-steps">
+                                <span>Beginner</span>
+                                <span>Intermediate</span>
+                                <span>Advanced</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-path">
+                            <div class="activity-title">Problem Solving</div>
+                            <div class="skill-level">
+                                <div class="skill-progress" id="problemProgress" style="--target-width: 40%;"></div>
+                            </div>
+                            <div class="skill-steps">
+                                <span>Beginner</span>
+                                <span>Intermediate</span>
+                                <span>Advanced</span>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-path">
+                            <div class="activity-title">Empathy</div>
+                            <div class="skill-level">
+                                <div class="skill-progress" id="empathyProgress" style="--target-width: 80%;"></div>
+                            </div>
+                            <div class="skill-steps">
+                                <span>Beginner</span>
+                                <span>Intermediate</span>
+                                <span>Advanced</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-box" style="margin-top: 20px;">
+                    <h3 style="margin-bottom: 15px;">Skill-Building Action Plan</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="talent-card">
+                            <i class="fas fa-bullseye"></i>
+                            <div>Set Specific Goals</div>
+                        </div>
+                        <div class="talent-card">
+                            <i class="fas fa-calendar-check"></i>
+                            <div>Practice Daily</div>
+                        </div>
+                        <div class="talent-card">
+                            <i class="fas fa-user-friends"></i>
+                            <div>Find a Mentor</div>
+                        </div>
+                        <div class="talent-card">
+                            <i class="fas fa-pray"></i>
+                            <div>Pray for Guidance</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Commitment & Closing (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    Talent Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Talent Development Challenge</h3>
+                    <p>Commit to developing one talent or skill over the next month:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="talent-card">Identify your talent</div>
+                        <div class="talent-card">Set weekly goals</div>
+                        <div class="talent-card">Practice 15 min/day</div>
+                        <div class="talent-card">Share with others</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+                    <span class="scripture-ref">Ephesians 2:10</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for uniquely gifting each of us with talents and abilities. Help us to discover these gifts, develop them with diligence, and use them to serve others and bring glory to Your name. Give us wisdom to steward these talents well and courage to step out in faith. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Talent Development Tips
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Experiment with different activities to discover hidden talents</li>
+                        <li>Break skills into small, achievable steps</li>
+                        <li>Find a mentor who excels in your area of interest</li>
+                        <li>Practice consistently - even 10 minutes daily makes a difference</li>
+                        <li>Use your talents to serve in your church or community</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-42.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-44.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Talent selection
+            const talentPrompts = document.querySelectorAll('.talent-prompt');
+            
+            talentPrompts.forEach(prompt => {
+                prompt.addEventListener('click', function() {
+                    this.classList.toggle('selected');
+                    const icon = this.querySelector('i');
+                    
+                    if (this.classList.contains('selected')) {
+                        this.style.backgroundColor = 'rgba(26, 42, 108, 0.1)';
+                        icon.classList.remove('fa-plus-circle');
+                        icon.classList.add('fa-check-circle');
+                        icon.style.color = '#1a2a6c';
+                    } else {
+                        this.style.backgroundColor = '';
+                        icon.classList.remove('fa-check-circle');
+                        icon.classList.add('fa-plus-circle');
+                        icon.style.color = '';
+                    }
+                });
+            });
+            
+            // Add new talent
+            const newTalentInput = document.getElementById('newTalent');
+            const talentContainer = document.querySelector('.prompts');
+            
+            newTalentInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && this.value.trim() !== '') {
+                    const newTalent = document.createElement('div');
+                    newTalent.className = 'prompt-card talent-prompt';
+                    newTalent.setAttribute('data-type', 'talent');
+                    newTalent.innerHTML = this.value + ' <i class="fas fa-plus-circle"></i>';
+                    
+                    newTalent.addEventListener('click', function() {
+                        this.classList.toggle('selected');
+                        const icon = this.querySelector('i');
+                        
+                        if (this.classList.contains('selected')) {
+                            this.style.backgroundColor = 'rgba(26, 42, 108, 0.1)';
+                            icon.classList.remove('fa-plus-circle');
+                            icon.classList.add('fa-check-circle');
+                            icon.style.color = '#1a2a6c';
+                        } else {
+                            this.style.backgroundColor = '';
+                            icon.classList.remove('fa-check-circle');
+                            icon.classList.add('fa-plus-circle');
+                            icon.style.color = '';
+                        }
+                    });
+                    
+                    talentContainer.appendChild(newTalent);
+                    this.value = '';
+                }
+            });
+            
+            // Animate skill progress bars
+            setTimeout(() => {
+                document.querySelectorAll('.skill-progress').forEach(progress => {
+                    const width = progress.style.getPropertyValue('--target-width');
+                    progress.style.animation = `growProgress 2s forwards`;
+                    progress.style.width = width;
+                });
+            }, 500);
+            
+            // Talent stones animation
+            const talentStones = document.querySelectorAll('.talent-stone');
+            
+            talentStones.forEach((stone, index) => {
+                setTimeout(() => {
+                    stone.style.animation = `talentPulse 2s infinite ${index * 0.2}s`;
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>

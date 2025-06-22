@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Habit Formation & Resilience - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Habit & Resilience specific styles -->
+    <style>
+        /* Theme elements */
+        .habit-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="10" rx="5" fill="%231a2a6c"/><rect x="20" y="40" width="60" height="10" rx="5" fill="%231a2a6c"/><rect x="20" y="60" width="60" height="10" rx="5" fill="%231a2a6c"/><circle cx="15" cy="25" r="5" fill="%23b21f1f"/><circle cx="15" cy="45" r="5" fill="%23b21f1f"/><circle cx="15" cy="65" r="5" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: habitPulse 2s infinite;
+        }
+        
+        @keyframes habitPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .resilience-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,70 L50,30 L70,70 Z" fill="none" stroke="%23b21f1f" stroke-width="5"/><rect x="48" y="5" width="4" height="30" fill="%231a2a6c"/><path d="M20,50 Q35,45 50,50 Q65,55 80,50" stroke="%238b5a2b" stroke-width="5" fill="none"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Habit elements */
+        .habit-tracker {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #d4c0a1;
+        }
+        
+        .tracker-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+        }
+        
+        .tracker-day {
+            background: #f5ecd7;
+            border-radius: 5px;
+            padding: 10px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        .tracker-day.checked {
+            background: #1a2a6c;
+            color: white;
+        }
+        
+        .day-name {
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        /* Resilience elements */
+        .resilience-pyramid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            height: 200px;
+            margin: 20px 0;
+            gap: 5px;
+        }
+        
+        .pyramid-block {
+            background: #f5ecd7;
+            border: 1px solid #d4c0a1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.8rem;
+            padding: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .pyramid-block:hover {
+            background: #1a2a6c;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .block-1 { grid-column: 3; grid-row: 1; }
+        .block-2 { grid-column: 2/4; grid-row: 2; }
+        .block-3 { grid-column: 1/4; grid-row: 3; }
+        .block-4 { grid-column: 1/5; grid-row: 4; }
+        
+        /* Growth elements */
+        .growth-mindset {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .mindset-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            position: relative;
+        }
+        
+        .mindset-card.fixed {
+            border-left: 5px solid #b21f1f;
+        }
+        
+        .mindset-card.growth {
+            border-left: 5px solid #1a2a6c;
+        }
+        
+        .mindset-card h4 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Habit Formation <span class="habit-icon"></span> & Resilience <span class="resilience-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: May 18, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To teach teens how to build positive habits and develop resilience, helping them understand the science of habit formation and the biblical principles of perseverance through challenges.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-shoe-prints"></i>
+                    Activity: "Habit Walk"
+                </div>
+                <p>Teens walk along a path while discussing:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        What's one habit you do without thinking?
+                    </div>
+                    <div class="prompt-card">
+                        What habit would you like to develop?
+                    </div>
+                    <div class="prompt-card">
+                        How do you react when facing obstacles?
+                    </div>
+                </div>
+                
+                <p><strong>Transition:</strong> "Today we'll learn how to intentionally build good habits and develop resilience to overcome challenges."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. The Science of Habits (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Habit Loop</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Cue: Trigger for the behavior</li>
+                        <li>Routine: The behavior itself</li>
+                        <li>Reward: Benefit from the behavior</li>
+                    </ul>
+                    <div class="scripture">
+                        "I can do all this through him who gives me strength."
+                        <span class="scripture-ref">Philippians 4:13</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Building New Habits</div>
+                    <p>Effective strategies:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Start small (2-minute rule)</li>
+                        <li>Stack habits (pair new with existing)</li>
+                        <li>Design your environment</li>
+                        <li>Track your progress</li>
+                    </ul>
+                    <div class="scripture">
+                        "Do not despise these small beginnings, for the LORD rejoices to see the work begin."
+                        <span class="scripture-ref">Zechariah 4:10 (NLT)</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Breaking Bad Habits</div>
+                    <p>Keys to change:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Identify triggers and rewards</li>
+                        <li>Replace rather than eliminate</li>
+                        <li>Change your environment</li>
+                        <li>Practice self-compassion</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Building Resilience (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-mountain"></i>
+                    Activity: "Resilience Pyramid"
+                </div>
+                
+                <div class="resilience-pyramid">
+                    <div class="pyramid-block block-1" data-title="Faith Foundation">
+                        Faith in God
+                    </div>
+                    <div class="pyramid-block block-2" data-title="Support System">
+                        Supportive Relationships
+                    </div>
+                    <div class="pyramid-block block-3" data-title="Coping Strategies">
+                        Healthy Coping Skills
+                    </div>
+                    <div class="pyramid-block block-4" data-title="Growth Mindset">
+                        Positive Self-Talk & Learning
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-brain"></i>
+                    Growth vs Fixed Mindset
+                </div>
+                
+                <div class="growth-mindset">
+                    <div class="mindset-card fixed">
+                        <h4><i class="fas fa-times-circle"></i> Fixed Mindset</h4>
+                        "I'm not good at this"<br>
+                        "I give up"<br>
+                        "It's too hard"<br>
+                        "I failed"
+                    </div>
+                    <div class="mindset-card growth">
+                        <h4><i class="fas fa-check-circle"></i> Growth Mindset</h4>
+                        "I can learn this"<br>
+                        "I'll try another way"<br>
+                        "This may take time"<br>
+                        "I learned something"
+                    </div>
+                </div>
+                
+                <div class="habit-tracker">
+                    <div class="activity-title">
+                        <i class="fas fa-calendar-check"></i>
+                        Habit Tracker: 21-Day Challenge
+                    </div>
+                    <div class="tracker-grid">
+                        <div class="tracker-day">
+                            <div class="day-name">Mon</div>
+                            <div>Day 1</div>
+                        </div>
+                        <div class="tracker-day">
+                            <div class="day-name">Tue</div>
+                            <div>Day 2</div>
+                        </div>
+                        <div class="tracker-day">
+                            <div class="day-name">Wed</div>
+                            <div>Day 3</div>
+                        </div>
+                        <div class="tracker-day">
+                            <div class="day-name">Thu</div>
+                            <div>Day 4</div>
+                        </div>
+                        <div class="tracker-day">
+                            <div class="day-name">Fri</div>
+                            <div>Day 5</div>
+                        </div>
+                        <div class="tracker-day">
+                            <div class="day-name">Sat</div>
+                            <div>Day 6</div>
+                        </div>
+                        <div class="tracker-day">
+                            <div class="day-name">Sun</div>
+                            <div>Day 7</div>
+                        </div>
+                        <!-- Days 8-21 would continue in this pattern -->
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope."
+                    <span class="scripture-ref">Romans 5:3-4</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Resilience Challenge (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-fist-raised"></i>
+                    Building Your Resilience Toolkit
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Resilience Builder</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Week 1: Self-Awareness</div>
+                        <div class="prayer-card">Week 2: Healthy Habits</div>
+                        <div class="prayer-card">Week 3: Support Systems</div>
+                        <div class="prayer-card">Week 4: Faith Practices</div>
+                    </div>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-pray"></i>
+                        Daily Prayer
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-book-bible"></i>
+                        Scripture Meditation
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-heart"></i>
+                        Gratitude Journal
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-hands-helping"></i>
+                        Serving Others
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance."
+                    <span class="scripture-ref">James 1:2-3</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for designing us with the capacity to grow and change. Help us to build habits that honor you and develop resilience through life's challenges. Give us wisdom to form good routines, courage to face difficulties, and faith to trust in your strength when we feel weak. May our lives reflect your transforming power. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Share your personal habit-formation journey</li>
+                    <li>Discuss times you've needed resilience</li>
+                    <li>Provide habit-tracking printables</li>
+                    <li>Introduce the "Don't Break the Chain" method</li>
+                    <li>Suggest habit apps: Habitica, Streaks, Loop</li>
+                    <li>Follow up next week to check on habit progress</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-19.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-21.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Habit tracker functionality
+            const trackerDays = document.querySelectorAll('.tracker-day');
+            trackerDays.forEach(day => {
+                day.addEventListener('click', function() {
+                    this.classList.toggle('checked');
+                    
+                    // Update streak counter
+                    const checkedDays = document.querySelectorAll('.tracker-day.checked').length;
+                    document.getElementById('streakCount').textContent = checkedDays;
+                });
+            });
+            
+            // Resilience pyramid tooltips
+            const pyramidBlocks = document.querySelectorAll('.pyramid-block');
+            pyramidBlocks.forEach(block => {
+                block.addEventListener('mouseover', function() {
+                    const title = this.getAttribute('data-title');
+                    if (title) {
+                        const tooltip = document.createElement('div');
+                        tooltip.className = 'tooltip';
+                        tooltip.textContent = title;
+                        tooltip.style.position = 'absolute';
+                        tooltip.style.background = '#1a2a6c';
+                        tooltip.style.color = 'white';
+                        tooltip.style.padding = '5px';
+                        tooltip.style.borderRadius = '5px';
+                        tooltip.style.zIndex = '100';
+                        
+                        const rect = this.getBoundingClientRect();
+                        tooltip.style.top = `${rect.top - 30}px`;
+                        tooltip.style.left = `${rect.left}px`;
+                        
+                        document.body.appendChild(tooltip);
+                        
+                        this.addEventListener('mouseout', function() {
+                            tooltip.remove();
+                        });
+                    }
+                });
+            });
+            
+            // Habit commitment
+            const habitCommitBtn = document.createElement('button');
+            habitCommitBtn.innerHTML = '<i class="fas fa-handshake"></i> Commit to Habit Challenge';
+            habitCommitBtn.className = 'nav-btn';
+            habitCommitBtn.style.margin = '15px auto';
+            habitCommitBtn.style.display = 'block';
+            
+            habitCommitBtn.addEventListener('click', function() {
+                const habit = prompt("What habit do you want to develop? (e.g., Daily Bible reading, Exercise)");
+                if (habit) {
+                    localStorage.setItem('habitChallenge', habit);
+                    alert(`You've committed to developing: ${habit}\nYou'll receive daily reminders!`);
+                    
+                    // Schedule notifications
+                    scheduleNotification("Don't forget your habit: " + habit, 24*60);
+                }
+            });
+            
+            function scheduleNotification(message, minutesFromNow) {
+                // In a real implementation, this would use the browser's Notification API
+                console.log(`Notification scheduled: "${message}" in ${minutesFromNow} minutes`);
+            }
+            
+            // Add commit button
+            const habitTracker = document.querySelector('.habit-tracker');
+            if(habitTracker) {
+                // Add streak counter
+                const streakCounter = document.createElement('div');
+                streakCounter.style.textAlign = 'center';
+                streakCounter.style.marginTop = '15px';
+                streakCounter.style.fontWeight = 'bold';
+                streakCounter.innerHTML = 'Current Streak: <span id="streakCount">0</span> days';
+                habitTracker.appendChild(streakCounter);
+                
+                habitTracker.appendChild(habitCommitBtn);
+            }
+            
+            // Load saved habit
+            const savedHabit = localStorage.getItem('habitChallenge');
+            if (savedHabit) {
+                const habitTitle = document.querySelector('.habit-tracker .activity-title');
+                if (habitTitle) {
+                    habitTitle.innerHTML += `: ${savedHabit}`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

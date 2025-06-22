@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drugs and Substance Abuse - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Substance abuse theme elements */
+        .no-drugs-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23f5ecd7" stroke="%23b21f1f" stroke-width="5"/><path d="M30,30 L70,70 M70,30 L30,70" stroke="%23b21f1f" stroke-width="8"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: pulseAlert 2s infinite;
+        }
+        
+        @keyframes pulseAlert {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .brain-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 Q70,25 80,40 Q85,60 70,75 Q60,85 50,85 Q40,85 30,75 Q15,60 20,40 Q30,25 50,20 Z" fill="%231a2a6c" opacity="0.7"/><path d="M40,35 Q50,30 60,35 Q65,45 60,55 Q50,60 40,55 Q35,45 40,35 Z" fill="%23f5ecd7"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Substance cards */
+        .substance-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .substance-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+        
+        .substance-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .substance-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Effects timeline */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding: 20px 0;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 4px;
+            background: #1a2a6c;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: calc(50% - 40px);
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+            padding-right: 60px;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+            padding-left: 60px;
+        }
+        
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content::after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #b21f1f;
+            border-radius: 50%;
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -10px;
+            transform: translateX(50%);
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+            transform: translateX(-50%);
+        }
+        
+        /* Resistance badges */
+        .resistance-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .badge {
+            background: #1a2a6c;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Drugs <span class="no-drugs-icon"></span> Substance Abuse</h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: August 17, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To educate teens about the dangers of drug and substance abuse, provide strategies for resisting peer pressure, and emphasize the importance of maintaining a healthy body as God's temple.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-brain"></i>
+                    Activity: "Myth vs. Fact"
+                </div>
+                <p>Teens sort statements about drugs into myth or fact:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "Marijuana is harmless because it's natural"
+                    </div>
+                    <div class="prompt-card">
+                        "You can't get addicted after just one use"
+                    </div>
+                    <div class="prompt-card">
+                        "Drugs help you cope with stress"
+                    </div>
+                    <div class="prompt-card">
+                        "Prescription drugs are safer than illegal drugs"
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Many myths about drugs can lead to dangerous choices. Today we'll separate fact from fiction and learn how to make wise decisions."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Understanding Substance Abuse (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Common Substances & Effects</div>
+                    <p>Overview of frequently abused substances:</p>
+                    
+                    <div class="substance-cards">
+                        <div class="substance-card" style="border-color: #1a2a6c;">
+                            <i class="fas fa-joint" style="color: #1a2a6c;"></i>
+                            <div>Marijuana</div>
+                        </div>
+                        <div class="substance-card" style="border-color: #b21f1f;">
+                            <i class="fas fa-pills" style="color: #b21f1f;"></i>
+                            <div>Prescription Drugs</div>
+                        </div>
+                        <div class="substance-card" style="border-color: #8b5a2b;">
+                            <i class="fas fa-smoking" style="color: #8b5a2b;"></i>
+                            <div>Nicotine/Vaping</div>
+                        </div>
+                        <div class="substance-card" style="border-color: #333;">
+                            <i class="fas fa-wine-bottle" style="color: #333;"></i>
+                            <div>Alcohol</div>
+                        </div>
+                    </div>
+                    
+                    <div class="scripture">
+                        "Do you not know that your bodies are temples of the Holy Spirit?"
+                        <span class="scripture-ref">1 Corinthians 6:19</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Consequences of Abuse</div>
+                    <p>How substance abuse impacts life:</p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <strong>Physical Effects</strong>
+                                <p>Brain damage, heart problems, addiction, overdose</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <strong>Mental Effects</strong>
+                                <p>Anxiety, depression, psychosis, poor decision-making</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <strong>Social Effects</strong>
+                                <p>Damaged relationships, isolation, legal troubles</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <strong>Spiritual Effects</strong>
+                                <p>Distance from God, loss of purpose, moral compromise</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scripture">
+                        "Can a man scoop fire into his lap without his clothes being burned?"
+                        <span class="scripture-ref">Proverbs 6:27</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Resistance Strategies (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-people-arrows"></i>
+                    Activity: "Peer Pressure Scenarios"
+                </div>
+                
+                <p>Teens practice responding to peer pressure situations:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "Everyone's trying it - just take one puff!"
+                    </div>
+                    <div class="prompt-card">
+                        "This pill will help you study better for exams"
+                    </div>
+                    <div class="prompt-card">
+                        "Don't be a baby - one drink won't hurt"
+                    </div>
+                    <div class="prompt-card">
+                        "It's just vaping - it's not even a real drug"
+                    </div>
+                </div>
+                
+                <div class="resistance-badges">
+                    <div class="badge">
+                        <i class="fas fa-times-circle"></i> Simple "No"
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-walking"></i> Walk Away
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-friends"></i> Change the Subject
+                    </div>
+                    <div class="badge">
+                        <i class="fas fa-user-friends"></i> Strength in Numbers
+                    </div>
+                </div>
+                
+                <div class="challenge-box" style="margin-top: 20px;">
+                    <h3>Refusal Skills Practice</h3>
+                    <p>Role-play different responses to peer pressure:</p>
+                    <ul style="text-align: left; padding-left: 30px;">
+                        <li>Be direct and assertive</li>
+                        <li>Suggest alternatives</li>
+                        <li>Use humor to deflect</li>
+                        <li>Blame parents or faith commitments</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Healthy Alternatives (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-heartbeat"></i>
+                    Commitment to Health
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Healthy Living Challenge</h3>
+                    <p>Replace risky behaviors with positive alternatives:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="point-card">Exercise & Sports</div>
+                        <div class="point-card">Creative Arts</div>
+                        <div class="point-card">Community Service</div>
+                        <div class="point-card">Faith Activities</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Do not conform to the pattern of this world, but be transformed by the renewing of your mind."
+                    <span class="scripture-ref">Romans 12:2</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for creating our bodies as your temple. Give us wisdom to recognize the dangers of substance abuse and the courage to resist peer pressure. Help us find healthy ways to cope with stress and fill our lives with activities that honor you. Protect our friends and community from the devastation of addiction. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-hands-helping"></i>
+                        Resources for Help
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>National Helpline: 1-800-662-HELP (4357)</li>
+                        <li>Talk to a trusted adult, pastor, or counselor</li>
+                        <li>Support groups for teens</li>
+                        <li>Online resources at samhsa.gov</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-32.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-34.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Substance card interaction
+            const substanceCards = document.querySelectorAll('.substance-card');
+            substanceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const substance = this.querySelector('div').textContent;
+                    const facts = {
+                        "Marijuana": "Impairs memory and learning, increases risk of psychosis, affects brain development in teens",
+                        "Prescription Drugs": "Misuse can lead to addiction, overdose, and dangerous interactions - only use as prescribed",
+                        "Nicotine/Vaping": "Highly addictive, damages lungs, contains harmful chemicals beyond nicotine",
+                        "Alcohol": "Impairs judgment, damages liver and brain, increases risk of accidents and addiction"
+                    };
+                    
+                    alert(`${substance} Facts:\n\n${facts[substance]}`);
+                });
+            });
+            
+            // Peer pressure response practice
+            const prompts = document.querySelectorAll('.prompts .prompt-card');
+            prompts.forEach(prompt => {
+                prompt.addEventListener('click', function() {
+                    const scenario = this.textContent;
+                    const response = prompt(`How would you respond to:\n\n"${scenario}"`);
+                    
+                    if(response) {
+                        const feedback = [
+                            "Great response! Staying firm in your boundaries is important.",
+                            "Good job! Remember you don't need to justify your choices.",
+                            "Well handled! Offering an alternative is a smart approach.",
+                            "Nice work! Walking away is sometimes the best option."
+                        ][Math.floor(Math.random() * 4)];
+                        
+                        alert(`${feedback}\n\nYour response: "${response}"`);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

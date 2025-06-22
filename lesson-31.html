@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Excellence - Crossroads Teens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    <style>
+        /* Lesson-specific styles */
+        .academic-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%231a2a6c" stroke-width="3"/><path d="M40,40 L60,40 L60,60 L40,60 Z" fill="none" stroke="%23b21f1f" stroke-width="3"/><path d="M50,20 L50,30" stroke="%238b5a2b" stroke-width="3"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: academicPulse 2s infinite;
+        }
+        
+        @keyframes academicPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .wisdom-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 Q60,40 50,60 Q40,40 50,20 Z" fill="%23FFD700" stroke="%238b5a2b" stroke-width="2"/><circle cx="50" cy="50" r="8" fill="%231a2a6c"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Academic elements */
+        .grade-tracker {
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .grade-tracker::before {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: #8b5a2b;
+            z-index: 1;
+        }
+        
+        .grade-point {
+            position: relative;
+            width: 80px;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .grade-dot {
+            width: 30px;
+            height: 30px;
+            background: #1a2a6c;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .grade-dot:hover {
+            transform: scale(1.2);
+            background: #b21f1f;
+        }
+        
+        .grade-label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #5a5a5a;
+        }
+        
+        .study-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .study-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .study-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .study-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .strategy-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .strategy-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .strategy-card:hover {
+            transform: translateX(5px);
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .planner-area {
+            background: rgba(26, 42, 108, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            min-height: 200px;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .week-planner {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 15px;
+        }
+        
+        .day-cell {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 5px;
+            border-radius: 5px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .subject-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .scripture-reminders {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .scripture-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            font-style: italic;
+            position: relative;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .goal-setter {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .goal-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #d4c0a1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .goal-icon {
+            width: 50px;
+            height: 50px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Academic <span class="academic-icon"></span> Excellence <span class="wisdom-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: August 3, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens develop a biblical perspective on academic excellence, providing practical study strategies and time management skills to succeed in their education while honoring God.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-graduation-cap"></i>
+                    Activity: "Academic Snapshot"
+                </div>
+                <p>Teens share about their school experiences:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "My favorite subject is..."
+                    </div>
+                    <div class="prompt-card">
+                        "My biggest academic challenge is..."
+                    </div>
+                    <div class="prompt-card">
+                        "One study habit that works for me..."
+                    </div>
+                    <div class="prompt-card">
+                        "How I balance school and other activities..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "God cares about every area of our lives, including our education. Today we'll explore how to pursue academic excellence for God's glory."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Excellence (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Why Academic Excellence Matters</div>
+                    <p>Biblical perspective on education:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Developing God-given potential</li>
+                        <li>Preparing for future service</li>
+                        <li>Honoring God with our minds</li>
+                        <li>Being good stewards of opportunities</li>
+                    </ul>
+                    <div class="scripture">
+                        "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters."
+                        <span class="scripture-ref">Colossians 3:23</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. The Path to Excellence</div>
+                    <p>Key elements of academic success:</p>
+                    <div class="grade-tracker">
+                        <div class="grade-point">
+                            <div class="grade-dot">D</div>
+                            <div class="grade-label">Discipline</div>
+                        </div>
+                        <div class="grade-point">
+                            <div class="grade-dot">I</div>
+                            <div class="grade-label">Integrity</div>
+                        </div>
+                        <div class="grade-point">
+                            <div class="grade-dot">L</div>
+                            <div class="grade-label">Learning</div>
+                        </div>
+                        <div class="grade-point">
+                            <div class="grade-dot">I</div>
+                            <div class="grade-label">Initiative</div>
+                        </div>
+                        <div class="grade-point">
+                            <div class="grade-dot">G</div>
+                            <div class="grade-label">Growth</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "For the Lord gives wisdom; from his mouth come knowledge and understanding."
+                        <span class="scripture-ref">Proverbs 2:6</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Study Strategies</div>
+                    <p>Effective learning approaches:</p>
+                    <div class="study-types">
+                        <div class="study-card">
+                            <i class="fas fa-brain"></i>
+                            <div>Active Learning</div>
+                        </div>
+                        <div class="study-card">
+                            <i class="fas fa-clock"></i>
+                            <div>Time Management</div>
+                        </div>
+                        <div class="study-card">
+                            <i class="fas fa-users"></i>
+                            <div>Study Groups</div>
+                        </div>
+                        <div class="study-card">
+                            <i class="fas fa-book"></i>
+                            <div>Note-Taking</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Excellence in Action (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-clipboard-list"></i>
+                    Activity: "Study Strategy Builder"
+                </div>
+                
+                <div class="strategy-container">
+                    <div class="strategy-card">
+                        <strong>Time Management:</strong> Create a weekly study schedule
+                    </div>
+                    <div class="strategy-card">
+                        <strong>Note-Taking:</strong> Practice the Cornell method
+                    </div>
+                    <div class="strategy-card">
+                        <strong>Test Preparation:</strong> Develop a study plan for exams
+                    </div>
+                    <div class="strategy-card">
+                        <strong>Focus Techniques:</strong> Implement the Pomodoro method
+                    </div>
+                </div>
+                
+                <div class="planner-area">
+                    <h3>Weekly Study Planner</h3>
+                    <div class="week-planner">
+                        <div class="day-cell">Mon</div>
+                        <div class="day-cell">Tue</div>
+                        <div class="day-cell">Wed</div>
+                        <div class="day-cell">Thu</div>
+                        <div class="day-cell">Fri</div>
+                        <div class="day-cell">Sat</div>
+                        <div class="day-cell">Sun</div>
+                        <div class="day-cell"><input type="text" placeholder="Math" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><input type="text" placeholder="Science" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><input type="text" placeholder="English" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><input type="text" placeholder="History" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><input type="text" placeholder="Review" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><input type="text" placeholder="Rest" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><input type="text" placeholder="Prep" style="width: 100%; border: none; text-align: center;"></div>
+                    </div>
+                    
+                    <div class="subject-grid">
+                        <div class="subject-card">Math</div>
+                        <div class="subject-card">Science</div>
+                        <div class="subject-card">English</div>
+                        <div class="subject-card">History</div>
+                        <div class="subject-card">Foreign Lang</div>
+                        <div class="subject-card">Electives</div>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-book-bible"></i>
+                    Academic Encouragement
+                </div>
+                
+                <div class="scripture-reminders">
+                    <div class="scripture-card">
+                        "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you."
+                        <span class="scripture-ref">James 1:5</span>
+                    </div>
+                    <div class="scripture-card">
+                        "Do your best to present yourself to God as one approved, a worker who does not need to be ashamed and who correctly handles the word of truth."
+                        <span class="scripture-ref">2 Timothy 2:15</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Excellence Commitment (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-medal"></i>
+                    Pursuing Excellence
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Academic Excellence Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="study-card">Implement a study schedule</div>
+                        <div class="study-card">Try a new study method</div>
+                        <div class="study-card">Seek help when needed</div>
+                        <div class="study-card">Set specific grade goals</div>
+                        <div class="study-card">Balance study with rest</div>
+                        <div class="study-card">Pray before studying</div>
+                    </div>
+                </div>
+                
+                <div class="goal-setter">
+                    <div class="goal-card">
+                        <div class="goal-icon"><i class="fas fa-bullseye"></i></div>
+                        <div>
+                            <strong>Goal Setting:</strong> "I will raise my grade in ________ from ____ to ____ by ________."
+                        </div>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon"><i class="fas fa-hands-praying"></i></div>
+                        <div>
+                            <strong>Prayer Commitment:</strong> "Lord, help me to honor you with my academic work."
+                        </div>
+                    </div>
+                    <div class="goal-card">
+                        <div class="goal-icon"><i class="fas fa-user-friends"></i></div>
+                        <div>
+                            <strong>Accountability:</strong> "I will check in with ________ about my progress."
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters."
+                    <span class="scripture-ref">Colossians 3:23</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for the gift of education. Help us to pursue academic excellence with diligence and integrity. Give us wisdom in our studies, discipline in our habits, and balance in our lives. May our academic achievements bring glory to you and prepare us for the purposes you have for our lives. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Academic Success Tips
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Create a dedicated study space free from distractions</li>
+                        <li>Break study sessions into 25-30 minute blocks with breaks</li>
+                        <li>Teach concepts to someone else to reinforce learning</li>
+                        <li>Get adequate sleep - it's essential for memory consolidation</li>
+                        <li>Start assignments early to avoid last-minute stress</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-30.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-32.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Grade tracker interaction
+            const gradeDots = document.querySelectorAll('.grade-dot');
+            
+            gradeDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const letter = this.textContent;
+                    let message = "";
+                    
+                    switch(letter) {
+                        case "D":
+                            message = "Discipline: Consistent study habits are key to academic success. 'No discipline seems pleasant at the time, but painful. Later on, however, it produces a harvest of righteousness and peace for those who have been trained by it.' (Hebrews 12:11)";
+                            break;
+                        case "I":
+                            message = "Integrity: Always do your own work and give proper credit. 'The integrity of the upright guides them.' (Proverbs 11:3)";
+                            break;
+                        case "L":
+                            message = "Learning: Approach studies with a growth mindset. 'Instruct the wise and they will be wiser still; teach the righteous and they will add to their learning.' (Proverbs 9:9)";
+                            break;
+                        case "I":
+                            message = "Initiative: Take responsibility for your education. 'Whatever your hand finds to do, do it with all your might.' (Ecclesiastes 9:10)";
+                            break;
+                        case "G":
+                            message = "Growth: Focus on progress, not perfection. 'But grow in the grace and knowledge of our Lord and Savior Jesus Christ.' (2 Peter 3:18)";
+                            break;
+                    }
+                    
+                    alert(message);
+                });
+            });
+            
+            // Strategy card interaction
+            const strategyCards = document.querySelectorAll('.strategy-card');
+            
+            strategyCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Toggle selection
+                    this.style.backgroundColor = this.style.backgroundColor === 'rgb(233, 240, 255)' ? '' : '#e9f0ff';
+                });
+            });
+            
+            // Subject card interaction
+            const subjectCards = document.querySelectorAll('.subject-card');
+            
+            subjectCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.backgroundColor = '#d0e0ff';
+                    this.style.transform = 'scale(1.05)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+            
+            // Academic icon animation
+            const academicIcons = document.querySelectorAll('.academic-icon');
+            
+            academicIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    this.style.animation = 'academicPulse 0.5s ease';
+                    setTimeout(() => {
+                        this.style.animation = 'academicPulse 2s infinite';
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privileges & Responsibilities - Mother's Day</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Mother's Day specific styles -->
+    <style>
+        /* Theme elements */
+        .balance-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M10,50 L90,50 M50,10 L50,90" stroke="%231a2a6c" stroke-width="5"/><circle cx="30" cy="30" r="10" fill="%23b21f1f"/><circle cx="70" cy="70" r="10" fill="%231a2a6c"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: balancePulse 2s infinite;
+        }
+        
+        @keyframes balancePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .mother-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="30" r="15" fill="%23f5ecd7" stroke="%238b5a2b" stroke-width="2"/><path d="M35,50 Q50,80 65,50 Z" fill="%231a2a6c" opacity="0.8"/><circle cx="40" cy="70" r="8" fill="%23f5ecd7" stroke="%238b5a2b" stroke-width="1"/><circle cx="60" cy="70" r="8" fill="%23f5ecd7" stroke="%238b5a2b" stroke-width="1"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Balance elements */
+        .balance-scale {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+        }
+        
+        .scale-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .scale-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .scale-plate {
+            width: 100px;
+            height: 100px;
+            background: #f5ecd7;
+            border: 3px solid #8b5a2b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .scale-plate::before {
+            content: "";
+            position: absolute;
+            width: 5px;
+            height: 100px;
+            background: #8b5a2b;
+            top: -100px;
+        }
+        
+        /* Mother's Day elements */
+        .mothers-day-card {
+            background: linear-gradient(135deg, #f5ecd7, #ffffff);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 5px double #b21f1f;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-decoration {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 3rem;
+            color: rgba(178, 31, 31, 0.2);
+            transform: rotate(20deg);
+        }
+        
+        .appreciation-station {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .appreciation-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .appreciation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .appreciation-card i {
+            font-size: 2rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        /* Flower elements */
+        .flower-garden {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .flower {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .flower:hover {
+            transform: scale(1.2) rotate(10deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Privileges <span class="balance-icon"></span> Responsibilities <span class="mother-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: May 11, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Mother's Day Special</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens understand the relationship between privileges and responsibilities, with special focus on appreciating mothers and mother figures, recognizing their sacrifices, and fulfilling our responsibilities toward them.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-balance-scale"></i>
+                    Activity: "Privilege vs Responsibility"
+                </div>
+                <p>Teens match privileges with corresponding responsibilities:</p>
+                
+                <div class="balance-scale">
+                    <div class="scale-side">
+                        <div class="scale-title">Privileges</div>
+                        <div class="scale-plate">
+                            Using phone<br>
+                            Having freedom<br>
+                            Receiving love<br>
+                            Getting an education
+                        </div>
+                    </div>
+                    <div class="scale-side">
+                        <div class="scale-title">Responsibilities</div>
+                        <div class="scale-plate">
+                            Using wisely<br>
+                            Making good choices<br>
+                            Showing love back<br>
+                            Studying diligently
+                        </div>
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Every privilege comes with responsibility. Today we'll explore this balance, especially in relationship to our mothers."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Understanding Privileges & Responsibilities (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Biblical Foundations</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Stewardship principle (Luke 12:48)</li>
+                        <li>Honoring parents commandment (Exodus 20:12)</li>
+                        <li>Jesus' example of responsibility</li>
+                    </ul>
+                    <div class="scripture">
+                        "From everyone who has been given much, much will be demanded; and from the one who has been entrusted with much, much more will be asked."
+                        <span class="scripture-ref">Luke 12:48</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Mother's Day Focus</div>
+                    <div class="mothers-day-card">
+                        <div class="card-decoration">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Honoring Mothers</h3>
+                        <p>Recognizing the privilege of having a mother/mother figure and our responsibility to honor them</p>
+                        <div class="scripture" style="margin-top: 15px;">
+                            "Honor your father and mother - which is the first commandment with a promise - so that it may go well with you and that you may enjoy long life on the earth."
+                            <span class="scripture-ref">Ephesians 6:2-3</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. The Mother's Privilege & Responsibility</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Privilege of nurturing life</li>
+                        <li>Responsibility of guidance and care</li>
+                        <li>Sacrifices mothers make</li>
+                        <li>Balancing love and discipline</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Mother Appreciation (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-heart"></i>
+                    Activity: "Mom Gratitude Challenge"
+                </div>
+                
+                <div class="appreciation-station">
+                    <div class="appreciation-card">
+                        <i class="fas fa-utensils"></i>
+                        <strong>Cook a Meal</strong>
+                        <p>Prepare breakfast or dinner</p>
+                    </div>
+                    <div class="appreciation-card">
+                        <i class="fas fa-hands"></i>
+                        <strong>Acts of Service</strong>
+                        <p>Do her chores for a day</p>
+                    </div>
+                    <div class="appreciation-card">
+                        <i class="fas fa-pen-fancy"></i>
+                        <strong>Write a Letter</strong>
+                        <p>Express your appreciation</p>
+                    </div>
+                    <div class="appreciation-card">
+                        <i class="fas fa-gift"></i>
+                        <strong>Handmade Gift</strong>
+                        <p>Create something personal</p>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-comments"></i>
+                    "I Appreciate When You..."
+                </div>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        Sacrificed something for me
+                    </div>
+                    <div class="prompt-card">
+                        Taught me an important lesson
+                    </div>
+                    <div class="prompt-card">
+                        Showed me unconditional love
+                    </div>
+                    <div class="prompt-card">
+                        Believed in me when I doubted myself
+                    </div>
+                </div>
+                
+                <div class="mothers-day-card">
+                    <h3>Create a Mother's Day Card</h3>
+                    <div class="flower-garden">
+                        <div class="flower" style="background: #FFB6C1;"><i class="fas fa-heart"></i></div>
+                        <div class="flower" style="background: #FFD700;"><i class="fas fa-sun"></i></div>
+                        <div class="flower" style="background: #98FB98;"><i class="fas fa-leaf"></i></div>
+                        <div class="flower" style="background: #87CEEB;"><i class="fas fa-cloud"></i></div>
+                        <div class="flower" style="background: #DDA0DD;"><i class="fas fa-star"></i></div>
+                    </div>
+                    <textarea placeholder="Write your message here..." style="width: 100%; height: 100px; margin-top: 15px; padding: 10px; border-radius: 10px; border: 1px solid #d4c0a1;"></textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Commitment (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    My Responsibilities Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Responsibility Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Week 1: Household Help</div>
+                        <div class="prayer-card">Week 2: Communication</div>
+                        <div class="prayer-card">Week 3: Appreciation</div>
+                        <div class="prayer-card">Week 4: Honor Actions</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Listen, my son, to your father's instruction and do not forsake your mother's teaching. They are a garland to grace your head and a chain to adorn your neck."
+                    <span class="scripture-ref">Proverbs 1:8-9</span>
+                </div>
+                
+                <div class="journal-entry" style="margin-top: 20px;">
+                    <div class="point-title">My Commitment to My Mother/Mother Figure:</div>
+                    <p contenteditable="true">I commit to showing appreciation by...</p>
+                    <p contenteditable="true">I will take responsibility for...</p>
+                    <p contenteditable="true">I will honor you by...</p>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for the gift of mothers and mother figures. Help us to recognize the privileges we enjoy and embrace our responsibilities. Teach us to honor our mothers not just on Mother's Day, but every day. Give us wisdom to balance our privileges with responsibility, and hearts full of gratitude for those who care for us. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Be sensitive to teens with complicated family situations</li>
+                    <li>Emphasize appreciation for all mother figures (grandmothers, aunts, mentors)</li>
+                    <li>Provide art supplies for card-making</li>
+                    <li>Share your own experiences with privilege and responsibility</li>
+                    <li>Discuss how to honor parents when relationships are difficult</li>
+                    <li>Follow up next week about their responsibility challenge</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-18.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-20.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Flower selection for card
+            const flowers = document.querySelectorAll('.flower');
+            const cardTextarea = document.querySelector('.mothers-day-card textarea');
+            let selectedFlower = null;
+            
+            flowers.forEach(flower => {
+                flower.addEventListener('click', function() {
+                    flowers.forEach(f => f.style.border = "none");
+                    this.style.border = "3px solid #b21f1f";
+                    selectedFlower = this.innerHTML;
+                });
+            });
+            
+            // Save card functionality
+            const saveCardBtn = document.createElement('button');
+            saveCardBtn.innerHTML = '<i class="fas fa-save"></i> Save Mother\'s Day Card';
+            saveCardBtn.className = 'nav-btn';
+            saveCardBtn.style.margin = '15px auto';
+            saveCardBtn.style.display = 'block';
+            
+            saveCardBtn.addEventListener('click', function() {
+                if (!selectedFlower) {
+                    alert("Please select a flower decoration first!");
+                    return;
+                }
+                
+                const message = cardTextarea.value;
+                if (!message) {
+                    alert("Please write a message for your card!");
+                    return;
+                }
+                
+                // Create a digital card
+                const card = document.createElement('div');
+                card.style.background = 'linear-gradient(135deg, #f5ecd7, #ffffff)';
+                card.style.borderRadius = '15px';
+                card.style.padding = '20px';
+                card.style.border = '5px double #b21f1f';
+                card.style.textAlign = 'center';
+                card.style.maxWidth = '300px';
+                card.style.margin = '0 auto';
+                card.style.position = 'relative';
+                
+                card.innerHTML = `
+                    <div style="position: absolute; top: 10px; right: 10px;">${selectedFlower}</div>
+                    <h3>Happy Mother's Day!</h3>
+                    <div style="margin: 20px 0; font-style: italic;">"${message}"</div>
+                    <div style="margin-top: 30px; text-align: right;">Love,<br>${prompt("Your name:")}</div>
+                `;
+                
+                // Replace the card area with the finished card
+                const cardContainer = document.querySelector('.mothers-day-card');
+                cardContainer.replaceWith(card);
+                
+                alert("Card saved! You can print it or show it to your mom digitally.");
+            });
+            
+            // Add save button
+            const cardContainer = document.querySelector('.mothers-day-card');
+            if (cardContainer) {
+                cardContainer.appendChild(saveCardBtn);
+            }
+            
+            // Responsibility tracker
+            const responsibilityTracker = document.createElement('div');
+            responsibilityTracker.innerHTML = `
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-tasks"></i>
+                    My Responsibility Tracker
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 10px;">
+                    <div class="prompt-card" data-responsibility="Clean my room">Clean Room</div>
+                    <div class="prompt-card" data-responsibility="Help with dishes">Wash Dishes</div>
+                    <div class="prompt-card" data-responsibility="Complete homework">Homework</div>
+                    <div class="prompt-card" data-responsibility="Speak respectfully">Respect</div>
+                </div>
+                <div class="journal-entry" style="min-height: 100px; margin-top: 15px;" id="trackerList"></div>
+            `;
+            
+            // Add tracker to commitment section
+            const commitmentSection = document.querySelector('.activity-card:last-child');
+            if (commitmentSection) {
+                commitmentSection.appendChild(responsibilityTracker);
+                
+                // Responsibility selection
+                const responsibilityCards = document.querySelectorAll('.prompt-card[data-responsibility]');
+                const trackerList = document.getElementById('trackerList');
+                
+                responsibilityCards.forEach(card => {
+                    card.addEventListener('click', function() {
+                        const responsibility = this.getAttribute('data-responsibility');
+                        const responsibilityItem = document.createElement('div');
+                        responsibilityItem.style.display = 'flex';
+                        responsibilityItem.style.alignItems = 'center';
+                        responsibilityItem.style.marginBottom = '10px';
+                        
+                        responsibilityItem.innerHTML = `
+                            <input type="checkbox" id="${responsibility.replace(/\s+/g, '')}" style="margin-right: 10px;">
+                            <label for="${responsibility.replace(/\s+/g, '')}">${responsibility}</label>
+                        `;
+                        
+                        trackerList.appendChild(responsibilityItem);
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

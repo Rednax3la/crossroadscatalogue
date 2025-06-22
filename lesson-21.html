@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Who Am I? - Identity in Christ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Identity-specific styles -->
+    <style>
+        /* Identity theme elements */
+        .identity-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="40" r="15" fill="%23f5ecd7" stroke="%238b5a2b" stroke-width="2"/><path d="M35,50 Q50,80 65,50 Z" fill="%231a2a6c" opacity="0.8"/><circle cx="40" cy="30" r="3" fill="%231a2a6c"/><circle cx="60" cy="30" r="3" fill="%231a2a6c"/><path d="M45,40 Q50,45 55,40" stroke="%23b21f1f" stroke-width="2" fill="none"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: identityPulse 2s infinite;
+        }
+        
+        @keyframes identityPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .mirror-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="10" width="60" height="70" rx="10" fill="%23d4c0a1" stroke="%238b5a2b" stroke-width="3"/><path d="M30,20 L70,20 L65,60 L35,60 Z" fill="%23f0f0f0" stroke="%231a2a6c" stroke-width="2"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Identity elements */
+        .identity-mirror {
+            background: linear-gradient(135deg, #f5ecd7, #ffffff);
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            border: 10px solid #8b5a2b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .mirror-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .identity-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .identity-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .identity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .identity-card i {
+            font-size: 2rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        /* Discovery elements */
+        .discovery-journey {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .journey-step {
+            background: #f5ecd7;
+            border: 2px solid #8b5a2b;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            padding: 5px;
+        }
+        
+        .journey-step::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 5px;
+            background: #8b5a2b;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .journey-step:last-child::after {
+            display: none;
+        }
+        
+        /* Word cloud */
+        .word-cloud {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 1px solid #d4c0a1;
+            min-height: 200px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .cloud-word {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: #1a2a6c;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cloud-word:hover {
+            background: #b21f1f;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Who Am I? <span class="identity-icon"></span> Identity in Christ <span class="mirror-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: May 25, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens discover their true identity in Christ, moving beyond societal labels to understand their inherent worth as children of God and their unique purpose in His kingdom.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-tags"></i>
+                    Activity: "Labels & Identity"
+                </div>
+                <p>Teens share labels they've been given or have given themselves:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        What labels do others put on you?
+                    </div>
+                    <div class="prompt-card">
+                        What labels do you put on yourself?
+                    </div>
+                    <div class="prompt-card">
+                        How do these labels make you feel?
+                    </div>
+                </div>
+                
+                <p><strong>Transition:</strong> "Today we'll look beyond labels to discover our true identity in Christ."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Identity (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="identity-mirror">
+                <div class="mirror-content">
+                    <i class="fas fa-heart" style="font-size: 3rem; color: #b21f1f;"></i>
+                    <h3>In Christ</h3>
+                </div>
+            </div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Created in God's Image</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Intentionally designed (Psalm 139:14)</li>
+                        <li>Imbued with inherent worth</li>
+                        <li>Reflecting God's character</li>
+                    </ul>
+                    <div class="scripture">
+                        "So God created mankind in his own image, in the image of God he created them; male and female he created them."
+                        <span class="scripture-ref">Genesis 1:27</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Our Identity in Christ</div>
+                    <div class="identity-cards">
+                        <div class="identity-card">
+                            <i class="fas fa-hands-heart"></i>
+                            <strong>Beloved Child</strong>
+                            <p>1 John 3:1</p>
+                        </div>
+                        <div class="identity-card">
+                            <i class="fas fa-crown"></i>
+                            <strong>Royal Priesthood</strong>
+                            <p>1 Peter 2:9</p>
+                        </div>
+                        <div class="identity-card">
+                            <i class="fas fa-seedling"></i>
+                            <strong>New Creation</strong>
+                            <p>2 Corinthians 5:17</p>
+                        </div>
+                        <div class="identity-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <strong>More Than Conquerors</strong>
+                            <p>Romans 8:37</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Identity Discovery (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-search"></i>
+                    Activity: "Mirror of Truth"
+                </div>
+                
+                <div class="discovery-journey">
+                    <div class="journey-step">
+                        <i class="fas fa-question"></i>
+                        <span>Who am I?</span>
+                    </div>
+                    <div class="journey-step">
+                        <i class="fas fa-cross"></i>
+                        <span>In Christ</span>
+                    </div>
+                    <div class="journey-step">
+                        <i class="fas fa-star"></i>
+                        <span>My Worth</span>
+                    </div>
+                    <div class="journey-step">
+                        <i class="fas fa-bullseye"></i>
+                        <span>My Purpose</span>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-cloud"></i>
+                    Identity Word Cloud
+                </div>
+                
+                <div class="word-cloud" id="wordCloud">
+                    <!-- Words will be added by JavaScript -->
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-pen-fancy"></i>
+                    Identity Declaration
+                </div>
+                
+                <div class="journal-entry" style="min-height: 150px;" contenteditable="true">
+                    I am a child of God, created with purpose. My identity is found in Christ, not in the world's labels. I am...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Embracing Your Identity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-hands"></i>
+                    My Identity Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Identity Journey</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Week 1: Who God Says I Am</div>
+                        <div class="prayer-card">Week 2: Replacing Lies</div>
+                        <div class="prayer-card">Week 3: Walking in Truth</div>
+                        <div class="prayer-card">Week 4: Living My Purpose</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "But you are a chosen people, a royal priesthood, a holy nation, God's special possession, that you may declare the praises of him who called you out of darkness into his wonderful light."
+                    <span class="scripture-ref">1 Peter 2:9</span>
+                </div>
+                
+                <div class="identity-mirror" style="width: 150px; height: 150px; margin: 20px auto;">
+                    <div class="mirror-content">
+                        <i class="fas fa-check" style="font-size: 2rem; color: #1a2a6c;"></i>
+                        <p>Loved</p>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px; text-align: center;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for creating me with purpose and love. Help me to see myself as you see me - your beloved child. When I'm tempted to believe the world's labels, remind me of my true identity in Christ. Give me the courage to walk in the truth of who you say I am. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Create a safe space for vulnerability</li>
+                    <li>Share your own identity journey</li>
+                    <li>Use actual mirrors as visual aids</li>
+                    <li>Provide identity affirmation cards</li>
+                    <li>Discuss social media's impact on identity</li>
+                    <li>Follow up with teens struggling with identity</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-20.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-22.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Identity words for cloud
+            const identityWords = [
+                "Loved", "Chosen", "Forgiven", "Accepted", "Redeemed", 
+                "Capable", "Enough", "Strong", "Worthy", "Purposeful",
+                "Beloved", "Redeemed", "Victorious", "New Creation", "Masterpiece",
+                "Child of God", "Temple", "Saint", "Ambassador", "Heir",
+                "Light", "Salt", "Witness", "Overcomer", "Conqueror"
+            ];
+            
+            const wordCloud = document.getElementById('wordCloud');
+            
+            identityWords.forEach(word => {
+                const wordElement = document.createElement('span');
+                wordElement.className = 'cloud-word';
+                wordElement.textContent = word;
+                
+                // Random font size
+                const fontSize = 14 + Math.floor(Math.random() * 10);
+                wordElement.style.fontSize = `${fontSize}px`;
+                
+                wordCloud.appendChild(wordElement);
+                
+                // Add click handler
+                wordElement.addEventListener('click', function() {
+                    const declaration = document.querySelector('.journal-entry');
+                    if (declaration.textContent.includes(word)) {
+                        declaration.textContent = declaration.textContent.replace(word, '').replace('  ', ' ');
+                    } else {
+                        declaration.textContent += ` ${word}`;
+                    }
+                });
+            });
+            
+            // Identity journey animation
+            const journeySteps = document.querySelectorAll('.journey-step');
+            journeySteps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.backgroundColor = 'rgba(26, 42, 108, 0.1)';
+                    step.style.transform = 'scale(1.1)';
+                }, 1000 * index);
+            });
+            
+            // Save identity declaration
+            const declaration = document.querySelector('.journal-entry');
+            const saveBtn = document.createElement('button');
+            saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Identity Declaration';
+            saveBtn.className = 'nav-btn';
+            saveBtn.style.margin = '15px auto';
+            saveBtn.style.display = 'block';
+            
+            saveBtn.addEventListener('click', function() {
+                localStorage.setItem('identityDeclaration', declaration.innerHTML);
+                alert('Declaration saved!');
+            });
+            
+            // Load saved declaration if exists
+            const savedDeclaration = localStorage.getItem('identityDeclaration');
+            if (savedDeclaration) {
+                declaration.innerHTML = savedDeclaration;
+            }
+            
+            // Add save button
+            const activityCard = document.querySelector('.activity-card:last-child');
+            if(activityCard) {
+                activityCard.appendChild(saveBtn);
+            }
+            
+            // Interactive mirror
+            const identityMirror = document.querySelector('.identity-mirror');
+            identityMirror.addEventListener('click', function() {
+                const affirmations = [
+                    "You are loved by God!",
+                    "You are fearfully and wonderfully made!",
+                    "You have a divine purpose!",
+                    "You are chosen and called!",
+                    "You are God's masterpiece!"
+                ];
+                
+                const randomAffirmation = affirmations[Math.floor(Math.random() * affirmations.length)];
+                
+                const affirmationDiv = document.createElement('div');
+                affirmationDiv.style.position = 'absolute';
+                affirmationDiv.style.background = 'rgba(26, 42, 108, 0.8)';
+                affirmationDiv.style.color = 'white';
+                affirmationDiv.style.padding = '10px';
+                affirmationDiv.style.borderRadius = '10px';
+                affirmationDiv.style.textAlign = 'center';
+                affirmationDiv.style.zIndex = '10';
+                affirmationDiv.textContent = randomAffirmation;
+                
+                // Random position within mirror
+                const posX = Math.random() * 140 + 30;
+                const posY = Math.random() * 140 + 30;
+                affirmationDiv.style.left = `${posX}px`;
+                affirmationDiv.style.top = `${posY}px`;
+                
+                identityMirror.appendChild(affirmationDiv);
+                
+                // Remove after delay
+                setTimeout(() => {
+                    affirmationDiv.remove();
+                }, 3000);
+            });
+        });
+    </script>
+</body>
+</html>

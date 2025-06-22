@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Emotions - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Emotion theme elements */
+        .emotion-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700" opacity="0.8"/><circle cx="35" cy="40" r="5" fill="%23333"/><circle cx="65" cy="40" r="5" fill="%23333"/><path d="M35,65 Q50,75 65,65" fill="none" stroke="%23333" stroke-width="5"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: emotionChange 4s infinite;
+        }
+        
+        @keyframes emotionChange {
+            0%, 100% { 
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700" opacity="0.8"/><circle cx="35" cy="40" r="5" fill="%23333"/><circle cx="65" cy="40" r="5" fill="%23333"/><path d="M35,65 Q50,75 65,65" fill="none" stroke="%23333" stroke-width="5"/></svg>') center/contain no-repeat;
+            }
+            25% { 
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%231a2a6c" opacity="0.8"/><circle cx="35" cy="40" r="5" fill="%23fff"/><circle cx="65" cy="40" r="5" fill="%23fff"/><path d="M35,65 Q50,55 65,65" fill="none" stroke="%23fff" stroke-width="5"/></svg>') center/contain no-repeat;
+            }
+            50% { 
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23b21f1f" opacity="0.8"/><path d="M35,35 L45,45 M65,35 L55,45 M35,65 L45,55 M65,65 L55,55" stroke="%23fff" stroke-width="5"/></svg>') center/contain no-repeat;
+            }
+            75% { 
+                background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%238b5a2b" opacity="0.8"/><circle cx="35" cy="40" r="5" fill="%23fff"/><circle cx="65" cy="40" r="5" fill="%23fff"/><line x1="35" y1="65" x2="65" y2="65" stroke="%23fff" stroke-width="5"/></svg>') center/contain no-repeat;
+            }
+        }
+        
+        .regulation-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" rx="10" fill="none" stroke="%231a2a6c" stroke-width="5"/><circle cx="50" cy="50" r="15" fill="%23b21f1f"/><path d="M50,30 L50,70 M30,50 L70,50" stroke="%23fff" stroke-width="5"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Emotion elements */
+        .emotion-wheel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .emotion-item {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .emotion-item:hover {
+            transform: scale(1.1);
+        }
+        
+        .emotion-scale {
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .scale-point {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        
+        .scale-point::before {
+            content: "";
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        
+        .regulation-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tool-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .tool-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        /* Breathing exercise */
+        .breathing-container {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .breathing-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(26, 42, 108, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: breathe 8s infinite ease-in-out;
+        }
+        
+        @keyframes breathe {
+            0%, 100% { transform: scale(0.8); background: rgba(178, 31, 31, 0.1); }
+            50% { transform: scale(1.2); background: rgba(26, 42, 108, 0.2); }
+        }
+        
+        .breath-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+        
+        /* Emotion journal */
+        .journal-prompt {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border-left: 5px solid #1a2a6c;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Understanding Emotions <span class="emotion-icon"></span> & Regulation <span class="regulation-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: November 2, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens understand their emotions from a biblical perspective, identify healthy ways to process feelings, and develop practical strategies for emotional regulation.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Emotional Check-in (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-cloud-sun"></i>
+                    Activity: "Weather Report"
+                </div>
+                <p>Teens describe their current emotional state using weather metaphors:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "My emotions feel like..."<br>
+                        <em>(Sunny, stormy, cloudy, etc.)</em>
+                    </div>
+                    <div class="prompt-card">
+                        "The temperature of my feelings is..."<br>
+                        <em>(Hot, cold, warm, freezing)</em>
+                    </div>
+                    <div class="prompt-card">
+                        "My emotional forecast for today is..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Just like weather, emotions are natural and constantly changing. Today we'll learn how to navigate our emotional climate."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical View of Emotions (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Emotions in the Bible</div>
+                    <p>Biblical examples of emotional expression:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Jesus wept (John 11:35)</li>
+                        <li>David's joy and lament in Psalms</li>
+                        <li>Paul's contentment in all circumstances</li>
+                        <li>Elijah's depression and renewal</li>
+                    </ul>
+                    <div class="scripture">
+                        "Jesus wept." 
+                        <span class="scripture-ref">John 11:35</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Understanding Your Emotions</div>
+                    <p>The purpose of emotions:</p>
+                    <div class="emotion-wheel">
+                        <div class="emotion-item" style="background: #FFD700;">
+                            Joy<br><small>Celebration</small>
+                        </div>
+                        <div class="emotion-item" style="background: #1a2a6c; color: white;">
+                            Sadness<br><small>Processing</small>
+                        </div>
+                        <div class="emotion-item" style="background: #b21f1f; color: white;">
+                            Anger<br><small>Protection</small>
+                        </div>
+                        <div class="emotion-item" style="background: #8b5a2b; color: white;">
+                            Fear<br><small>Safety</small>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "There is a time for everything, and a season for every activity under the heavens... a time to weep and a time to laugh, a time to mourn and a time to dance."
+                        <span class="scripture-ref">Ecclesiastes 3:1,4</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Healthy vs. Unhealthy Expression</div>
+                    <p>Recognizing appropriate emotional expression:</p>
+                    <div class="emotion-scale">
+                        <div class="scale-point" style="color: #1a2a6c;">
+                            <strong>Suppression</strong>
+                            <p>Bottling up feelings</p>
+                        </div>
+                        <div class="scale-point" style="color: #8b5a2b;">
+                            <strong>Healthy Expression</strong>
+                            <p>Appropriate sharing</p>
+                        </div>
+                        <div class="scale-point" style="color: #b21f1f;">
+                            <strong>Explosion</strong>
+                            <p>Uncontrolled outbursts</p>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "In your anger do not sin: Do not let the sun go down while you are still angry."
+                        <span class="scripture-ref">Ephesians 4:26</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Emotional Regulation (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-tools"></i>
+                    Activity: "Regulation Toolbox"
+                </div>
+                
+                <div class="regulation-tools">
+                    <div class="tool-card">
+                        <i class="fas fa-wind"></i>
+                        <div>Deep Breathing</div>
+                        <p>Calms the nervous system</p>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fas fa-book"></i>
+                        <div>Journaling</div>
+                        <p>Process thoughts and feelings</p>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fas fa-pray"></i>
+                        <div>Prayer</div>
+                        <p>Take concerns to God</p>
+                    </div>
+                    <div class="tool-card">
+                        <i class="fas fa-walking"></i>
+                        <div>Movement</div>
+                        <p>Release emotional energy</p>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-lungs"></i>
+                    Breathing Exercise
+                </div>
+                
+                <div class="breathing-container">
+                    <div class="breathing-circle">
+                        <div class="breath-text">
+                            <span id="breath-text">Breathe In</span><br>
+                            <small id="countdown">4</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-feather-alt"></i>
+                    Emotion Journal Prompt
+                </div>
+                
+                <div class="journal-prompt">
+                    "When I feel <select id="emotion-select" style="border: none; border-bottom: 1px solid #1a2a6c; background: transparent; font-weight: bold;">
+                        <option>angry</option>
+                        <option>sad</option>
+                        <option>anxious</option>
+                        <option>overwhelmed</option>
+                        <option>frustrated</option>
+                    </select>, 
+                    I can honor God by..."
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Emotional Health Commitment (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-heart"></i>
+                    Heart Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">My Emotional Health Plan</h3>
+                    <p>I commit to healthy emotional regulation by:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="tool-card">Acknowledging Feelings</div>
+                        <div class="tool-card">Using Healthy Tools</div>
+                        <div class="tool-card">Seeking Help When Needed</div>
+                        <div class="tool-card">Bringing Emotions to God</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "May the God of hope fill you with all joy and peace as you trust in him, so that you may overflow with hope by the power of the Holy Spirit."
+                    <span class="scripture-ref">Romans 15:13</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for creating us as emotional beings. Help us to honor you with our feelings, bringing them to you in prayer. Teach us healthy ways to process and express our emotions. Fill us with your peace that passes understanding. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Emotion Regulation Tips
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Name your emotions to tame them</li>
+                        <li>Create a "calm down" toolkit (music, journal, etc.)</li>
+                        <li>Practice the 5-4-3-2-1 grounding technique</li>
+                        <li>Talk to trusted adults about big feelings</li>
+                        <li>Remember emotions are temporary states, not permanent identities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-43.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-45.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Emotion wheel interaction
+            const emotionItems = document.querySelectorAll('.emotion-item');
+            
+            emotionItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const emotion = this.textContent.split('\n')[0].trim();
+                    const purpose = this.querySelector('small').textContent;
+                    
+                    alert(`Emotion: ${emotion}\nPurpose: ${purpose}\n\nWhat might this emotion be trying to tell you?`);
+                    
+                    // Highlight selection
+                    emotionItems.forEach(i => i.style.boxShadow = '0 3px 10px rgba(0,0,0,0.2)');
+                    this.style.boxShadow = '0 0 15px rgba(26, 42, 108, 0.8)';
+                });
+            });
+            
+            // Breathing exercise
+            const breathText = document.getElementById('breath-text');
+            const countdown = document.getElementById('countdown');
+            let breathPhase = 'in';
+            let counter = 4;
+            
+            function updateBreathing() {
+                if (counter > 0) {
+                    countdown.textContent = counter;
+                    counter--;
+                } else {
+                    if (breathPhase === 'in') {
+                        breathPhase = 'hold';
+                        breathText.textContent = 'Hold';
+                        counter = 4;
+                    } else if (breathPhase === 'hold') {
+                        breathPhase = 'out';
+                        breathText.textContent = 'Breathe Out';
+                        counter = 6;
+                    } else {
+                        breathPhase = 'in';
+                        breathText.textContent = 'Breathe In';
+                        counter = 4;
+                    }
+                }
+            }
+            
+            // Start breathing exercise
+            setInterval(updateBreathing, 1000);
+            
+            // Emotion journal
+            const emotionSelect = document.getElementById('emotion-select');
+            
+            emotionSelect.addEventListener('change', function() {
+                const selectedEmotion = this.value;
+                alert(`Journal Prompt: "When I feel ${selectedEmotion}, I can honor God by..."\n\nTake a moment to reflect and write.`);
+            });
+            
+            // Emotion tracker
+            const trackerBtn = document.createElement('button');
+            trackerBtn.innerHTML = '<i class="fas fa-chart-line"></i> Weekly Emotion Tracker';
+            trackerBtn.className = 'nav-btn';
+            trackerBtn.style.margin = '15px auto';
+            trackerBtn.style.display = 'block';
+            
+            trackerBtn.addEventListener('click', function() {
+                const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                const emotions = ['😊', '😢', '😠', '😨', '😴', '😐', '🤩'];
+                
+                let trackerHTML = '<div style="display: grid; grid-template-columns: repeat(8, 1fr); gap: 5px; margin: 20px 0;">';
+                trackerHTML += '<div style="grid-column: 1; font-weight: bold;">Day</div>';
+                
+                // Header row
+                emotions.forEach(em => {
+                    trackerHTML += `<div style="text-align: center; font-weight: bold;">${em}</div>`;
+                });
+                
+                // Rows for each day
+                days.forEach(day => {
+                    trackerHTML += `<div style="font-weight: bold;">${day}</div>`;
+                    emotions.forEach(() => {
+                        trackerHTML += '<div style="text-align: center;"><input type="checkbox"></div>';
+                    });
+                });
+                
+                trackerHTML += '</div>';
+                
+                const trackerDiv = document.createElement('div');
+                trackerDiv.style.background = 'rgba(255,255,255,0.9)';
+                trackerDiv.style.borderRadius = '10px';
+                trackerDiv.style.padding = '20px';
+                trackerDiv.style.marginTop = '20px';
+                trackerDiv.innerHTML = `
+                    <h3 style="text-align: center; margin-bottom: 15px;">Weekly Emotion Tracker</h3>
+                    <p style="text-align: center;">Check the emotions you feel each day</p>
+                    ${trackerHTML}
+                    <p style="text-align: center; margin-top: 15px;"><button class="nav-btn" id="closeTracker">Save & Close</button></p>
+                `;
+                
+                document.querySelector('.section:last-child .activity-card').appendChild(trackerDiv);
+                
+                document.getElementById('closeTracker').addEventListener('click', function() {
+                    trackerDiv.remove();
+                });
+            });
+            
+            const lastSection = document.querySelector('.section:last-child .activity-card');
+            if(lastSection) {
+                lastSection.appendChild(trackerBtn);
+            }
+        });
+    </script>
+</body>
+</html>

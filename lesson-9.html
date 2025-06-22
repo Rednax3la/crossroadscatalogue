@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redemption - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Redemption theme elements */
+        .redemption-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700" opacity="0.9"/><path d="M30,30 L70,70 M70,30 L30,70" stroke="%23b21f1f" stroke-width="8" stroke-linecap="round"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: pulseGold 2s infinite alternate;
+        }
+        
+        @keyframes pulseGold {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .cross-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="45" y="10" width="10" height="80" fill="%231a2a6c"/><rect x="10" y="45" width="80" height="10" fill="%231a2a6c"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Redemption elements */
+        .redemption-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 2px solid #8b5a2b;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .redemption-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: #FFD700;
+        }
+        
+        /* Transformation elements */
+        .transformation-track {
+            height: 150px;
+            margin: 30px 0;
+            position: relative;
+            background: linear-gradient(to right, #b21f1f, #FFD700, #1a2a6c);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .track-point {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100px;
+            text-align: center;
+        }
+        
+        .track-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: #1a2a6c;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        
+        /* Price tag elements */
+        .price-tag {
+            display: inline-block;
+            background: #1a2a6c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            position: relative;
+            margin: 0 5px;
+        }
+        
+        .price-tag::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            background: #1a2a6c;
+            transform: translateY(-50%) rotate(45deg);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1><span class="redemption-icon"></span> Redemption <span class="cross-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: March 2, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens understand the biblical concept of redemption, recognize Jesus Christ as their redeemer, and embrace the transformative power of being bought back from sin's slavery.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    Activity: "The Pawn Shop"
+                </div>
+                <p>Teens participate in a simulation of redeeming items:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "Bring 'valuable' personal items (phone, jewelry, etc.)"
+                    </div>
+                    <div class="prompt-card">
+                        "Facilitator acts as pawn shop owner setting redemption prices"
+                    </div>
+                    <div class="prompt-card">
+                        "Teens must pay the price to reclaim their items"
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Just as you paid to reclaim your items, Jesus paid the ultimate price to redeem us from sin. Today we'll explore this powerful transaction."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. The Redemption Story (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. What is Redemption?</div>
+                    <p>Biblical meaning of redemption:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Buying back from slavery (Leviticus 25:47-49)</li>
+                        <li>Paying a ransom price (Mark 10:45)</li>
+                        <li>Setting free from bondage</li>
+                        <li>Restoring to original purpose</li>
+                    </ul>
+                    <div class="scripture">
+                        "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many."
+                        <span class="scripture-ref">Mark 10:45</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Our Need for Redemption</div>
+                    <p>Why we needed to be bought back:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Enslaved to sin (John 8:34)</li>
+                        <li>Spiritually bankrupt (Romans 3:23)</li>
+                        <li>Under death's sentence (Romans 6:23)</li>
+                        <li>Separated from God (Isaiah 59:2)</li>
+                    </ul>
+                    <div class="scripture">
+                        "For all have sinned and fall short of the glory of God."
+                        <span class="scripture-ref">Romans 3:23</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. The Redeemer's Price</div>
+                    <p>What it cost to redeem us:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Christ's perfect life (Hebrews 4:15)</li>
+                        <li>His sacrificial death (1 Peter 1:18-19)</li>
+                        <li>Victory over the grave (1 Corinthians 15:55-57)</li>
+                        <li>His ongoing intercession (Hebrews 7:25)</li>
+                    </ul>
+                    <div class="scripture">
+                        "For you know that it was not with perishable things such as silver or gold that you were redeemed... but with the precious blood of Christ."
+                        <span class="scripture-ref">1 Peter 1:18-19</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Personal Redemption (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-sync-alt"></i>
+                    Activity: "From Slavery to Freedom"
+                </div>
+                
+                <div class="transformation-track">
+                    <div class="slider-handle" id="sliderHandle"></div>
+                    
+                    <div class="track-point" style="left: 10%;">
+                        <div class="track-icon" style="background: #b21f1f; color: white;"><i class="fas fa-chain"></i></div>
+                        <div>Enslaved</div>
+                    </div>
+                    
+                    <div class="track-point" style="left: 30%;">
+                        <div class="track-icon" style="background: #FFA500; color: white;"><i class="fas fa-hand-holding-usd"></i></div>
+                        <div>Redeemed</div>
+                    </div>
+                    
+                    <div class="track-point" style="left: 50%;">
+                        <div class="track-icon" style="background: #FFD700; color: #333;"><i class="fas fa-fingerprint"></i></div>
+                        <div>Forgiven</div>
+                    </div>
+                    
+                    <div class="track-point" style="left: 70%;">
+                        <div class="track-icon" style="background: #1a2a6c; color: white;"><i class="fas fa-user-check"></i></div>
+                        <div>Adopted</div>
+                    </div>
+                    
+                    <div class="track-point" style="left: 90%;">
+                        <div class="track-icon" style="background: white; border: 2px solid #1a2a6c;"><i class="fas fa-crown"></i></div>
+                        <div>Royalty</div>
+                    </div>
+                </div>
+                
+                <div class="redemption-card">
+                    <div class="point-title">Redemption Receipt</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                        <div>
+                            <h4>Item Redeemed:</h4>
+                            <p>[Teen's Name]</p>
+                        </div>
+                        <div>
+                            <h4>Redemption Price:</h4>
+                            <p>The precious blood of Christ <span class="price-tag">1 Peter 1:19</span></p>
+                        </div>
+                        <div>
+                            <h4>Previous Condition:</h4>
+                            <p>Enslaved to sin <span class="price-tag">Romans 6:20</span></p>
+                        </div>
+                        <div>
+                            <h4>New Status:</h4>
+                            <p>Child of God <span class="price-tag">John 1:12</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <p><strong>Exercise:</strong> Teens fill out their personal "Redemption Receipt" and share one aspect of their redemption story.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Living Redeemed (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-flag"></i>
+                    Freedom Declaration
+                </div>
+                
+                <div class="redemption-card" style="background: rgba(255, 215, 0, 0.1);">
+                    <div class="point-title">The Redeemed Life</div>
+                    <p>Characteristics of a redeemed person:</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+                        <div>
+                            <h4>New Identity:</h4>
+                            <ul style="padding-left: 20px;">
+                                <li>Child of God (John 1:12)</li>
+                                <li>Citizen of heaven (Philippians 3:20)</li>
+                                <li>Temple of the Spirit (1 Corinthians 6:19)</li>
+                                <li>Royal priesthood (1 Peter 2:9)</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>New Purpose:</h4>
+                            <ul style="padding-left: 20px;">
+                                <li>Worship the Redeemer</li>
+                                <li>Walk in freedom</li>
+                                <li>Witness to others</li>
+                                <li>Work for God's kingdom</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Weekly Challenge</h3>
+                    <p>Share your "Redemption Receipt" with one person this week and explain what being redeemed means to you.</p>
+                </div>
+                
+                <div class="scripture">
+                    "In him we have redemption through his blood, the forgiveness of sins, in accordance with the riches of God's grace."
+                    <span class="scripture-ref">Ephesians 1:7</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord Jesus, our Redeemer, thank you for paying the ultimate price to buy us back from sin's slavery. Help us live as redeemed people—walking in freedom, embracing our new identity, and sharing this good news with others. May our lives reflect the gratitude we feel for your priceless gift. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Bonus Tips for Facilitators
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Create "redeemed" wristbands with Ephesians 1:7</li>
+                    <li>Use play money to illustrate redemption price</li>
+                    <li>Show before/after testimonies of redemption</li>
+                    <li>Sing redemption hymns ("Redeemed", "Amazing Grace")</li>
+                    <li>Provide blank "Redemption Receipt" cards for teens</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-8.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-10.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Redemption slider interaction
+            const sliderHandle = document.getElementById('sliderHandle');
+            const transformationTrack = document.querySelector('.transformation-track');
+            let isDragging = false;
+            
+            sliderHandle.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                document.body.style.cursor = 'grabbing';
+            });
+            
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                
+                const trackRect = transformationTrack.getBoundingClientRect();
+                let newPosition = e.clientX - trackRect.left;
+                
+                // Constrain to track boundaries
+                newPosition = Math.max(0, Math.min(newPosition, trackRect.width));
+                
+                sliderHandle.style.left = newPosition + 'px';
+            });
+            
+            document.addEventListener('mouseup', function() {
+                isDragging = false;
+                document.body.style.cursor = '';
+            });
+            
+            // Make redemption receipt interactive
+            const receiptItems = document.querySelectorAll('.redemption-card p');
+            receiptItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    if (this.contentEditable === 'true') {
+                        this.contentEditable = 'false';
+                        this.style.backgroundColor = '';
+                    } else {
+                        this.contentEditable = 'true';
+                        this.style.backgroundColor = '#FFD700';
+                        this.focus();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

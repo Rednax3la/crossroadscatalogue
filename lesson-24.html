@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Servant/Master - Materialism - Crossroads Teens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    <style>
+        /* Lesson-specific styles */
+        .money-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23FFD700" stroke="%238b5a2b" stroke-width="3"/><text x="50" y="60" font-family="Arial" font-size="40" text-anchor="middle" fill="%238b5a2b">$</text></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: moneySpin 3s infinite linear;
+        }
+        
+        @keyframes moneySpin {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+        
+        .scale-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,70 L80,70 M50,30 L50,70" stroke="%231a2a6c" stroke-width="5"/><circle cx="30" cy="40" r="15" fill="%23b21f1f" opacity="0.8"/><circle cx="70" cy="50" r="15" fill="%231a2a6c" opacity="0.8"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Materialism elements */
+        .treasure-chest {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 5px solid #8b5a2b;
+            position: relative;
+            max-width: 300px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .chest-lid {
+            background: #b21f1f;
+            height: 30px;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .chest-lid::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            width: 40px;
+            height: 10px;
+            background: #FFD700;
+            border-radius: 5px;
+        }
+        
+        .chest-content {
+            background: #1a2a6c;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            min-height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .chest-item {
+            width: 40px;
+            height: 40px;
+            background: #FFD700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #8b5a2b;
+        }
+        
+        .item-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .item-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .item-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .priority-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .priority-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #d4c0a1;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: move;
+            transition: all 0.3s ease;
+        }
+        
+        .priority-item:hover {
+            transform: translateX(5px);
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .priority-handle {
+            font-size: 1.2rem;
+            color: #8b5a2b;
+        }
+        
+        .generosity-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .action-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+        }
+        
+        .bible-verses {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .verse-card {
+            background: rgba(26, 42, 108, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #1a2a6c;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>My Servant <span class="scale-icon"></span> or Master? <span class="money-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: June 15, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens understand the dangers of materialism and learn to develop a healthy relationship with money and possessions, recognizing that we can only serve one master - God or wealth.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-shopping-cart"></i>
+                    Activity: "What Would You Do?"
+                </div>
+                <p>Teens discuss these scenarios:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "If you found $100, what would you do with it?"
+                    </div>
+                    <div class="prompt-card">
+                        "What's one thing you really want but can't afford?"
+                    </div>
+                    <div class="prompt-card">
+                        "How much money would make you feel 'rich'?"
+                    </div>
+                    <div class="prompt-card">
+                        "What's more important - time or money?"
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Our relationship with money reveals who we're really serving. Today we'll explore how to keep money as our servant rather than becoming its slave."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Materialism vs. Contentment (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. The Danger of Materialism</div>
+                    <p>Why Jesus warned about wealth:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Money promises security but can't deliver</li>
+                        <li>Possessions demand our time and attention</li>
+                        <li>Wealth creates false sense of independence</li>
+                        <li>Material things distract from eternal values</li>
+                    </ul>
+                    <div class="scripture">
+                        "Then Jesus said to them, 'Watch out! Be on your guard against all kinds of greed; life does not consist in an abundance of possessions.'"
+                        <span class="scripture-ref">Luke 12:15</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Two Masters</div>
+                    <p>Why we can't serve both God and money:</p>
+                    <div class="treasure-chest">
+                        <div class="chest-lid"></div>
+                        <div class="chest-content">
+                            <div class="chest-item">$$</div>
+                            <p>You cannot serve both God and money</p>
+                            <div class="chest-item">!</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "No one can serve two masters. Either you will hate the one and love the other, or you will be devoted to the one and despise the other. You cannot serve both God and money."
+                        <span class="scripture-ref">Matthew 6:24</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. True Riches</div>
+                    <p>What God values most:</p>
+                    <div class="item-grid">
+                        <div class="item-card">
+                            <i class="fas fa-heart"></i>
+                            <div>Relationships</div>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-hands-helping"></i>
+                            <div>Generosity</div>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-pray"></i>
+                            <div>Faith</div>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-seedling"></i>
+                            <div>Character</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "But store up for yourselves treasures in heaven, where moths and vermin do not destroy, and where thieves do not break in and steal."
+                        <span class="scripture-ref">Matthew 6:20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Money Mastery (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-balance-scale"></i>
+                    Activity: "Priority Check"
+                </div>
+                
+                <div class="priority-list" id="priorityList">
+                    <div class="priority-item" data-value="1">
+                        <div class="priority-handle"><i class="fas fa-grip-lines"></i></div>
+                        <div>Buying the latest smartphone</div>
+                    </div>
+                    <div class="priority-item" data-value="2">
+                        <div class="priority-handle"><i class="fas fa-grip-lines"></i></div>
+                        <div>Tithing to my church</div>
+                    </div>
+                    <div class="priority-item" data-value="3">
+                        <div class="priority-handle"><i class="fas fa-grip-lines"></i></div>
+                        <div>Saving for college</div>
+                    </div>
+                    <div class="priority-item" data-value="4">
+                        <div class="priority-handle"><i class="fas fa-grip-lines"></i></div>
+                        <div>Buying designer clothes</div>
+                    </div>
+                    <div class="priority-item" data-value="5">
+                        <div class="priority-handle"><i class="fas fa-grip-lines"></i></div>
+                        <div>Giving to someone in need</div>
+                    </div>
+                    <div class="priority-item" data-value="6">
+                        <div class="priority-handle"><i class="fas fa-grip-lines"></i></div>
+                        <div>Saving for a car</div>
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> Drag to reorder these financial priorities according to what you think honors God. How do your choices reflect who you're serving?</p>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-hands-heart"></i>
+                    Generosity Challenge
+                </div>
+                
+                <div class="generosity-actions">
+                    <div class="action-card">
+                        <i class="fas fa-comment-dollar"></i>
+                        <div>Give anonymously to someone</div>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-utensils"></i>
+                        <div>Buy lunch for a friend</div>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-gift"></i>
+                        <div>Donate to a charity</div>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <div>Volunteer your time</div>
+                    </div>
+                </div>
+                
+                <p><strong>Challenge:</strong> Choose one generosity action to complete this week.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Contentment Commitment (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    Freedom from Materialism
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">7-Day Contentment Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="item-card">Day 1: Avoid shopping</div>
+                        <div class="item-card">Day 2: Donate something</div>
+                        <div class="item-card">Day 3: Practice gratitude</div>
+                        <div class="item-card">Day 4: Fast from social media</div>
+                        <div class="item-card">Day 5: Serve someone</div>
+                        <div class="item-card">Day 6: Spend time in nature</div>
+                        <div class="item-card">Day 7: Give generously</div>
+                    </div>
+                </div>
+                
+                <div class="bible-verses">
+                    <div class="verse-card">
+                        "Keep your lives free from the love of money and be content with what you have, because God has said, 'Never will I leave you; never will I forsake you.'"
+                        <span class="scripture-ref">Hebrews 13:5</span>
+                    </div>
+                    <div class="verse-card">
+                        "Command those who are rich in this present world not to be arrogant nor to put their hope in wealth, which is so uncertain, but to put their hope in God, who richly provides us with everything for our enjoyment."
+                        <span class="scripture-ref">1 Timothy 6:17</span>
+                    </div>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, help us to see money and possessions as tools to serve you rather than masters to serve. Free us from the trap of materialism and teach us contentment. Show us how to be generous with what you've given us, storing up treasures in heaven rather than on earth. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Practical Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Practice the 24-hour rule before non-essential purchases</li>
+                    <li>Create a gratitude journal for what you already have</li>
+                    <li>Set a generosity budget (10% is a good starting point)</li>
+                    <li>Regularly evaluate what you own and donate unused items</li>
+                    <li>Limit exposure to advertising and social media that promotes materialism</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-23.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-25.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Priority list functionality
+            const priorityList = document.getElementById('priorityList');
+            let draggedItem = null;
+            
+            priorityList.querySelectorAll('.priority-item').forEach(item => {
+                item.setAttribute('draggable', 'true');
+                
+                item.addEventListener('dragstart', function() {
+                    draggedItem = this;
+                    setTimeout(() => this.style.opacity = '0.4', 0);
+                });
+                
+                item.addEventListener('dragend', function() {
+                    setTimeout(() => this.style.opacity = '1', 0);
+                    draggedItem = null;
+                });
+                
+                item.addEventListener('dragover', function(e) {
+                    e.preventDefault();
+                });
+                
+                item.addEventListener('dragenter', function(e) {
+                    e.preventDefault();
+                    this.style.backgroundColor = 'rgba(26, 42, 108, 0.1)';
+                });
+                
+                item.addEventListener('dragleave', function() {
+                    this.style.backgroundColor = '';
+                });
+                
+                item.addEventListener('drop', function(e) {
+                    e.preventDefault();
+                    this.style.backgroundColor = '';
+                    if (draggedItem !== this) {
+                        priorityList.insertBefore(draggedItem, this);
+                    }
+                });
+            });
+            
+            // Money animation
+            const moneyIcons = document.querySelectorAll('.money-icon');
+            moneyIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    this.style.animationDuration = '1s';
+                    setTimeout(() => {
+                        this.style.animationDuration = '3s';
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

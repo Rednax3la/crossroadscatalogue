@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crossroads Lesson Templates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff8a00, #e52e71, #1a2a6c);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #5a5a5a;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        #searchInput {
+            width: 100%;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .months-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .month-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .month-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+        
+        .month-header {
+            padding: 20px;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .month-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        
+        .lesson-count {
+            background: white;
+            color: #1a2a6c;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .lessons-list {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            padding: 0 20px;
+        }
+        
+        .month-card.active .lessons-list {
+            max-height: 1000px;
+            padding: 15px 20px 20px;
+        }
+        
+        .lesson-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .lesson-item:last-child {
+            border-bottom: none;
+        }
+        
+        .lesson-date {
+            background: #e9f0ff;
+            color: #1a2a6c;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .lesson-info {
+            flex-grow: 1;
+        }
+        
+        .lesson-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #1a2a6c;
+        }
+        
+        .lesson-link {
+            display: inline-block;
+            background: linear-gradient(90deg, #ff8a00, #e52e71);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            margin-top: 8px;
+            box-shadow: 0 3px 10px rgba(233, 30, 99, 0.3);
+        }
+        
+        .lesson-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            margin-top: 50px;
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .months-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Crossroads Lesson Templates</h1>
+            <p class="subtitle">A comprehensive catalogue of lesson plans for teen ministry facilitators. Organized by month for easy reference.</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for lessons by topic or keyword...">
+            </div>
+        </header>
+        
+        <div class="months-container" id="monthsContainer">
+            <!-- Months will be inserted here by JavaScript -->
+        </div>
+    </div>
+    
+    <footer>
+        <p>Crossroads Ministry &copy; 2025 | Designed for Facilitators | Alexander Wambugu</p>
+    </footer>
+
+    <script>
+        // Lesson data organized by month
+        const lessonsByMonth = [
+            {
+                month: "January",
+                lessons: [
+                    { date: "5th", title: "Introduction to Crossroads", link: "lesson-1.html" },
+                    { date: "12th", title: "Why Ropes", link: "lesson-2.html" },
+                    { date: "19th", title: "Journey through life", link: "lesson-3.html" },
+                    { date: "26th", title: "Marks of Childhood", link: "lesson-4.html" }
+                ]
+            },
+            {
+                month: "February",
+                lessons: [
+                    { date: "2nd", title: "Official Launch of Crossroads 2024", link: "lesson-5.html" },
+                    { date: "9th", title: "Marks of Adulthood + Using public transport", link: "lesson-6.html" },
+                    { date: "16th", title: "Creation (Includes Planning & Time Management)", link: "lesson-7.html" },
+                    { date: "23rd", title: "The fall of Man", link: "lesson-8.html" }
+                ]
+            },
+            {
+                month: "March",
+                lessons: [
+                    { date: "2nd", title: "Redemption", link: "lesson-9.html" },
+                    { date: "9th", title: "Conversations with God/Elements of conversation", link: "lesson-10.html" },
+                    { date: "16th", title: "Journaling", link: "lesson-11.html" },
+                    { date: "23rd", title: "Daily date with God", link: "lesson-12.html" },
+                    { date: "30th", title: "Forgiveness - Movie", link: "lesson-13.html" }
+                ]
+            },
+            {
+                month: "April",
+                lessons: [
+                    { date: "6th", title: "Confirmation/Baptism", link: "lesson-14.html" },
+                    { date: "13th", title: "Salvation - The reason for Easter - Sleepover", link: "lesson-15.html" },
+                    { date: "20th", title: "Easter Sunday", link: "lesson-16.html" },
+                    { date: "27th", title: "Life as a Gift", link: "lesson-17.html" }
+                ]
+            },
+            {
+                month: "May",
+                lessons: [
+                    { date: "4th", title: "Fasting", link: "lesson-18.html" },
+                    { date: "11th", title: "Privileges & Responsibilities - Mother's day", link: "lesson-19.html" },
+                    { date: "18th", title: "Habit formation/Building resilience", link: "lesson-20.html" },
+                    { date: "25th", title: "Who am I?", link: "lesson-21.html" }
+                ]
+            },
+            {
+                month: "June",
+                lessons: [
+                    { date: "1st", title: "Self worth & self esteem", link: "lesson-22.html" },
+                    { date: "8th", title: "iLead", link: "lesson-23.html" },
+                    { date: "15th", title: "My servant/Master - materialism", link: "lesson-24.html" },
+                    { date: "22nd", title: "Problem Solving", link: "lesson-25.html" },
+                    { date: "29th", title: "Taking Initiative", link: "lesson-26.html" }
+                ]
+            },
+            {
+                month: "July",
+                lessons: [
+                    { date: "6th", title: "Bible Models & Role Models", link: "lesson-27.html" },
+                    { date: "13th", title: "Friends, Family & Faith", link: "lesson-28.html" },
+                    { date: "20th", title: "Saying No", link: "lesson-29.html" },
+                    { date: "27th", title: "iContribute", link: "lesson-30.html" }
+                ]
+            },
+            {
+                month: "August",
+                lessons: [
+                    { date: "3rd", title: "Academic Excellence", link: "lesson-31.html" },
+                    { date: "10th", title: "Hangout - Bike riding/Fun park", link: "lesson-32.html" },
+                    { date: "17th", title: "Drugs and substance abuse", link: "lesson-33.html" },
+                    { date: "24th", title: "Happy Life Visit", link: "lesson-34.html" },
+                    { date: "31st", title: "Media & Technology", link: "lesson-35.html" }
+                ]
+            },
+            {
+                month: "September",
+                lessons: [
+                    { date: "7th", title: "Communication", link: "lesson-36.html" },
+                    { date: "14th", title: "My Sexuality + Resisting pressure & Abstinence", link: "lesson-37.html" },
+                    { date: "21st", title: "Decision Making", link: "lesson-38.html" },
+                    { date: "28th", title: "Maturity", link: "lesson-39.html" }
+                ]
+            },
+            {
+                month: "October",
+                lessons: [
+                    { date: "5th", title: "Love", link: "lesson-40.html" },
+                    { date: "12th", title: "Dating", link: "lesson-41.html" },
+                    { date: "19th", title: "Dreams And Ambitions", link: "lesson-42.html" },
+                    { date: "26th", title: "Discover Talents & Improve Skills", link: "lesson-43.html" }
+                ]
+            },
+            {
+                month: "November",
+                lessons: [
+                    { date: "2nd", title: "Understanding emotions and emotional regulation", link: "lesson-44.html" },
+                    { date: "9th", title: "Building healthy boundaries", link: "lesson-45.html" },
+                    { date: "16th", title: "Movie", link: "lesson-46.html" },
+                    { date: "23rd", title: "CAMP", link: "lesson-47.html" },
+                    { date: "30th", title: "Boys Ropes", link: "catalogue.html" }
+                ]
+            },
+            {
+                month: "December",
+                lessons: [
+                    { date: "7th", title: "Commissioning", link: "catalogue.html" },
+                    
+                ]
+            }
+        ];
+
+        // Render months and lessons
+        const monthsContainer = document.getElementById('monthsContainer');
+        
+        lessonsByMonth.forEach(monthData => {
+            const monthCard = document.createElement('div');
+            monthCard.className = 'month-card';
+            
+            monthCard.innerHTML = `
+                <div class="month-header">
+                    <div class="month-name">${monthData.month}</div>
+                    <div class="lesson-count">${monthData.lessons.length} lessons</div>
+                </div>
+                <div class="lessons-list">
+                    ${monthData.lessons.map(lesson => `
+                        <div class="lesson-item">
+                            <div class="lesson-date">${lesson.date}</div>
+                            <div class="lesson-info">
+                                <div class="lesson-title">${lesson.title}</div>
+                                <a href="${lesson.link}" class="lesson-link">View Lesson Template</a>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            // Add click event to toggle dropdown
+            monthCard.querySelector('.month-header').addEventListener('click', () => {
+                monthCard.classList.toggle('active');
+            });
+            
+            monthsContainer.appendChild(monthCard);
+        });
+
+        // Search functionality
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const monthCards = document.querySelectorAll('.month-card');
+            
+            monthCards.forEach(card => {
+                const lessonItems = card.querySelectorAll('.lesson-item');
+                let hasVisibleItems = false;
+                
+                lessonItems.forEach(item => {
+                    const title = item.querySelector('.lesson-title').textContent.toLowerCase();
+                    if (title.includes(searchTerm)) {
+                        item.style.display = 'flex';
+                        hasVisibleItems = true;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // Show month card only if it has visible lessons or search is empty
+                if (hasVisibleItems || searchTerm === '') {
+                    card.style.display = 'block';
+                    card.classList.add('active'); // Open the month if search matches
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taking Initiative - Crossroads Teens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    <style>
+        /* Lesson-specific styles */
+        .initiative-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,50 L40,30 L40,70 Z" fill="%231a2a6c"/><path d="M40,30 L80,30 L60,50 L80,70 L40,70 Z" fill="%23b21f1f" opacity="0.8"/><circle cx="65" cy="50" r="8" fill="%23FFD700"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: initiativePulse 2s infinite;
+        }
+        
+        @keyframes initiativePulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        .footprint-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,70 Q40,50 50,60 Q60,50 70,70 Q60,85 50,80 Q40,85 30,70 Z" fill="%238b5a2b"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Initiative elements */
+        .step-tracker {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            height: 80px;
+            margin: 30px 0;
+        }
+        
+        .step-tracker::before {
+            content: "";
+            position: absolute;
+            top: 40px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: #8b5a2b;
+            z-index: 1;
+        }
+        
+        .step-point {
+            position: relative;
+            width: 80px;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .step-dot {
+            width: 30px;
+            height: 30px;
+            background: #1a2a6c;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .step-dot:hover {
+            transform: scale(1.2);
+            background: #b21f1f;
+        }
+        
+        .step-label {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #5a5a5a;
+        }
+        
+        .initiative-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .initiative-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .initiative-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .initiative-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        .opportunity-spotter {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .opportunity-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .opportunity-card:hover {
+            transform: translateX(5px);
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .action-planner {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px dashed #8b5a2b;
+        }
+        
+        .plan-step {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 15px 0;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .plan-step:last-child {
+            border-bottom: none;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .initiative-wall {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .brick {
+            background: #f5ecd7;
+            border: 1px solid #d4c0a1;
+            padding: 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .brick:hover {
+            background: #e9dcc3;
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Taking <span class="initiative-icon"></span> Initiative <span class="footprint-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: June 29, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To empower teens to recognize opportunities and take godly initiative in their daily lives, developing the confidence to step forward and make a difference without waiting for others.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-running"></i>
+                    Activity: "First Steps"
+                </div>
+                <p>Teens share experiences of taking initiative:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "A time I saw a need and stepped up to help..."
+                    </div>
+                    <div class="prompt-card">
+                        "Something I started without being asked..."
+                    </div>
+                    <div class="prompt-card">
+                        "A project I took the lead on..."
+                    </div>
+                    <div class="prompt-card">
+                        "When I solved a problem before it got worse..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Taking initiative means seeing what needs to be done and doing it without waiting for instructions. Today we'll learn how to develop this important life skill."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Initiative (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. What is Initiative?</div>
+                    <p>More than just taking action:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Seeing opportunities others miss</li>
+                        <li>Taking responsibility without being asked</li>
+                        <li>Making things happen rather than waiting</li>
+                        <li>Solving problems proactively</li>
+                    </ul>
+                    <div class="scripture">
+                        "Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank."
+                        <span class="scripture-ref">Proverbs 22:29</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Biblical Examples</div>
+                    <p>Heroes who took godly initiative:</p>
+                    <div class="step-tracker">
+                        <div class="step-point">
+                            <div class="step-dot">D</div>
+                            <div class="step-label">David</div>
+                        </div>
+                        <div class="step-point">
+                            <div class="step-dot">E</div>
+                            <div class="step-label">Esther</div>
+                        </div>
+                        <div class="step-point">
+                            <div class="step-dot">N</div>
+                            <div class="step-label">Nehemiah</div>
+                        </div>
+                        <div class="step-point">
+                            <div class="step-dot">P</div>
+                            <div class="step-label">Paul</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+                        <span class="scripture-ref">Ephesians 2:10</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Types of Initiative</div>
+                    <p>Different ways to step forward:</p>
+                    <div class="initiative-types">
+                        <div class="initiative-card">
+                            <i class="fas fa-hands-helping"></i>
+                            <div>Helping Initiative</div>
+                        </div>
+                        <div class="initiative-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>Creative Initiative</div>
+                        </div>
+                        <div class="initiative-card">
+                            <i class="fas fa-tasks"></i>
+                            <div>Responsibility Initiative</div>
+                        </div>
+                        <div class="initiative-card">
+                            <i class="fas fa-comments"></i>
+                            <div>Communication Initiative</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Initiative Practice (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-binoculars"></i>
+                    Activity: "Opportunity Spotting"
+                </div>
+                
+                <div class="opportunity-spotter">
+                    <div class="opportunity-card">
+                        <strong>Home:</strong> You notice the kitchen is always messy after dinner
+                    </div>
+                    <div class="opportunity-card">
+                        <strong>School:</strong> Your classmate is struggling with an assignment
+                    </div>
+                    <div class="opportunity-card">
+                        <strong>Church:</strong> The youth room needs organizing
+                    </div>
+                    <div class="opportunity-card">
+                        <strong>Community:</strong> The local park has litter accumulating
+                    </div>
+                </div>
+                
+                <p><strong>Exercise:</strong> For each opportunity, brainstorm specific actions you could take without being asked.</p>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-clipboard-list"></i>
+                    Initiative Action Plan
+                </div>
+                
+                <div class="action-planner">
+                    <div class="plan-step">
+                        <div class="step-icon">1</div>
+                        <div>
+                            <strong>Identify Opportunity:</strong>
+                            <input type="text" placeholder="What need do you see?" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;">
+                        </div>
+                    </div>
+                    <div class="plan-step">
+                        <div class="step-icon">2</div>
+                        <div>
+                            <strong>Plan Your Action:</strong>
+                            <textarea placeholder="What specific steps will you take?" rows="2" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;"></textarea>
+                        </div>
+                    </div>
+                    <div class="plan-step">
+                        <div class="step-icon">3</div>
+                        <div>
+                            <strong>Set Timeline:</strong>
+                            <input type="text" placeholder="When will you do this?" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 5px; border: 1px solid #d4c0a1;">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-thumbs-up"></i>
+                    Overcoming Hesitation
+                </div>
+                
+                <div class="initiative-wall">
+                    <div class="brick">Fear of failure</div>
+                    <div class="brick">Waiting for permission</div>
+                    <div class="brick">Not my responsibility</div>
+                    <div class="brick">Lack of confidence</div>
+                    <div class="brick">What will others think?</div>
+                    <div class="brick">I'm too busy</div>
+                </div>
+                
+                <p><strong>Discussion:</strong> Click on the barriers you relate to. How can we overcome these obstacles to taking initiative?</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Initiative Challenge (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-flag"></i>
+                    Take the Initiative Challenge
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">7-Day Initiative Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="initiative-card">Day 1: Do an unasked chore</div>
+                        <div class="initiative-card">Day 2: Help a classmate</div>
+                        <div class="initiative-card">Day 3: Solve a problem</div>
+                        <div class="initiative-card">Day 4: Start a positive project</div>
+                        <div class="initiative-card">Day 5: Speak encouragement</div>
+                        <div class="initiative-card">Day 6: Organize something</div>
+                        <div class="initiative-card">Day 7: Lead a small effort</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters."
+                    <span class="scripture-ref">Colossians 3:23</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for creating us to make a difference in this world. Give us eyes to see opportunities where we can take initiative. Remove our fears and hesitations, and fill us with your wisdom and courage. Help us to step forward in faith, knowing you go before us. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Initiative Boosters
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Ask "What needs to be done?" in every situation</li>
+                        <li>Practice small acts of initiative daily</li>
+                        <li>Find a role model who demonstrates initiative</li>
+                        <li>Don't wait for perfect conditions - start now</li>
+                        <li>Celebrate when you take initiative, regardless of outcome</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-25.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-27.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Step tracker interaction
+            const stepDots = document.querySelectorAll('.step-dot');
+            
+            stepDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    const person = this.textContent;
+                    let message = "";
+                    
+                    switch(person) {
+                        case "D":
+                            message = "David showed initiative by volunteering to fight Goliath when others were afraid (1 Samuel 17).";
+                            break;
+                        case "E":
+                            message = "Esther took initiative by approaching the king uninvited to save her people (Esther 4-5).";
+                            break;
+                        case "N":
+                            message = "Nehemiah took initiative to rebuild Jerusalem's walls without waiting for permission (Nehemiah 2).";
+                            break;
+                        case "P":
+                            message = "Paul took initiative by preaching the gospel everywhere he went, starting churches across the Roman Empire (Acts).";
+                            break;
+                    }
+                    
+                    alert(`${person} - ${message}`);
+                });
+            });
+            
+            // Opportunity card interaction
+            const opportunityCards = document.querySelectorAll('.opportunity-card');
+            
+            opportunityCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    // Toggle selection
+                    this.style.backgroundColor = this.style.backgroundColor === 'rgb(233, 240, 255)' ? '' : '#e9f0ff';
+                });
+            });
+            
+            // Brick wall interaction
+            const bricks = document.querySelectorAll('.brick');
+            
+            bricks.forEach(brick => {
+                brick.addEventListener('click', function() {
+                    this.style.backgroundColor = '#d0e0ff';
+                    this.style.transform = 'scale(1.05)';
+                    
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            });
+            
+            // Initiative icon animation
+            const initiativeIcons = document.querySelectorAll('.initiative-icon');
+            
+            initiativeIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    this.style.animation = 'initiativePulse 0.5s ease';
+                    setTimeout(() => {
+                        this.style.animation = 'initiativePulse 2s infinite';
+                    }, 500);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

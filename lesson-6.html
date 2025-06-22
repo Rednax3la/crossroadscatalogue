@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks of Adulthood & Public Transport - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Adulthood symbols */
+        .maturity-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M20,80 L50,20 L80,80 Z" fill="%231a2a6c" opacity="0.8"/><circle cx="50" cy="45" r="10" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        .transport-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="50" width="80" height="20" rx="5" fill="%238b5a2b"/><circle cx="25" cy="70" r="10" fill="%231a2a6c"/><circle cx="75" cy="70" r="10" fill="%231a2a6c"/><rect x="25" y="35" width="50" height="15" rx="3" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: moveBus 4s infinite linear;
+        }
+        
+        @keyframes moveBus {
+            0% { transform: translateX(-30px); }
+            100% { transform: translateX(30px); }
+        }
+        
+        /* Practical skills sections */
+        .skill-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #d4c0a1;
+        }
+        
+        .skill-steps {
+            counter-reset: step-counter;
+            margin: 20px 0;
+        }
+        
+        .skill-step {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .skill-step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background: #1a2a6c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        /* Scenario cards */
+        .scenario-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .scenario-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #d4c0a1;
+            position: relative;
+        }
+        
+        .scenario-title {
+            font-weight: bold;
+            color: #b21f1f;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Marks of <span class="maturity-icon"></span> Adulthood & <span class="transport-icon"></span> Public Transport</h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 60 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: February 9, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens identify biblical characteristics of spiritual adulthood while teaching practical skills for using public transportation safely and responsibly, connecting both as marks of growing maturity.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-road"></i>
+                    Activity: "Journey to Independence"
+                </div>
+                <p>Teens map their current independence level in various areas:</p>
+                
+                <div class="scenario-cards">
+                    <div class="scenario-card">
+                        <div class="scenario-title">Spiritual Life</div>
+                        <p>How independently do you pursue your faith?</p>
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                            <span>Child</span>
+                            <span>Teen</span>
+                            <span>Adult</span>
+                        </div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-title">Daily Responsibilities</div>
+                        <p>How self-motivated are you with chores/studies?</p>
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                            <span>Child</span>
+                            <span>Teen</span>
+                            <span>Adult</span>
+                        </div>
+                    </div>
+                    <div class="scenario-card">
+                        <div class="scenario-title">Mobility</div>
+                        <p>How independently can you travel locally?</p>
+                        <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+                            <span>Child</span>
+                            <span>Teen</span>
+                            <span>Adult</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Today we'll explore what biblical adulthood looks like and how practical skills like using public transport demonstrate growing maturity."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Spiritual Adulthood -->
+        <div class="section">
+            <div class="section-title">2. Spiritual Adulthood (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Biblical Marks of Maturity</div>
+                    <p>Characteristics of spiritual adulthood:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Taking faith ownership (Galatians 6:5)</li>
+                        <li>Consistent spiritual disciplines (1 Timothy 4:7)</li>
+                        <li>Self-control and wisdom (Proverbs 25:28)</li>
+                        <li>Serving others (1 Peter 4:10)</li>
+                    </ul>
+                    <div class="scripture">
+                        "When I was a child, I talked like a child... When I became a man, I put the ways of childhood behind me."
+                        <span class="scripture-ref">1 Corinthians 13:11</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Adulthood vs. Age</div>
+                    <p>Maturity isn't about age but character:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Responsibility over rights</li>
+                        <li>Wisdom over knowledge</li>
+                        <li>Service over self-centeredness</li>
+                        <li>Long-term perspective</li>
+                    </ul>
+                    <div class="scripture">
+                        "Do not conform to the pattern of this world, but be transformed by the renewing of your mind."
+                        <span class="scripture-ref">Romans 12:2</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Practical Faith Independence</div>
+                    <p>Taking ownership of your spiritual journey:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Personal devotional time</li>
+                        <li>Independent Bible study</li>
+                        <li>Faith decisions without parental prompting</li>
+                        <li>Accountability partnerships</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Public Transport Skills -->
+        <div class="section">
+            <div class="section-title">3. Public Transport Mastery (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-bus"></i>
+                    Activity: "Journey Planning"
+                </div>
+                
+                <div class="skill-card">
+                    <div class="point-title">A. Planning Your Route</div>
+                    <div class="skill-steps">
+                        <div class="skill-step">Identify your starting point and destination</div>
+                        <div class="skill-step">Use transit apps (Google Maps, CityMapper)</div>
+                        <div class="skill-step">Check schedules and alternatives</div>
+                        <div class="skill-step">Note transfer points and walking distances</div>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="point-title">B. Safety & Awareness</div>
+                    <div class="skill-steps">
+                        <div class="skill-step">Stay alert to surroundings</div>
+                        <div class="skill-step">Keep valuables secure and concealed</div>
+                        <div class="skill-step">Know emergency exits and procedures</div>
+                        <div class="skill-step">Trust your instincts about people/situations</div>
+                    </div>
+                    <div class="scripture">
+                        "Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour."
+                        <span class="scripture-ref">1 Peter 5:8</span>
+                    </div>
+                </div>
+                
+                <div class="skill-card">
+                    <div class="point-title">C. Responsible Travel</div>
+                    <div class="skill-steps">
+                        <div class="skill-step">Have payment ready before boarding</div>
+                        <div class="skill-step">Offer seats to elderly/disabled</div>
+                        <div class="skill-step">Keep volume down on devices</div>
+                        <div class="skill-step">Take your trash with you</div>
+                    </div>
+                    <div class="scripture">
+                        "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves."
+                        <span class="scripture-ref">Philippians 2:3</span>
+                    </div>
+                </div>
+                
+                <p><strong>Practical Exercise:</strong> Using transit apps, plan a route from church to a local landmark. Calculate travel time and cost.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Application & Closing (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-route"></i>
+                    Maturity Challenge
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Weekly Challenges</h3>
+                    <div class="generation-columns" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <h4>Spiritual:</h4>
+                            <p>Take ownership of one spiritual discipline without reminders</p>
+                        </div>
+                        <div>
+                            <h4>Practical:</h4>
+                            <p>Use public transport for one journey with parent's permission</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "When I was a child, I talked like a child, I thought like a child, I reasoned like a child. When I became a man, I put the ways of childhood behind me."
+                    <span class="scripture-ref">1 Corinthians 13:11</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, as we grow toward spiritual adulthood, give us wisdom to put childish ways behind us. Help us take responsibility for our faith journey and practical life skills. Guide us as we learn to navigate both spiritual paths and physical roads. May we represent you well in all our journeys. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Bonus Tips for Facilitators
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Invite a public transport official for Q&A</li>
+                    <li>Create a "transit bingo" with different scenarios</li>
+                    <li>Share stories of biblical characters showing maturity</li>
+                    <li>Provide local transit maps and fare information</li>
+                    <li>Set up a practice bus stop with seating etiquette</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-5.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-7.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Add interaction to scenario cards
+            const scenarioCards = document.querySelectorAll('.scenario-card');
+            scenarioCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('scenario-active');
+                });
+            });
+            
+            // Simulate route planning
+            const routeBtn = document.createElement('button');
+            routeBtn.innerHTML = '<i class="fas fa-route"></i> Simulate Journey';
+            routeBtn.style.marginTop = '15px';
+            routeBtn.style.padding = '10px 15px';
+            routeBtn.style.background = '#1a2a6c';
+            routeBtn.style.color = 'white';
+            routeBtn.style.border = 'none';
+            routeBtn.style.borderRadius = '5px';
+            routeBtn.style.cursor = 'pointer';
+            
+            routeBtn.addEventListener('click', function() {
+                alert('Journey planned! Estimated time: 25 minutes. Cost: $2.50. Transfers: 1.');
+            });
+            
+            const practicalExercise = document.querySelector('.activity-card:last-child p:last-child');
+            if(practicalExercise) {
+                practicalExercise.appendChild(routeBtn);
+            }
+        });
+    </script>
+</body>
+</html>

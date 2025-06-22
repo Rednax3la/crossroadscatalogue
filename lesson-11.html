@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journaling - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Journaling theme elements */
+        .journal-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="15" y="10" width="70" height="80" rx="5" fill="%23f5ecd7" stroke="%238b5a2b" stroke-width="3"/><rect x="20" y="20" width="60" height="10" fill="%231a2a6c" opacity="0.8"/><rect x="20" y="40" width="60" height="5" fill="%23b21f1f" opacity="0.8"/><rect x="20" y="55" width="60" height="5" fill="%23b21f1f" opacity="0.8"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: journalOpen 2s infinite alternate;
+        }
+        
+        @keyframes journalOpen {
+            0% { transform: rotate(0deg); }
+            20% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+        
+        .pen-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,70 L50,30 L70,70 Z" fill="%231a2a6c"/><rect x="48" y="5" width="4" height="30" fill="%238b5a2b"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Journal elements */
+        .journal-entry {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #d4c0a1;
+            position: relative;
+            min-height: 150px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .journal-entry::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            right: 15px;
+            height: 1px;
+            background: repeating-linear-gradient(to right, #8b5a2b, #8b5a2b 10px, transparent 10px, transparent 20px);
+        }
+        
+        .prompt-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .prompt-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .prompt-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .prompt-card::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .journal-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .journal-card {
+            background: rgba(83, 13, 13, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .journal-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .journal-card i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #9aa2c0;
+        }
+        
+        /* Decoration elements */
+        .decoration-station {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .decoration-item {
+            width: 50px;
+            height: 50px;
+            background: #f5ecd7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed #8b5a2b;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .decoration-item:hover {
+            transform: scale(1.2);
+            background: #1a2a6c;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Spiritual <span class="journal-icon"></span> Journaling <span class="pen-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: March 16, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To teach teens the value of journaling as a tool for spiritual growth, self-reflection, and prayer, providing practical methods to develop this transformative habit.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Icebreaker (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-pen-fancy"></i>
+                    Activity: "Finish the Sentence"
+                </div>
+                <p>Teens complete prompts aloud or write responses:</p>
+                
+                <div class="prompt-container">
+                    <div class="prompt-card">
+                        "Today, I feel..."
+                    </div>
+                    <div class="prompt-card">
+                        "Something God has been teaching me lately is..."
+                    </div>
+                    <div class="prompt-card">
+                        "One thing I'm grateful for is..."
+                    </div>
+                    <div class="prompt-card">
+                        "A challenge I'm facing right now is..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Journaling helps us process thoughts and emotions, just like this activity did. Today we'll learn how to make this a regular spiritual practice."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. The Why and How of Journaling (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. What is Spiritual Journaling?</div>
+                    <p>More than just diary writing:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Recording prayers and God's answers</li>
+                        <li>Reflecting on Scripture</li>
+                        <li>Processing life experiences through faith</li>
+                        <li>Tracking spiritual growth</li>
+                    </ul>
+                    <div class="scripture">
+                        "I will remember the deeds of the LORD; yes, I will remember your miracles of long ago."
+                        <span class="scripture-ref">Psalm 77:11</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Why Journal?</div>
+                    <p>Benefits of a consistent journaling practice:</p>
+                    <div class="journal-types">
+                        <div class="journal-card">
+                            <i class="fas fa-pray"></i>
+                            <div>Deepens Prayer Life</div>
+                        </div>
+                        <div class="journal-card">
+                            <i class="fas fa-brain"></i>
+                            <div>Clarifies Thoughts</div>
+                        </div>
+                        <div class="journal-card">
+                            <i class="fas fa-seedling"></i>
+                            <div>Tracks Spiritual Growth</div>
+                        </div>
+                        <div class="journal-card">
+                            <i class="fas fa-history"></i>
+                            <div>Preserves God's Faithfulness</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "But Mary treasured up all these things and pondered them in her heart."
+                        <span class="scripture-ref">Luke 2:19</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Biblical Foundations</div>
+                    <p>Scriptural basis for journaling:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>David's psalms as emotional journals</li>
+                        <li>Jeremiah's laments</li>
+                        <li>Paul's reflective letters</li>
+                        <li>Jesus' encouragement to remember</li>
+                    </ul>
+                    <div class="scripture">
+                        "Write down the revelation and make it plain on tablets so that a herald may run with it."
+                        <span class="scripture-ref">Habakkuk 2:2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Journaling Practice (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-book-open"></i>
+                    Activity: "Guided Journaling"
+                </div>
+                
+                <div class="journal-entry" id="journalEntry" contenteditable="true">
+                    Dear God,
+                    
+                    Today I want to share...
+                </div>
+                
+                <div class="prompt-container">
+                    <div class="prompt-card" data-prompt="Write a letter to God about something on your heart">
+                        "Letter to God"
+                    </div>
+                    <div class="prompt-card" data-prompt="What's a Bible verse that speaks to you today? Why?">
+                        "Scripture Reflection"
+                    </div>
+                    <div class="prompt-card" data-prompt="List 3 things you're thankful for and why">
+                        "Gratitude List"
+                    </div>
+                    <div class="prompt-card" data-prompt="Describe a challenge and how God might be working through it">
+                        "Challenge Processing"
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-palette"></i>
+                    Journal Decoration
+                </div>
+                
+                <div class="decoration-station">
+                    <div class="decoration-item"><i class="fas fa-cross"></i></div>
+                    <div class="decoration-item"><i class="fas fa-heart"></i></div>
+                    <div class="decoration-item"><i class="fas fa-star"></i></div>
+                    <div class="decoration-item"><i class="fas fa-dove"></i></div>
+                    <div class="decoration-item"><i class="fas fa-leaf"></i></div>
+                    <div class="decoration-item"><i class="fas fa-fire"></i></div>
+                    <div class="decoration-item"><i class="fas fa-water"></i></div>
+                    <div class="decoration-item"><i class="fas fa-mountain"></i></div>
+                </div>
+                
+                <p><strong>Facilitator Tip:</strong> Encourage teens to add symbols, drawings, or colors to express what words cannot capture.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Commitment & Closing (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    Journaling Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Weekly Journaling Challenge</h3>
+                    <p>Commit to journaling at least 3 times this week using these methods:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="journal-card">Prayer Journaling</div>
+                        <div class="journal-card">Scripture Reflection</div>
+                        <div class="journal-card">Gratitude Journaling</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "These things happened to them as examples and were written down as warnings for us."
+                    <span class="scripture-ref">1 Corinthians 10:11</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for the gift of journaling as a way to grow closer to you. Help us to be faithful in recording our journey with you. May our journals become treasured records of your faithfulness, guidance, and transformation in our lives. Amen."</p>
+                
+                <div class="journal-entry" style="background: rgba(255,255,255,0.7); margin-top: 20px;">
+                    <div class="point-title">Takeaway Tip</div>
+                    <p>Start small! Even 5 minutes of journaling daily can transform your spiritual life over time.</p>
+                </div>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Bonus Tips for Facilitators
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Share excerpts from your own spiritual journal (appropriate ones)</li>
+                    <li>Provide small notebooks or journaling templates</li>
+                    <li>Suggest journaling apps: Day One, YouVersion Journal, Penzu</li>
+                    <li>Create a "Journaling Station" with art supplies</li>
+                    <li>Recommend the SOAP method (Scripture, Observation, Application, Prayer)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-10.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-12.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Prompt selection
+            const promptCards = document.querySelectorAll('.prompt-card');
+            const journalEntry = document.getElementById('journalEntry');
+            
+            promptCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const prompt = this.getAttribute('data-prompt');
+                    journalEntry.innerHTML = `<strong>${prompt}</strong><br><br>Dear God,<br><br>`;
+                    journalEntry.focus();
+                    
+                    // Highlight selected prompt
+                    promptCards.forEach(c => c.style.backgroundColor = '');
+                    this.style.backgroundColor = 'rgba(26, 42, 108, 0.1)';
+                });
+            });
+            
+            // Decoration functionality
+            const decorationItems = document.querySelectorAll('.decoration-item');
+            
+            decorationItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const icon = this.querySelector('i').className;
+                    const iconElement = document.createElement('i');
+                    iconElement.className = icon;
+                    iconElement.style.marginRight = '10px';
+                    iconElement.style.fontSize = '1.5rem';
+                    
+                    journalEntry.appendChild(iconElement);
+                });
+            });
+            
+            // Save journal entry
+            const saveBtn = document.createElement('button');
+            saveBtn.innerHTML = '<i class="fas fa-save"></i> Save Entry';
+            saveBtn.className = 'nav-btn';
+            saveBtn.style.margin = '15px auto';
+            saveBtn.style.display = 'block';
+            
+            saveBtn.addEventListener('click', function() {
+                const entryContent = journalEntry.innerHTML;
+                localStorage.setItem('spiritualJournalEntry', entryContent);
+                alert('Entry saved! You can continue later.');
+            });
+            
+            // Load previous entry if exists
+            const savedEntry = localStorage.getItem('spiritualJournalEntry');
+            if (savedEntry) {
+                journalEntry.innerHTML = savedEntry;
+            }
+            
+            // Add save button
+            const activityCard = document.querySelector('.activity-card:last-child');
+            if(activityCard) {
+                activityCard.appendChild(saveBtn);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Worth & Self-Esteem - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Self-worth specific styles -->
+    <style>
+        /* Theme elements */
+        .worth-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFD700" stroke="%23b21f1f" stroke-width="3"/><circle cx="35" cy="40" r="8" fill="%231a2a6c"/><circle cx="65" cy="40" r="8" fill="%231a2a6c"/><path d="M35,65 Q50,75 65,65" stroke="%231a2a6c" stroke-width="5" fill="none"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: worthPulse 2s infinite;
+        }
+        
+        @keyframes worthPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .diamond-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,10 L80,50 L50,90 L20,50 Z" fill="none" stroke="%231a2a6c" stroke-width="3"/><circle cx="50" cy="50" r="10" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Worth elements */
+        .worth-scale {
+            height: 30px;
+            background: linear-gradient(to right, #b21f1f, #1a2a6c, #FFD700);
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+        }
+        
+        .scale-label {
+            position: absolute;
+            top: 35px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .scale-label.low {
+            left: 5px;
+            color: #b21f1f;
+        }
+        
+        .scale-label.healthy {
+            left: 50%;
+            transform: translateX(-50%);
+            color: #1a2a6c;
+        }
+        
+        .scale-label.high {
+            right: 5px;
+            color: #8b5a2b;
+        }
+        
+        /* Mirror elements */
+        .truth-mirror {
+            background: linear-gradient(135deg, #f5ecd7, #ffffff);
+            border-radius: 10px;
+            padding: 30px;
+            margin: 20px 0;
+            border: 5px solid #8b5a2b;
+            text-align: center;
+            position: relative;
+            min-height: 200px;
+        }
+        
+        .mirror-header {
+            font-size: 1.5rem;
+            color: #1a2a6c;
+            margin-bottom: 20px;
+        }
+        
+        .affirmation {
+            background: rgba(26, 42, 108, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .affirmation:hover {
+            background: rgba(26, 42, 108, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        /* Sources of worth */
+        .sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .source-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .source-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .source-card i {
+            font-size: 2rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        .source-card.god {
+            border-top: 5px solid #FFD700;
+        }
+        
+        /* Transformation */
+        .transformation {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        
+        .thought-bubble {
+            background: #f5ecd7;
+            border-radius: 20px;
+            padding: 20px;
+            border: 2px solid #8b5a2b;
+            width: 45%;
+            position: relative;
+            min-height: 100px;
+        }
+        
+        .thought-bubble::before {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f5ecd7;
+            border: 2px solid #8b5a2b;
+            border-top: none;
+            border-right: none;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-45deg);
+        }
+        
+        .thought-bubble.lie {
+            border-color: #b21f1f;
+        }
+        
+        .thought-bubble.truth {
+            border-color: #1a2a6c;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Self-Worth <span class="worth-icon"></span> & Self-Esteem <span class="diamond-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: June 1, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens understand their inherent worth as creations of God, develop healthy self-esteem based on biblical truth, and recognize the difference between worldly and godly measures of value.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-gem"></i>
+                    Activity: "Value Auction"
+                </div>
+                <p>Teens bid on items with imaginary money:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        <i class="fas fa-star"></i> Popularity
+                    </div>
+                    <div class="prompt-card">
+                        <i class="fas fa-graduation-cap"></i> Good Grades
+                    </div>
+                    <div class="prompt-card">
+                        <i class="fas fa-trophy"></i> Athletic Ability
+                    </div>
+                    <div class="prompt-card">
+                        <i class="fas fa-heart"></i> Being Loved by God
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "How do we determine value? Today we'll explore what gives us true worth as individuals."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Self-Worth (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Our Intrinsic Value</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Created in God's image (Genesis 1:27)</li>
+                        <li>Unconditional worth, not based on performance</li>
+                        <li>Worth that can't be earned or lost</li>
+                    </ul>
+                    <div class="scripture">
+                        "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well."
+                        <span class="scripture-ref">Psalm 139:14</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Healthy vs Unhealthy Self-Esteem</div>
+                    <div class="worth-scale">
+                        <div class="scale-label low">Low Self-Esteem</div>
+                        <div class="scale-label healthy">Healthy Self-Worth</div>
+                        <div class="scale-label high">Arrogance</div>
+                    </div>
+                    <p>Biblical self-worth avoids both self-hatred and self-worship</p>
+                    <div class="scripture">
+                        "Do not think of yourself more highly than you ought, but rather think of yourself with sober judgment."
+                        <span class="scripture-ref">Romans 12:3</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Sources of Worth</div>
+                    <div class="sources-grid">
+                        <div class="source-card god">
+                            <i class="fas fa-hands-praying"></i>
+                            <strong>God's Love</strong>
+                            <p>Unchanging, unconditional</p>
+                        </div>
+                        <div class="source-card">
+                            <i class="fas fa-chart-line"></i>
+                            <strong>Performance</strong>
+                            <p>Conditional, unstable</p>
+                        </div>
+                        <div class="source-card">
+                            <i class="fas fa-users"></i>
+                            <strong>Others' Approval</strong>
+                            <p>Unreliable, shifting</p>
+                        </div>
+                        <div class="source-card">
+                            <i class="fas fa-compress-alt"></i>
+                            <strong>Appearance</strong>
+                            <p>Temporary, superficial</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Identity Transformation (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-exchange-alt"></i>
+                    Activity: "From Lies to Truth"
+                </div>
+                
+                <div class="transformation">
+                    <div class="thought-bubble lie">
+                        <h4>Common Lies</h4>
+                        "I'm not good enough"<br>
+                        "I don't matter"<br>
+                        "I'm unlovable"<br>
+                        "I'm a failure"
+                    </div>
+                    <div class="thought-bubble truth">
+                        <h4>Biblical Truths</h4>
+                        "I am God's masterpiece"<br>
+                        "I have eternal value"<br>
+                        "I am deeply loved"<br>
+                        "I am being perfected"
+                    </div>
+                </div>
+                
+                <div class="truth-mirror">
+                    <div class="mirror-header">Mirror of Truth</div>
+                    <div class="affirmation">
+                        I am fearfully and wonderfully made (Psalm 139:14)
+                    </div>
+                    <div class="affirmation">
+                        I am chosen and loved by God (1 Thessalonians 1:4)
+                    </div>
+                    <div class="affirmation">
+                        I am God's masterpiece (Ephesians 2:10)
+                    </div>
+                    <div class="affirmation">
+                        I am more than a conqueror (Romans 8:37)
+                    </div>
+                    <div class="affirmation">
+                        I am a child of God (1 John 3:1)
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-pen-fancy"></i>
+                    Personal Affirmation
+                </div>
+                
+                <div class="journal-entry" style="min-height: 100px;" contenteditable="true">
+                    I am valuable because God says I am...<br>
+                    My worth comes from...<br>
+                    Today I will remember...
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Worth Walk Challenge (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-hiking"></i>
+                    30-Day Worth Walk
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Daily Affirmation Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Week 1: God's Creation</div>
+                        <div class="prayer-card">Week 2: God's Love</div>
+                        <div class="prayer-card">Week 3: God's Purpose</div>
+                        <div class="prayer-card">Week 4: God's Power</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father's care. So don't be afraid; you are worth more than many sparrows."
+                    <span class="scripture-ref">Matthew 10:29, 31</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for creating me with infinite worth. Help me to see myself as you see me - valuable, loved, and purposefully designed. When I'm tempted to doubt my worth, remind me of your unchanging love. Teach me to find my identity in you alone. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Share your own struggles with self-worth</li>
+                    <li>Provide small mirrors for affirmation exercises</li>
+                    <li>Discuss social media's impact on self-image</li>
+                    <li>Create a "Wall of Truth" with scripture affirmations</li>
+                    <li>Address comparison and envy issues</li>
+                    <li>Follow up with teens who seem to struggle</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-21.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-23.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Affirmation selection
+            const affirmations = document.querySelectorAll('.affirmation');
+            const journalEntry = document.querySelector('.journal-entry');
+            
+            affirmations.forEach(affirmation => {
+                affirmation.addEventListener('click', function() {
+                    const text = this.textContent;
+                    journalEntry.innerHTML += `<div>${text}</div>`;
+                    this.style.backgroundColor = '#FFD700';
+                    this.style.color = '#1a2a6c';
+                });
+            });
+            
+            // Worth scale animation
+            const worthScale = document.querySelector('.worth-scale');
+            let animationInterval;
+            
+            worthScale.addEventListener('mouseover', function() {
+                let position = 0;
+                let direction = 1;
+                
+                animationInterval = setInterval(() => {
+                    position += direction * 5;
+                    
+                    if (position >= 100 || position <= 0) {
+                        direction *= -1;
+                    }
+                    
+                    const marker = document.getElementById('worthMarker');
+                    if (!marker) {
+                        createWorthMarker(position);
+                    } else {
+                        marker.style.left = `${position}%`;
+                    }
+                }, 100);
+            });
+            
+            worthScale.addEventListener('mouseout', function() {
+                clearInterval(animationInterval);
+                const marker = document.getElementById('worthMarker');
+                if (marker) marker.remove();
+            });
+            
+            function createWorthMarker(position) {
+                const marker = document.createElement('div');
+                marker.id = 'worthMarker';
+                marker.style.position = 'absolute';
+                marker.style.top = '-10px';
+                marker.style.left = `${position}%`;
+                marker.style.width = '20px';
+                marker.style.height = '50px';
+                marker.style.background = '#1a2a6c';
+                marker.style.borderRadius = '10px';
+                marker.style.zIndex = '2';
+                
+                worthScale.appendChild(marker);
+            }
+            
+            // Save affirmation commitment
+            const saveBtn = document.createElement('button');
+            saveBtn.innerHTML = '<i class="fas fa-save"></i> Save My Affirmations';
+            saveBtn.className = 'nav-btn';
+            saveBtn.style.margin = '15px auto';
+            saveBtn.style.display = 'block';
+            
+            saveBtn.addEventListener('click', function() {
+                localStorage.setItem('selfWorthAffirmations', journalEntry.innerHTML);
+                alert('Affirmations saved! You can revisit them anytime.');
+            });
+            
+            // Load saved affirmations
+            const savedAffirmations = localStorage.getItem('selfWorthAffirmations');
+            if (savedAffirmations) {
+                journalEntry.innerHTML = savedAffirmations;
+            }
+            
+            // Add save button
+            const activityCard = document.querySelector('.activity-card:last-child');
+            if(activityCard) {
+                activityCard.appendChild(saveBtn);
+            }
+            
+            // Daily reminder
+            const reminderBtn = document.createElement('button');
+            reminderBtn.innerHTML = '<i class="fas fa-bell"></i> Set Daily Affirmation Reminder';
+            reminderBtn.className = 'nav-btn';
+            reminderBtn.style.margin = '15px auto';
+            reminderBtn.style.display = 'block';
+            reminderBtn.style.backgroundColor = '#FFD700';
+            reminderBtn.style.color = '#1a2a6c';
+            
+            reminderBtn.addEventListener('click', function() {
+                const time = prompt("What time would you like your daily affirmation? (e.g., 8:00 AM)");
+                if (time) {
+                    alert(`Daily affirmation reminder set for ${time}! You'll receive a notification.`);
+                }
+            });
+            
+            // Add reminder button
+            const challengeBox = document.querySelector('.challenge-box');
+            if(challengeBox) {
+                challengeBox.appendChild(reminderBtn);
+            }
+        });
+    </script>
+</body>
+</html>

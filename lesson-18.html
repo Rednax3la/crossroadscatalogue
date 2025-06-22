@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fasting - Spiritual Discipline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Fasting-specific styles -->
+    <style>
+        /* Fasting theme elements */
+        .fasting-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="%231a2a6c" stroke-width="5" stroke-dasharray="30,10"/><circle cx="50" cy="50" r="30" fill="none" stroke="%23b21f1f" stroke-width="3" stroke-dasharray="15,5"/><path d="M30,30 L70,70" stroke="%238b5a2b" stroke-width="3"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: fastingPulse 3s infinite;
+        }
+        
+        @keyframes fastingPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .prayer-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 Q60,40 50,70 Q40,40 50,20 Z" fill="%231a2a6c" opacity="0.8"/><circle cx="50" cy="50" r="8" fill="%23FFD700"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Fasting elements */
+        .fasting-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .fasting-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .fasting-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .fasting-card i {
+            font-size: 2rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+        }
+        
+        /* Progress elements */
+        .fasting-tracker {
+            height: 30px;
+            background: #f5ecd7;
+            border-radius: 15px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #8b5a2b;
+        }
+        
+        .fasting-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            border-radius: 15px;
+            width: 0%;
+            transition: width 1s ease;
+        }
+        
+        .fasting-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #1a2a6c;
+            font-weight: bold;
+            z-index: 2;
+        }
+        
+        /* Challenge elements */
+        .challenge-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 1px solid #d4c0a1;
+            position: relative;
+            min-height: 120px;
+        }
+        
+        .challenge-title {
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .benefit-card {
+            background: rgba(26, 42, 108, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Spiritual <span class="fasting-icon"></span> Fasting <span class="prayer-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: May 4, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To teach teens the biblical purpose and practice of fasting as a spiritual discipline, helping them understand how to incorporate fasting into their relationship with God in age-appropriate ways.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-utensils"></i>
+                    Activity: "Hunger Awareness"
+                </div>
+                <p>Teens discuss these questions in small groups:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        What's the longest you've gone without food? How did you feel?
+                    </div>
+                    <div class="prompt-card">
+                        What helps you when you feel really hungry?
+                    </div>
+                    <div class="prompt-card">
+                        How might physical hunger relate to spiritual hunger?
+                    </div>
+                </div>
+                
+                <p><strong>Transition:</strong> "Today we'll explore fasting - intentionally going without food to focus on spiritual hunger and deepen our relationship with God."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Understanding Fasting (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. What is Biblical Fasting?</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Voluntarily abstaining from food for spiritual purposes</li>
+                        <li>Focusing on God rather than physical needs</li>
+                        <li>Seeking God's guidance, help, or presence</li>
+                        <li>Expressing repentance or dependence on God</li>
+                    </ul>
+                    <div class="scripture">
+                        "When you fast, do not look somber as the hypocrites do, for they disfigure their faces to show others they are fasting. Truly I tell you, they have received their reward in full."
+                        <span class="scripture-ref">Matthew 6:16</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Types of Fasts</div>
+                    <div class="fasting-types">
+                        <div class="fasting-card">
+                            <i class="fas fa-clock"></i>
+                            <strong>Partial Fast</strong>
+                            <p>Abstaining from certain foods</p>
+                        </div>
+                        <div class="fasting-card">
+                            <i class="fas fa-sun"></i>
+                            <strong>Sunrise to Sunset</strong>
+                            <p>Daylight hours only</p>
+                        </div>
+                        <div class="fasting-card">
+                            <i class="fas fa-calendar-day"></i>
+                            <strong>24-Hour Fast</strong>
+                            <p>One full day</p>
+                        </div>
+                        <div class="fasting-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <strong>Media Fast</strong>
+                            <p>Abstaining from technology</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Why Fast?</div>
+                    <p>Biblical purposes for fasting:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>To draw near to God (James 4:8)</li>
+                        <li>To seek guidance in decision-making</li>
+                        <li>To express repentance</li>
+                        <li>To intercede for others</li>
+                        <li>To prepare for ministry</li>
+                    </ul>
+                    <div class="scripture">
+                        "While they were worshiping the Lord and fasting, the Holy Spirit said, 'Set apart for me Barnabas and Saul for the work to which I have called them.'"
+                        <span class="scripture-ref">Acts 13:2</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Practical Fasting (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-walking"></i>
+                    Activity: "Fasting Journey"
+                </div>
+                
+                <div class="fasting-tracker">
+                    <div class="fasting-progress" id="fastingProgress"></div>
+                    <div class="fasting-label">Fasting Progress</div>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-title">
+                        <i class="fas fa-1"></i>
+                        Beginner Challenge: "Sunrise to Sunset"
+                    </div>
+                    <p>Fast from breakfast to dinner, replacing meal times with prayer and Scripture reading.</p>
+                </div>
+                
+                <div class="challenge-card">
+                    <div class="challenge-title">
+                        <i class="fas fa-2"></i>
+                        Intermediate Challenge: "Media Fast"
+                    </div>
+                    <p>Abstain from social media/video games for 24 hours, using that time for spiritual activities.</p>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-exchange-alt"></i>
+                    Fasting Replacement Plan
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <i class="fas fa-hamburger"></i>
+                        Meal Time → Prayer Time
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-tv"></i>
+                        Screen Time → Bible Time
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-comments"></i>
+                        Complaining → Thankfulness
+                    </div>
+                    <div class="benefit-card">
+                        <i class="fas fa-shopping-cart"></i>
+                        Shopping → Serving
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Is not this the kind of fasting I have chosen: to loose the chains of injustice and untie the cords of the yoke, to set the oppressed free and break every yoke?"
+                    <span class="scripture-ref">Isaiah 58:6</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Fasting Challenge (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-calendar-check"></i>
+                    7-Day Fasting Challenge
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Fasting Progression Plan</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Day 1: 1 Meal</div>
+                        <div class="prayer-card">Day 2: Social Media</div>
+                        <div class="prayer-card">Day 3: Sweets</div>
+                        <div class="prayer-card">Day 4: Video Games</div>
+                        <div class="prayer-card">Day 5: Breakfast</div>
+                        <div class="prayer-card">Day 6: Lunch</div>
+                        <div class="prayer-card">Day 7: Sunrise-Sunset</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "But when you fast, put oil on your head and wash your face, so that it will not be obvious to others that you are fasting, but only to your Father, who is unseen; and your Father, who sees what is done in secret, will reward you."
+                    <span class="scripture-ref">Matthew 6:17-18</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Father, thank you for the spiritual discipline of fasting. As we explore this practice, help us to seek you with all our hearts. Give us wisdom to fast appropriately and safely. May our times of fasting draw us closer to you and align our hearts with your purposes. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Emphasize fasting as a spiritual practice, not a diet</li>
+                    <li>Discuss medical considerations - consult parents if needed</li>
+                    <li>Suggest alternatives for those who can't fast from food</li>
+                    <li>Provide journal prompts for fasting times</li>
+                    <li>Share your own fasting experiences</li>
+                    <li>Follow up next week to discuss experiences</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-17.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-19.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Fasting progress animation
+            const fastingProgress = document.getElementById('fastingProgress');
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += 5;
+                fastingProgress.style.width = `${progress}%`;
+                
+                if (progress >= 100) {
+                    clearInterval(progressInterval);
+                    setTimeout(() => {
+                        progress = 0;
+                        fastingProgress.style.width = '0%';
+                    }, 2000);
+                }
+            }, 200);
+            
+            // Fasting challenge selector
+            const challengeCards = document.querySelectorAll('.challenge-card');
+            challengeCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    challengeCards.forEach(c => c.style.border = "1px solid #d4c0a1");
+                    this.style.border = "3px solid #1a2a6c";
+                    
+                    const challengeTitle = this.querySelector('.challenge-title').textContent;
+                    localStorage.setItem('selectedFastingChallenge', challengeTitle);
+                });
+            });
+            
+            // Load previously selected challenge
+            const savedChallenge = localStorage.getItem('selectedFastingChallenge');
+            if (savedChallenge) {
+                challengeCards.forEach(card => {
+                    if (card.querySelector('.challenge-title').textContent === savedChallenge) {
+                        card.style.border = "3px solid #1a2a6c";
+                    }
+                });
+            }
+            
+            // Fasting commitment
+            const commitBtn = document.createElement('button');
+            commitBtn.innerHTML = '<i class="fas fa-hand-point-right"></i> Commit to Challenge';
+            commitBtn.className = 'nav-btn';
+            commitBtn.style.margin = '15px auto';
+            commitBtn.style.display = 'block';
+            
+            commitBtn.addEventListener('click', function() {
+                const selectedChallenge = localStorage.getItem('selectedFastingChallenge') || 'Beginner Challenge: "Sunrise to Sunset"';
+                alert(`You've committed to: ${selectedChallenge}\nYou'll receive reminder notifications!`);
+                
+                // Schedule notifications
+                scheduleNotification("Fasting starts tomorrow!", 24*60);
+                scheduleNotification("Halfway through your fast! Stay strong!", 36*60);
+                scheduleNotification("Fasting period ending soon. Prepare to break your fast!", 47*60);
+            });
+            
+            function scheduleNotification(message, minutesFromNow) {
+                // In a real implementation, this would use the browser's Notification API
+                console.log(`Notification scheduled: "${message}" in ${minutesFromNow} minutes`);
+            }
+            
+            // Add commit button
+            const challengeBox = document.querySelector('.challenge-box');
+            if(challengeBox) {
+                challengeBox.appendChild(commitBtn);
+            }
+        });
+    </script>
+</body>
+</html>

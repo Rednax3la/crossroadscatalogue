@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Date with God - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Daily date theme elements */
+        .calendar-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="15" y="20" width="70" height="65" rx="5" fill="%23f5ecd7" stroke="%231a2a6c" stroke-width="3"/><rect x="15" y="10" width="70" height="15" fill="%23b21f1f" rx="3"/><text x="50" y="30" text-anchor="middle" font-size="10" fill="%23f5ecd7">23</text><text x="25" y="50" font-size="8" fill="%231a2a6c">S</text><text x="40" y="50" font-size="8" fill="%231a2a6c">M</text><text x="55" y="50" font-size="8" fill="%231a2a6c">T</text><text x="70" y="50" font-size="8" fill="%231a2a6c">W</text></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: calendarPulse 2s infinite;
+        }
+        
+        @keyframes calendarPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .heart-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,85 C20,65 10,45 15,30 C20,15 35,10 50,20 C65,10 80,15 85,30 C90,45 80,65 50,85 Z" fill="%23b21f1f" opacity="0.9"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Calendar elements */
+        .devotion-calendar {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px solid #8b5a2b;
+            position: relative;
+            max-width: 700px;
+            margin: 20px auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-top: 15px;
+        }
+        
+        .calendar-day {
+            background: #f5ecd7;
+            border-radius: 8px;
+            padding: 10px 5px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            min-height: 70px;
+            position: relative;
+            border: 1px solid #d4c0a1;
+        }
+        
+        .calendar-day:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        
+        .day-number {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+        
+        .devotion-focus {
+            font-size: 0.7rem;
+            margin-top: 20px;
+            color: #b21f1f;
+        }
+        
+        .calendar-day.active {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+        }
+        
+        .calendar-day.active .day-number {
+            color: white;
+        }
+        
+        /* Time slots */
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .time-slot {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .time-slot:hover {
+            background: #1a2a6c;
+            color: white;
+        }
+        
+        .time-slot.active {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Obstacle solutions */
+        .obstacle-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .obstacle-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            position: relative;
+        }
+        
+        .obstacle-card::before {
+            content: "⚡";
+            position: absolute;
+            top: 5px;
+            left: 10px;
+            font-size: 1.2rem;
+            color: #b21f1f;
+        }
+        
+        .solution {
+            color: #1a2a6c;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Daily <span class="calendar-icon"></span> Date with God <span class="heart-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: March 23, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens establish a consistent daily devotional life by understanding the importance of personal time with God, creating practical routines, and overcoming common obstacles to consistency.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-heart"></i>
+                    Activity: "Perfect Date Brainstorm"
+                </div>
+                <p>Teens describe their ideal date with God in small groups:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        <i class="fas fa-map-marker-alt"></i>
+                        Where would you meet?
+                    </div>
+                    <div class="prompt-card">
+                        <i class="fas fa-clock"></i>
+                        What time of day?
+                    </div>
+                    <div class="prompt-card">
+                        <i class="fas fa-music"></i>
+                        What would you do together?
+                    </div>
+                    <div class="prompt-card">
+                        <i class="fas fa-comments"></i>
+                        What would you talk about?
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Just like we plan special time with friends, we need to intentionally plan daily time with God. Today we'll learn how to make this a consistent habit."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. The Why and How (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Why Daily Time Matters</div>
+                    <p>The importance of consistent devotion:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Spiritual nourishment and growth (Matthew 4:4)</li>
+                        <li>Developing intimacy with God</li>
+                        <li>Guidance for daily decisions</li>
+                        <li>Strength during challenges</li>
+                    </ul>
+                    <div class="scripture">
+                        "But seek first his kingdom and his righteousness, and all these things will be given to you as well."
+                        <span class="scripture-ref">Matthew 6:33</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Elements of a Meaningful Devotion</div>
+                    <p>What to include in your daily date:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 15px 0;">
+                        <div class="time-slot">Prayer</div>
+                        <div class="time-slot">Scripture</div>
+                        <div class="time-slot">Reflection</div>
+                        <div class="time-slot">Journaling</div>
+                        <div class="time-slot">Worship</div>
+                    </div>
+                    <div class="scripture">
+                        "Your word is a lamp for my feet, a light on my path."
+                        <span class="scripture-ref">Psalm 119:105</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Making It Personal</div>
+                    <p>Customizing your devotional time:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Find your best time of day</li>
+                        <li>Create a dedicated space</li>
+                        <li>Use tools that work for you</li>
+                        <li>Start with manageable time commitments</li>
+                    </ul>
+                    <div class="scripture">
+                        "Come near to God and he will come near to you."
+                        <span class="scripture-ref">James 4:8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Creating Your Devotional Plan (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Activity: "7-Day Devotional Planner"
+                </div>
+                
+                <div class="devotion-calendar">
+                    <h3 style="text-align: center; color: #1a2a6c; margin-bottom: 15px;">My Weekly Devotional Plan</h3>
+                    <div class="calendar-grid">
+                        <div class="calendar-day">
+                            <div class="day-number">24</div>
+                            <div class="devotion-focus">Prayer Focus</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-number">25</div>
+                            <div class="devotion-focus">Scripture Reading</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-number">26</div>
+                            <div class="devotion-focus">Gratitude Journal</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-number">27</div>
+                            <div class="devotion-focus">Worship Time</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-number">28</div>
+                            <div class="devotion-focus">Prayer Walk</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-number">29</div>
+                            <div class="devotion-focus">Scripture Study</div>
+                        </div>
+                        <div class="calendar-day">
+                            <div class="day-number">30</div>
+                            <div class="devotion-focus">Reflection Day</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 25px;">
+                    <i class="fas fa-clock"></i>
+                    Choosing Your Time Slot
+                </div>
+                
+                <div class="time-slots">
+                    <div class="time-slot">Early Morning</div>
+                    <div class="time-slot">Before School</div>
+                    <div class="time-slot">Lunch Break</div>
+                    <div class="time-slot">After School</div>
+                    <div class="time-slot">Evening</div>
+                    <div class="time-slot">Before Bed</div>
+                </div>
+                
+                <p><strong>Planning Exercise:</strong> Teens create their personalized devotional plan for the coming week, selecting times and activities.</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Overcoming Obstacles (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-road"></i>
+                    Roadblocks & Solutions
+                </div>
+                
+                <div class="obstacle-cards">
+                    <div class="obstacle-card">
+                        "I don't have enough time"
+                        <div class="solution">Start with 5 minutes. Quality over quantity.</div>
+                    </div>
+                    <div class="obstacle-card">
+                        "I get distracted easily"
+                        <div class="solution">Find a quiet space. Put devices away.</div>
+                    </div>
+                    <div class="obstacle-card">
+                        "I don't know what to do"
+                        <div class="solution">Use a devotional guide or Bible app.</div>
+                    </div>
+                    <div class="obstacle-card">
+                        "I keep forgetting"
+                        <div class="solution">Set a daily alarm. Make it a routine.</div>
+                    </div>
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">30-Day Devotional Challenge</h3>
+                    <p>Commit to meeting with God daily for the next month. Track your progress!</p>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin-top: 15px;">
+                        <div class="time-slot active">Day 1-7: Establish</div>
+                        <div class="time-slot active">Day 8-14: Deepen</div>
+                        <div class="time-slot active">Day 15-30: Own It</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Let the morning bring me word of your unfailing love, for I have put my trust in you. Show me the way I should go, for to you I entrust my life."
+                    <span class="scripture-ref">Psalm 143:8</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Heavenly Father, thank you for inviting us into daily relationship with you. Give us the discipline to prioritize time with you, the wisdom to hear your voice, and the joy of experiencing your presence each day. May our daily dates with you become the anchor of our lives. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Share your personal devotional routine and challenges</li>
+                    <li>Recommend devotionals for teens: "Jesus Calling for Teens", "Our Daily Bread Teens Edition"</li>
+                    <li>Suggest Bible apps: YouVersion, Bible Gateway, Glorify</li>
+                    <li>Create a "Quiet Time Corner" in your meeting space</li>
+                    <li>Follow up next week to hear about their experiences</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-11.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-13.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Calendar day selection
+            const calendarDays = document.querySelectorAll('.calendar-day');
+            calendarDays.forEach(day => {
+                day.addEventListener('click', function() {
+                    calendarDays.forEach(d => d.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Time slot selection
+            const timeSlots = document.querySelectorAll('.time-slot');
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    timeSlots.forEach(s => s.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Devotional challenge tracker
+            const challengeBtn = document.createElement('button');
+            challengeBtn.innerHTML = '<i class="fas fa-download"></i> Download Tracker';
+            challengeBtn.className = 'nav-btn';
+            challengeBtn.style.margin = '15px auto';
+            challengeBtn.style.display = 'block';
+            
+            challengeBtn.addEventListener('click', function() {
+                alert("Devotional tracker downloaded! Print it and place it where you'll see it daily.");
+                // In a real implementation, this would download a PDF
+            });
+            
+            // Add challenge button
+            const challengeBox = document.querySelector('.challenge-box');
+            if(challengeBox) {
+                challengeBox.appendChild(challengeBtn);
+            }
+            
+            // Daily reminder setup
+            const reminderBtn = document.createElement('button');
+            reminderBtn.innerHTML = '<i class="fas fa-bell"></i> Set Daily Reminder';
+            reminderBtn.className = 'nav-btn';
+            reminderBtn.style.margin = '15px auto';
+            reminderBtn.style.display = 'block';
+            
+            reminderBtn.addEventListener('click', function() {
+                const time = prompt("What time would you like your daily devotional reminder? (e.g., 7:00 AM)");
+                if (time) {
+                    alert(`Daily reminder set for ${time}! You'll receive a notification at that time.`);
+                }
+            });
+            
+            // Add reminder button
+            const lastActivityCard = document.querySelector('.activity-card:last-child');
+            if(lastActivityCard) {
+                lastActivityCard.appendChild(reminderBtn);
+            }
+        });
+    </script>
+</body>
+</html>

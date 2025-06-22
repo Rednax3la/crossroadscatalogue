@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forgiveness Through Film - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Film theme elements */
+        .film-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="60" rx="5" fill="none" stroke="%231a2a6c" stroke-width="3"/><circle cx="25" cy="40" r="8" fill="%23b21f1f"/><circle cx="50" cy="40" r="8" fill="%23b21f1f"/><circle cx="75" cy="40" r="8" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: filmRoll 3s infinite linear;
+        }
+        
+        @keyframes filmRoll {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .clapperboard-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="15" y="20" width="70" height="60" fill="%23f5ecd7"/><rect x="15" y="20" width="70" height="15" fill="%238b5a2b"/><rect x="15" y="50" width="70" height="5" fill="%231a2a6c"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Film reel elements */
+        .movie-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .movie-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid #d4c0a1;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .movie-card h4 {
+            color: #1a2a6c;
+            margin-bottom: 8px;
+            border-bottom: 1px dashed #8b5a2b;
+            padding-bottom: 5px;
+        }
+        
+        .rating {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #b21f1f;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .streaming-info {
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            margin-top: 10px;
+        }
+        
+        .streaming-info i {
+            margin-right: 5px;
+            color: #1a2a6c;
+        }
+        
+        /* Scene analysis */
+        .scene-analysis {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #1a2a6c;
+        }
+        
+        .scene-title {
+            font-weight: bold;
+            color: #b21f1f;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Forgiveness <span class="film-icon"></span> Through Film <span class="clapperboard-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 60 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: March 30, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To explore the transformative power of forgiveness through cinematic storytelling, helping teens understand biblical principles of forgiveness in relatable contexts and apply them to their relationships.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-film"></i>
+                    Activity: "Unforgettable Scenes"
+                </div>
+                <p>Teens share movie scenes where forgiveness was powerfully demonstrated:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "Which movie character forgave someone in a memorable way?"
+                    </div>
+                    <div class="prompt-card">
+                        "Describe a scene where forgiveness changed a relationship"
+                    </div>
+                    <div class="prompt-card">
+                        "Have you ever related to a character struggling to forgive?"
+                    </div>
+                </div>
+                
+                <p><strong>Transition:</strong> "Today we'll see how films can help us understand God's call to forgive others as we've been forgiven."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Biblical Foundations of Forgiveness (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. God's Model of Forgiveness</div>
+                    <p>Key Scripture passages on forgiveness:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Matthew 18:21-22 (Seventy times seven)</li>
+                        <li>Colossians 3:13 (Forgive as the Lord forgave you)</li>
+                        <li>Matthew 6:14-15 (Forgiving others to be forgiven)</li>
+                    </ul>
+                    <div class="scripture">
+                        "Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you."
+                        <span class="scripture-ref">Colossians 3:13</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. What Forgiveness Is and Isn't</div>
+                    <p>Clarifying misconceptions:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Forgiveness ≠ Excusing hurtful behavior</li>
+                        <li>Forgiveness ≠ Always restoring relationship</li>
+                        <li>Forgiveness = Releasing bitterness</li>
+                        <li>Forgiveness = Choosing mercy over vengeance</li>
+                    </ul>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Why Forgiveness Matters</div>
+                    <p>The freedom found in forgiving:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Releases us from bitterness's prison</li>
+                        <li>Reflects God's character</li>
+                        <li>Restores broken relationships when possible</li>
+                        <li>Models Christ-like love</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Movie Exploration -->
+        <div class="section">
+            <div class="section-title">3. Cinematic Exploration (25 min)</div>
+            <div class="duration-badge">25 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-clapperboard"></i>
+                    Film Viewing & Discussion
+                </div>
+                
+                <p><strong>Suggested Movie Clips:</strong> Choose one powerful forgiveness scene from these carefully selected films:</p>
+                
+                <div class="movie-options">
+                    <div class="movie-card">
+                        <div class="rating">PG</div>
+                        <h4>Soul Surfer (2011)</h4>
+                        <p>True story of surfer Bethany Hamilton who forgives the shark that took her arm. Powerful scene: Bethany returns to the water and prays for the shark.</p>
+                        <div class="streaming-info">
+                            <i class="fas fa-tv"></i> Available on Disney+
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card">
+                        <div class="rating">PG</div>
+                        <h4>Coco (2017)</h4>
+                        <p>Miguel helps his grandmother Coco forgive her father who left the family to pursue music. Powerful scene: "I forgive you" reconciliation moment.</p>
+                        <div class="streaming-info">
+                            <i class="fas fa-tv"></i> Available on Disney+
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card">
+                        <div class="rating">PG-13</div>
+                        <h4>The Blind Side (2009)</h4>
+                        <p>Based on true story where Michael Oher forgives his neglectful mother. Powerful scene: Michael visits his mother without bitterness.</p>
+                        <div class="streaming-info">
+                            <i class="fas fa-tv"></i> Available on Netflix
+                        </div>
+                    </div>
+                    
+                    <div class="movie-card">
+                        <div class="rating">PG</div>
+                        <h4>Facing the Giants (2006)</h4>
+                        <p>Coach Taylor forgives students who mocked him. Powerful scene: "I forgive you" confrontation in locker room :cite[2]:cite[3].</p>
+                        <div class="streaming-info">
+                            <i class="fas fa-tv"></i> Available on Prime Video
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scene-analysis">
+                    <div class="scene-title">Post-Viewing Discussion Guide:</div>
+                    <ol>
+                        <li>What made forgiveness difficult for this character?</li>
+                        <li>How did forgiveness change the character who offered it?</li>
+                        <li>What would this story look like without forgiveness?</li>
+                        <li>Where do you see God's forgiveness reflected in this scene?</li>
+                        <li>What relationships in your life might need this kind of forgiveness?</li>
+                    </ol>
+                </div>
+                
+                <div class="scripture">
+                    "Then Peter came to Jesus and asked, 'Lord, how many times shall I forgive my brother or sister who sins against me? Up to seven times?' Jesus answered, 'I tell you, not seven times, but seventy-seven times.'"
+                    <span class="scripture-ref">Matthew 18:21-22</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Application -->
+        <div class="section">
+            <div class="section-title">4. Forgiveness Challenge (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    Personal Reflection & Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">The 30-Day Forgiveness Challenge</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Week 1: Identify hurts</div>
+                        <div class="prayer-card">Week 2: Release bitterness</div>
+                        <div class="prayer-card">Week 3: Pray for those who hurt you</div>
+                        <div class="prayer-card">Week 4: Take reconciling action</div>
+                    </div>
+                </div>
+                
+                <div class="journal-entry" style="margin-top: 20px;">
+                    <p><strong>Reflection Prompts:</strong></p>
+                    <ol>
+                        <li>Who do I need to forgive? What hurt am I holding onto?</li>
+                        <li>How has unforgiveness affected my relationship with God?</li>
+                        <li>What step can I take this week toward forgiveness?</li>
+                    </ol>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Father, thank you for forgiving us completely through Christ. Give us courage to extend that same forgiveness to others. Help us release bitterness and experience the freedom forgiveness brings. When forgiveness feels impossible, remind us of the cross. Amen."</p>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Facilitator Tips
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Select clips showing forgiveness in different relationships (family, friends, enemies)</li>
+                    <li>Provide discussion cards with scene-specific questions</li>
+                    <li>Share your personal forgiveness journey appropriately</li>
+                    <li>Have tissues available - forgiveness discussions can be emotional</li>
+                    <li>Follow up next week about their forgiveness challenge</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-12.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-14.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = "1";
+                    section.style.transform = "translateY(0)";
+                }, 300 * index);
+            });
+            
+            // Movie selection functionality
+            const movieCards = document.querySelectorAll('.movie-card');
+            let selectedMovie = null;
+            
+            movieCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    movieCards.forEach(c => c.style.border = "1px solid #d4c0a1");
+                    this.style.border = "3px solid #1a2a6c";
+                    selectedMovie = this.querySelector('h4').textContent;
+                    localStorage.setItem('selectedMovie', selectedMovie);
+                });
+            });
+            
+            // Load previously selected movie
+            const savedMovie = localStorage.getItem('selectedMovie');
+            if (savedMovie) {
+                movieCards.forEach(card => {
+                    if (card.querySelector('h4').textContent === savedMovie) {
+                        card.style.border = "3px solid #1a2a6c";
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

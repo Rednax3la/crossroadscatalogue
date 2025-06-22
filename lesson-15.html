@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salvation & Easter - Sleepover Lesson</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Sleepover-specific styles -->
+    <style>
+        /* Sleepover theme elements */
+        .sleepover-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="15" y="50" width="70" height="30" rx="5" fill="%23f5ecd7" stroke="%238b5a2b" stroke-width="2"/><rect x="20" y="25" width="60" height="30" rx="5" fill="%231a2a6c" opacity="0.8"/><circle cx="35" y="40" r="3" fill="%23FFD700"/><circle cx="65" y="40" r="3" fill="%23FFD700"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: tentPulse 2s infinite;
+        }
+        
+        @keyframes tentPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .cross-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="45" y="15" width="10" height="70" fill="%23b21f1f"/><rect x="15" y="45" width="70" height="10" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        /* Sleepover elements */
+        .sleepover-activities {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .activity-card.special {
+            background: linear-gradient(135deg, #1a2a6c, #8b5a2b);
+            color: white;
+            border: 2px solid #FFD700;
+        }
+        
+        .activity-card.special .activity-title {
+            color: #FFD700;
+        }
+        
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #8b5a2b;
+        }
+        
+        .timeline-event {
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .timeline-event::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 5px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #b21f1f;
+            border: 2px solid #FFD700;
+        }
+        
+        .event-time {
+            font-weight: bold;
+            color: #1a2a6c;
+            background: rgba(255, 255, 255, 0.7);
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 15px;
+            margin-bottom: 5px;
+        }
+        
+        /* Resurrection elements */
+        .tomb-visual {
+            height: 200px;
+            background: linear-gradient(to bottom, #1a2a6c, #2c3e50);
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .tomb {
+            position: relative;
+            width: 120px;
+            height: 80px;
+            background: #f5ecd7;
+            border-radius: 10px;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: #1a2a6c;
+            overflow: hidden;
+        }
+        
+        .stone {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: #8b5a2b;
+            border-radius: 50%;
+            z-index: 3;
+            left: 70%;
+            top: 40%;
+            transition: transform 1s ease;
+        }
+        
+        .light-beam {
+            position: absolute;
+            width: 10px;
+            height: 0;
+            background: radial-gradient(#FFD700, transparent);
+            border-radius: 50%;
+            z-index: 1;
+            animation: lightGrow 5s infinite alternate;
+        }
+        
+        @keyframes lightGrow {
+            0% { height: 0; opacity: 0; }
+            100% { height: 200px; opacity: 0.7; }
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Salvation path */
+        .salvation-path {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+            position: relative;
+        }
+        
+        .path-step {
+            background: #f5ecd7;
+            border: 2px solid #8b5a2b;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            z-index: 2;
+            position: relative;
+            padding: 5px;
+        }
+        
+        .path-step::after {
+            content: "";
+            position: absolute;
+            width: 30px;
+            height: 5px;
+            background: #8b5a2b;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .path-step:last-child::after {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Salvation & Easter <span class="cross-icon"></span> Sleepover <span class="sleepover-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: Overnight</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: April 13, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To explore the meaning of salvation through the Easter story in a memorable sleepover setting, helping teens understand Christ's sacrifice and resurrection while building community through shared experiences.
+        </div>
+        
+        <!-- Section 1: Arrival Activities -->
+        <div class="section">
+            <div class="section-title">1. Welcome & Icebreakers (7:00 PM)</div>
+            <div class="duration-badge">60 min</div>
+            
+            <div class="activity-card special">
+                <div class="activity-title">
+                    <i class="fas fa-campground"></i>
+                    Sleepover Kickoff: "Salvation Scavenger Hunt"
+                </div>
+                <p>Teams search for Easter-themed items that represent parts of the salvation story:</p>
+                
+                <div class="sleepover-activities">
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-bread-slice"></i>
+                            Bread (Last Supper)
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-coins"></i>
+                            Coins (Judas' betrayal)
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-cross"></i>
+                            Cross (Crucifixion)
+                        </div>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-rock"></i>
+                            Stone (Empty Tomb)
+                        </div>
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Each item represents part of the Easter story that brings us salvation. Tonight we'll explore how Christ's sacrifice gives us new life."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching Session -->
+        <div class="section">
+            <div class="section-title">2. Salvation & Easter Teaching (8:00 PM)</div>
+            <div class="duration-badge">60 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. The Problem: Sin</div>
+                    <p>Understanding our need for salvation:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Separation from God (Romans 3:23)</li>
+                        <li>Consequences of sin</li>
+                        <li>Our inability to save ourselves</li>
+                    </ul>
+                    <div class="scripture">
+                        "For all have sinned and fall short of the glory of God."
+                        <span class="scripture-ref">Romans 3:23</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. The Solution: Christ's Sacrifice</div>
+                    <p>How Easter provides salvation:</p>
+                    <div class="tomb-visual" id="tombVisual">
+                        <div class="tomb">
+                            <i class="fas fa-tomb"></i>
+                            <div class="stone" id="tombStone"></div>
+                        </div>
+                        <div class="light-beam"></div>
+                        <!-- Stars will be generated by JavaScript -->
+                    </div>
+                    <div class="scripture">
+                        "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life."
+                        <span class="scripture-ref">John 3:16</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Our Response: Faith</div>
+                    <p>The path to salvation:</p>
+                    <div class="salvation-path">
+                        <div class="path-step">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Acknowledge Sin</span>
+                        </div>
+                        <div class="path-step">
+                            <i class="fas fa-cross"></i>
+                            <span>Believe in Christ</span>
+                        </div>
+                        <div class="path-step">
+                            <i class="fas fa-comment"></i>
+                            <span>Confess Faith</span>
+                        </div>
+                        <div class="path-step">
+                            <i class="fas fa-water"></i>
+                            <span>Be Baptized</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Late Night Activities -->
+        <div class="section">
+            <div class="section-title">3. Small Group Activities (9:00 PM)</div>
+            <div class="duration-badge">90 min</div>
+            
+            <div class="activity-card special">
+                <div class="activity-title">
+                    <i class="fas fa-fire"></i>
+                    Campfire Conversations
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-event">
+                        <div class="event-time">9:00 PM</div>
+                        <p><strong>Resurrection Reenactment:</strong> Small groups create short dramas of resurrection appearances</p>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-time">9:30 PM</div>
+                        <p><strong>S'mores Theology:</strong> Discuss salvation while making s'mores - how ingredients represent aspects of faith</p>
+                    </div>
+                    
+                    <div class="timeline-event">
+                        <div class="event-time">10:00 PM</div>
+                        <p><strong>Salvation Testimonies:</strong> Leaders share personal salvation experiences</p>
+                    </div>
+                </div>
+                
+                <div class="activity-title">
+                    <i class="fas fa-praying-hands"></i>
+                    Prayer Stations
+                </div>
+                
+                <div class="sleepover-activities">
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-cross"></i>
+                            Cross Station
+                        </div>
+                        <p>Write sins on paper, nail to cross</p>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-tombstone-alt"></i>
+                            Empty Tomb Station
+                        </div>
+                        <p>Leave prayers in "tomb" to be resurrected</p>
+                    </div>
+                    
+                    <div class="activity-card">
+                        <div class="activity-title">
+                            <i class="fas fa-bible"></i>
+                            Scripture Station
+                        </div>
+                        <p>Meditate on salvation verses</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Morning Session -->
+        <div class="section">
+            <div class="section-title">4. Sunrise Devotion (6:00 AM)</div>
+            <div class="duration-badge">60 min</div>
+            
+            <div class="activity-card special">
+                <div class="activity-title">
+                    <i class="fas fa-sun"></i>
+                    Resurrection Celebration
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">New Life Commitment</h3>
+                    <p>As the sun rises, teens are invited to:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="prayer-card">Accept Christ</div>
+                        <div class="prayer-card">Recommit to Faith</div>
+                        <div class="prayer-card">Be Baptized</div>
+                        <div class="prayer-card">Share Testimony</div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "He is not here; he has risen! Remember how he told you, while he was still with you in Galilee: 'The Son of Man must be delivered over to the hands of sinners, be crucified and on the third day be raised again.'"
+                    <span class="scripture-ref">Luke 24:6-7</span>
+                </div>
+                
+                <div class="timeline-event" style="margin-top: 20px;">
+                    <div class="event-time">6:30 AM</div>
+                    <p><strong>Resurrection Breakfast:</strong> Share a meal while discussing what new life in Christ means</p>
+                </div>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Sleepover Tips for Facilitators
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Create a "Resurrection Garden" with stones, plants, and a tomb</li>
+                    <li>Use glow sticks to represent "The Light of the World"</li>
+                    <li>Provide Easter-themed snacks: empty tomb rolls, resurrection cookies</li>
+                    <li>Have blankets and pillows for comfortable discussion areas</li>
+                    <li>Prepare quiet spaces for reflection and prayer</li>
+                    <li>Ensure proper safety and supervision throughout</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-14.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-16.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Tomb resurrection animation
+            const tombStone = document.getElementById('tombStone');
+            const tombVisual = document.getElementById('tombVisual');
+            
+            // Create stars
+            for (let i = 0; i < 30; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.width = `${Math.random() * 4 + 1}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                tombVisual.appendChild(star);
+            }
+            
+            // Animate stone rolling away
+            setTimeout(() => {
+                tombStone.style.transform = 'translateX(50px) rotate(90deg)';
+            }, 2000);
+            
+            // Create light beam
+            const lightBeam = document.createElement('div');
+            lightBeam.className = 'light-beam';
+            lightBeam.style.left = '50%';
+            lightBeam.style.transform = 'translateX(-50%)';
+            tombVisual.appendChild(lightBeam);
+            
+            // Create a cross rising
+            setTimeout(() => {
+                const cross = document.createElement('div');
+                cross.innerHTML = '<i class="fas fa-cross" style="font-size: 3rem; color: #FFD700;"></i>';
+                cross.style.position = 'absolute';
+                cross.style.bottom = '0';
+                cross.style.left = '50%';
+                cross.style.transform = 'translateX(-50%)';
+                cross.style.zIndex = '4';
+                cross.style.opacity = '0';
+                
+                tombVisual.appendChild(cross);
+                
+                // Animate cross rising
+                let position = 0;
+                const riseCross = setInterval(() => {
+                    position += 1;
+                    cross.style.bottom = `${position}%`;
+                    cross.style.opacity = position / 100;
+                    
+                    if (position >= 50) {
+                        clearInterval(riseCross);
+                    }
+                }, 30);
+            }, 3000);
+            
+            // Salvation path animation
+            const pathSteps = document.querySelectorAll('.path-step');
+            pathSteps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.style.backgroundColor = 'rgba(26, 42, 108, 0.1)';
+                    step.style.transform = 'scale(1.1)';
+                }, 1000 * index);
+            });
+        });
+    </script>
+</body>
+</html>

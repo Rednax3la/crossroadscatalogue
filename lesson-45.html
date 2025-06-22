@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building Healthy Boundaries - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="lessons-common.css">
+    
+    <!-- Lesson-specific styles -->
+    <style>
+        /* Boundary theme elements */
+        .boundary-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="80" height="80" fill="none" stroke="%231a2a6c" stroke-width="5" stroke-dasharray="10,5"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        .door-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="30" y="10" width="40" height="80" fill="%238b5a2b"/><circle cx="65" cy="50" r="5" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: doorKnock 2s infinite;
+        }
+        
+        @keyframes doorKnock {
+            0%, 100% { transform: rotate(0deg); }
+            10% { transform: rotate(5deg); }
+            20% { transform: rotate(-5deg); }
+            30% { transform: rotate(0deg); }
+        }
+        
+        /* Boundary elements */
+        .boundary-wall {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 15px 0;
+            border: 3px dashed #1a2a6c;
+            position: relative;
+        }
+        
+        .boundary-wall::before {
+            content: "";
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 2px solid #b21f1f;
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        
+        .boundary-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #1a2a6c;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .boundary-card::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+        }
+        
+        .boundary-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .boundary-type {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            border: 2px solid #d4c0a1;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .boundary-type:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .boundary-type i {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #1a2a6c;
+        }
+        
+        /* Interactive elements */
+        .boundary-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .control-btn {
+            padding: 10px 20px;
+            background: #1a2a6c;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: #b21f1f;
+            transform: scale(1.05);
+        }
+        
+        .door-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .door {
+            width: 150px;
+            height: 250px;
+            background: #8b5a2b;
+            border: 5px solid #5a3920;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.8s ease;
+        }
+        
+        .door-knob {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #b21f1f;
+            border-radius: 50%;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+        }
+        
+        .door-sign {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #f5ecd7;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+        
+        .door.open {
+            transform: perspective(1200px) rotateY(-90deg);
+            transform-origin: left;
+        }
+        
+        /* Boundary meter */
+        .boundary-meter {
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #8b5a2b;
+        }
+        
+        .meter-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #5a5a5a;
+            margin-top: 5px;
+        }
+        
+        .meter-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1a2a6c, #b21f1f);
+            border-radius: 15px;
+            width: 50%;
+            transition: width 1s ease;
+        }
+        
+        .meter-pointer {
+            position: absolute;
+            top: -5px;
+            left: 50%;
+            width: 3px;
+            height: 40px;
+            background: #5a3920;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Building <span class="boundary-icon"></span> Healthy Boundaries <span class="door-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: November 9, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens understand the importance of healthy boundaries in relationships, recognize different types of boundaries, and develop practical skills to establish and maintain them with wisdom and grace.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Opening Activity (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-sign"></i>
+                    Activity: "Personal Space Bubble"
+                </div>
+                
+                <p>Teens complete these statements to explore their comfort levels:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "I feel uncomfortable when someone..."
+                    </div>
+                    <div class="prompt-card">
+                        "It's okay for people to..."
+                    </div>
+                    <div class="prompt-card">
+                        "I need people to respect my..."
+                    </div>
+                    <div class="prompt-card">
+                        "One boundary I want to set is..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Boundaries are like personal property lines - they define what's yours and what's not. Today we'll learn how to establish healthy boundaries."</p>
+                
+                <div class="scripture">
+                    "Above all else, guard your heart, for everything you do flows from it."
+                    <span class="scripture-ref">Proverbs 4:23</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Understanding Boundaries (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. What Are Boundaries?</div>
+                    <p>Defining personal limits:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Emotional boundaries (protecting feelings)</li>
+                        <li>Physical boundaries (personal space)</li>
+                        <li>Time boundaries (managing commitments)</li>
+                        <li>Digital boundaries (online interactions)</li>
+                        <li>Spiritual boundaries (faith practices)</li>
+                    </ul>
+                    <div class="boundary-wall">
+                        <p>Healthy boundaries are not walls that isolate, but gates that allow safe entry to those who respect us.</p>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Why Boundaries Matter</div>
+                    <p>The importance of setting limits:</p>
+                    <div class="boundary-types">
+                        <div class="boundary-type">
+                            <i class="fas fa-heart"></i>
+                            <div>Protect Well-being</div>
+                        </div>
+                        <div class="boundary-type">
+                            <i class="fas fa-balance-scale"></i>
+                            <div>Define Responsibilities</div>
+                        </div>
+                        <div class="boundary-type">
+                            <i class="fas fa-user-shield"></i>
+                            <div>Prevent Burnout</div>
+                        </div>
+                        <div class="boundary-type">
+                            <i class="fas fa-hands-helping"></i>
+                            <div>Build Healthy Relationships</div>
+                        </div>
+                    </div>
+                    <div class="scripture">
+                        "Let your 'yes' be yes, and your 'no' be no, so that you may not fall under condemnation."
+                        <span class="scripture-ref">James 5:12</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Biblical Boundaries</div>
+                    <p>Scriptural foundation for healthy limits:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Jesus set boundaries (Mark 1:35-38)</li>
+                        <li>Paul's teaching on personal responsibility (Galatians 6:5)</li>
+                        <li>Respecting others' boundaries (Matthew 7:12)</li>
+                        <li>Boundaries as an act of stewardship</li>
+                    </ul>
+                    <div class="scripture">
+                        "Very early in the morning, while it was still dark, Jesus got up, left the house and went off to a solitary place, where he prayed."
+                        <span class="scripture-ref">Mark 1:35</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Boundary Practice (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-door-open"></i>
+                    Activity: "The Boundary Door"
+                </div>
+                
+                <div class="door-container">
+                    <div class="door" id="boundaryDoor">
+                        <div class="door-sign">My Personal Space</div>
+                        <div class="door-knob"></div>
+                    </div>
+                </div>
+                
+                <div class="boundary-controls">
+                    <button class="control-btn" id="openDoor"><i class="fas fa-door-open"></i> Open Boundary</button>
+                    <button class="control-btn" id="closeDoor"><i class="fas fa-door-closed"></i> Close Boundary</button>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Like doors, boundaries should be flexible enough to open for healthy relationships but strong enough to close when needed. Practice saying:"</p>
+                
+                <div class="boundary-wall">
+                    <div class="activity-title">Boundary Phrases</div>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>"I'm not comfortable with that."</li>
+                        <li>"I need some time to myself right now."</li>
+                        <li>"That doesn't work for me."</li>
+                        <li>"I appreciate your interest, but I'd prefer not to share that."</li>
+                        <li>"Let me think about it and get back to you."</li>
+                    </ul>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-sliders-h"></i>
+                    Boundary Meter Assessment
+                </div>
+                
+                <div class="boundary-meter">
+                    <div class="meter-fill" id="meterFill"></div>
+                    <div class="meter-pointer"></div>
+                </div>
+                
+                <div class="meter-labels">
+                    <span>Too Rigid</span>
+                    <span>Healthy</span>
+                    <span>Too Permeable</span>
+                </div>
+                
+                <p><strong>Self-assessment:</strong> "Consider where you fall on the boundary spectrum. Healthy boundaries are firm yet flexible."</p>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Commitment & Closing (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-handshake"></i>
+                    Boundary Commitment
+                </div>
+                
+                <div class="challenge-box">
+                    <h3 style="margin-bottom: 15px;">Boundary Building Challenge</h3>
+                    <p>Commit to establishing one healthy boundary this week:</p>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">
+                        <div class="boundary-type">
+                            <i class="fas fa-mobile-alt"></i>
+                            <div>Digital Space</div>
+                        </div>
+                        <div class="boundary-type">
+                            <i class="fas fa-users"></i>
+                            <div>Relationships</div>
+                        </div>
+                        <div class="boundary-type">
+                            <i class="fas fa-book-bible"></i>
+                            <div>Spiritual Time</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "Therefore, I urge you, brothers and sisters, in view of God's mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship."
+                    <span class="scripture-ref">Romans 12:1</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for modeling healthy boundaries through your Son Jesus. Give us wisdom and courage to establish boundaries that protect our hearts and honor You. Help us to communicate our limits with grace and respect the boundaries of others. May our relationships reflect Your love and wisdom. Amen."</p>
+                
+                <div class="boundary-wall" style="margin-top: 20px;">
+                    <div class="point-title">Takeaway Truth</div>
+                    <p>Setting boundaries isn't selfish - it's stewardship. God calls us to wisely guard what He's entrusted to us.</p>
+                </div>
+            </div>
+            
+            <div class="activity-card" style="margin-top: 20px;">
+                <div class="activity-title">
+                    <i class="fas fa-lightbulb"></i>
+                    Boundary Tips for Teens
+                </div>
+                <ul style="padding-left: 20px;">
+                    <li>Start with small boundaries and build from there</li>
+                    <li>Use "I" statements to express your needs</li>
+                    <li>Expect resistance but stand firm with kindness</li>
+                    <li>Respect others' boundaries as you want yours respected</li>
+                    <li>Re-evaluate boundaries as relationships grow</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-44.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-46.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Boundary door functionality
+            const boundaryDoor = document.getElementById('boundaryDoor');
+            const openBtn = document.getElementById('openDoor');
+            const closeBtn = document.getElementById('closeDoor');
+            
+            openBtn.addEventListener('click', function() {
+                boundaryDoor.classList.add('open');
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                boundaryDoor.classList.remove('open');
+            });
+            
+            // Boundary meter animation
+            const meterFill = document.getElementById('meterFill');
+            let meterValue = 50;
+            
+            function updateMeter() {
+                meterFill.style.width = `${meterValue}%`;
+            }
+            
+            // Simulate meter adjustment
+            setTimeout(() => {
+                meterValue = 65; // Healthy range
+                updateMeter();
+            }, 1000);
+            
+            // Boundary cards interaction
+            const boundaryCards = document.querySelectorAll('.boundary-card, .boundary-type');
+            
+            boundaryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    if (this.classList.contains('active')) {
+                        this.style.boxShadow = '0 0 15px rgba(178, 31, 31, 0.5)';
+                    } else {
+                        this.style.boxShadow = '';
+                    }
+                });
+            });
+            
+            // Boundary wall animation
+            const boundaryWalls = document.querySelectorAll('.boundary-wall');
+            
+            boundaryWalls.forEach(wall => {
+                wall.addEventListener('click', function() {
+                    this.classList.toggle('highlight');
+                    if (this.classList.contains('highlight')) {
+                        this.style.backgroundColor = 'rgba(245, 236, 215, 0.95)';
+                        this.style.transform = 'scale(1.02)';
+                    } else {
+                        this.style.backgroundColor = '';
+                        this.style.transform = '';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

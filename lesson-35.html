@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media & Technology - Lesson Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* lessons-common.css */
+        /* Shared styles for all lesson templates */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .scroll-container {
+            width: 100%;
+            max-width: 900px;
+            background: #f5ecd7;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.1"><rect fill="none" stroke="%23a67c52" stroke-width="2" x="10" y="10" width="80" height="80" rx="10" ry="10"/></svg>');
+            background-size: 200px;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            padding: 50px 40px;
+            position: relative;
+            overflow: hidden;
+            border: 15px solid #8b5a2b;
+            border-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%238b5a2b" x="0" y="0" width="100" height="100"/></svg>') 30 stretch;
+        }
+
+        .scroll-container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(165, 124, 82, 0.8), rgba(165, 124, 82, 0.1));
+        }
+
+        .scroll-container::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            background: linear-gradient(to top, rgba(165, 124, 82, 0.8), rgba(165, 124, 82, 0.1));
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 20%;
+            right: 20%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, #8b5a2b, transparent);
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            font-family: 'Palatino Linotype', 'Book Antiqua', serif;
+        }
+
+        .lesson-meta {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            font-size: 1.1rem;
+            color: #5a5a5a;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .objective {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 5px solid #1a2a6c;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section {
+            margin-bottom: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #b21f1f;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #8b5a2b;
+            font-family: 'Palatino Linotype', 'Book Antiqua', serif;
+        }
+
+        .duration-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #1a2a6c;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .activity-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid #d4c0a1;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .activity-title {
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .scripture {
+            background: rgba(26, 42, 108, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #1a2a6c;
+            font-style: italic;
+        }
+
+        .scripture-ref {
+            font-weight: bold;
+            color: #1a2a6c;
+            margin-top: 10px;
+            display: block;
+            text-align: right;
+        }
+
+        .prompts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .prompt-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #d4c0a1;
+            font-style: italic;
+            position: relative;
+        }
+
+        .prompt-card::before {
+            content: "";
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            font-size: 2rem;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        .key-points {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .point-card {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #d4c0a1;
+        }
+
+        .point-title {
+            font-weight: bold;
+            color: #b21f1f;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .challenge-box {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .scroll-container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .lesson-meta {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .key-points, .prompts {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        /* Animation base styles */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Lesson-specific styles */
+        .tech-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="20" y="20" width="60" height="60" rx="10" fill="%231a2a6c" opacity="0.8"/><circle cx="50" cy="35" r="5" fill="%23f5ecd7"/><rect x="30" y="45" width="40" height="20" rx="5" fill="%23b21f1f"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+            animation: pulseTech 2s infinite;
+        }
+        
+        @keyframes pulseTech {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .media-icon {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="50" r="15" fill="%231a2a6c" opacity="0.6"/><circle cx="50" cy="50" r="15" fill="%23b21f1f" opacity="0.7"/><circle cx="70" cy="50" r="15" fill="%238b5a2b" opacity="0.8"/></svg>') center/contain no-repeat;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        
+        .screen-time-gauge {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            margin: 20px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .screen-time-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #FFC107, #F44336);
+            border-radius: 15px;
+            width: 70%;
+            transition: width 1s ease;
+        }
+        
+        .gauge-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+            font-size: 0.9rem;
+        }
+        
+        .app-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .app-icon:hover {
+            transform: translateY(-5px);
+        }
+        
+        .digital-footprint {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .footprint-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .footprint-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1a2a6c;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .tech-balance {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .balance-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #d4c0a1;
+        }
+        
+        .balance-card i {
+            font-size: 2.5rem;
+            color: #1a2a6c;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+        <div class="header">
+            <h1>Media <span class="media-icon"></span> & Technology <span class="tech-icon"></span></h1>
+            <div class="lesson-meta">
+                <div class="meta-item">
+                    <i class="fas fa-clock"></i>
+                    <span>Duration: 50 minutes</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-calendar"></i>
+                    <span>Date: August 31, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <i class="fas fa-users"></i>
+                    <span>Age Group: 13-14 years</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="objective">
+            <strong>Objective:</strong> To help teens navigate the digital world with wisdom, discernment, and intentionality, understanding both the benefits and challenges of media and technology from a Christian perspective.
+        </div>
+        
+        <!-- Section 1: Icebreaker -->
+        <div class="section">
+            <div class="section-title">1. Digital Life Check-in (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-mobile-alt"></i>
+                    Activity: "Screen Time Reflection"
+                </div>
+                
+                <div class="screen-time-gauge">
+                    <div class="screen-time-bar" id="screenTimeBar"></div>
+                </div>
+                <div class="gauge-labels">
+                    <span>Low</span>
+                    <span>Moderate</span>
+                    <span>High</span>
+                    <span>Excessive</span>
+                </div>
+                
+                <p>Teens position the slider to represent their average daily screen time:</p>
+                
+                <div class="prompts">
+                    <div class="prompt-card">
+                        "The app I use most is..."
+                    </div>
+                    <div class="prompt-card">
+                        "I feel ____ about my tech habits"
+                    </div>
+                    <div class="prompt-card">
+                        "One positive way I've used tech recently..."
+                    </div>
+                </div>
+                
+                <p><strong>Discussion:</strong> "Technology is a powerful tool - today we'll explore how to use it wisely as Christians."</p>
+            </div>
+        </div>
+        
+        <!-- Section 2: Teaching -->
+        <div class="section">
+            <div class="section-title">2. Digital Discipleship (15 min)</div>
+            <div class="duration-badge">15 min</div>
+            
+            <div class="key-points">
+                <div class="point-card">
+                    <div class="point-title">A. Biblical Perspective on Technology</div>
+                    <p>Scriptural principles for technology use:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>All things permissible but not beneficial (1 Cor 10:23)</li>
+                        <li>Setting our minds on higher things (Col 3:2)</li>
+                        <li>Being wise as serpents (Matt 10:16)</li>
+                        <li>Everything should build up (1 Cor 14:26)</li>
+                    </ul>
+                    <div class="scripture">
+                        "I have the right to do anything... but not everything is beneficial."
+                        <span class="scripture-ref">1 Corinthians 10:23</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">B. Digital Dangers</div>
+                    <p>Challenges to be aware of:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Addiction and time consumption</li>
+                        <li>Comparison and envy</li>
+                        <li>Exposure to harmful content</li>
+                        <li>Cyberbullying and online predators</li>
+                        <li>Distraction from real relationships</li>
+                    </ul>
+                    <div class="scripture">
+                        "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion..."
+                        <span class="scripture-ref">1 Peter 5:8</span>
+                    </div>
+                </div>
+                
+                <div class="point-card">
+                    <div class="point-title">C. Digital Opportunities</div>
+                    <p>Positive ways to use technology:</p>
+                    <ul style="padding-left: 20px; margin-top: 10px;">
+                        <li>Accessing biblical resources</li>
+                        <li>Connecting with Christian communities</li>
+                        <li>Sharing faith and encouragement</li>
+                        <li>Learning and skill development</li>
+                        <li>Creativity and expression</li>
+                    </ul>
+                    <div class="scripture">
+                        "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus..."
+                        <span class="scripture-ref">Colossians 3:17</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 3: Activity -->
+        <div class="section">
+            <div class="section-title">3. Digital Discernment Lab (20 min)</div>
+            <div class="duration-badge">20 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-laptop-code"></i>
+                    Activity: "App Evaluation"
+                </div>
+                
+                <div class="app-icons">
+                    <div class="app-icon" style="background: linear-gradient(135deg, #405DE6, #833AB4);">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="app-icon" style="background: linear-gradient(135deg, #1DA1F2, #1DA1F2);">
+                        <i class="fab fa-twitter"></i>
+                    </div>
+                    <div class="app-icon" style="background: linear-gradient(135deg, #25D366, #25D366);">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="app-icon" style="background: linear-gradient(135deg, #FF0000, #FF0000);">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <div class="app-icon" style="background: linear-gradient(135deg, #4267B2, #4267B2);">
+                        <i class="fab fa-facebook"></i>
+                    </div>
+                    <div class="app-icon" style="background: linear-gradient(135deg, #000000, #000000);">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                </div>
+                
+                <div class="activity-title" style="margin-top: 20px;">
+                    <i class="fas fa-filter"></i>
+                    Evaluation Criteria:
+                </div>
+                
+                <div class="digital-footprint">
+                    <div class="footprint-item">
+                        <div class="footprint-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>How much time does it consume?</div>
+                    </div>
+                    <div class="footprint-item">
+                        <div class="footprint-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>How does it affect my emotions?</div>
+                    </div>
+                    <div class="footprint-item">
+                        <div class="footprint-icon">
+                            <i class="fas fa-cross"></i>
+                        </div>
+                        <div>Does it align with Christian values?</div>
+                    </div>
+                    <div class="footprint-item">
+                        <div class="footprint-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div>How does it impact my relationships?</div>
+                    </div>
+                </div>
+                
+                <div class="challenge-box">
+                    <h3>Digital Discernment Challenge</h3>
+                    <p>Evaluate your top 3 apps using these criteria this week</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section 4: Closing -->
+        <div class="section">
+            <div class="section-title">4. Creating Balance (10 min)</div>
+            <div class="duration-badge">10 min</div>
+            
+            <div class="activity-card">
+                <div class="activity-title">
+                    <i class="fas fa-balance-scale"></i>
+                    Healthy Tech Habits
+                </div>
+                
+                <div class="tech-balance">
+                    <div class="balance-card">
+                        <i class="fas fa-bible"></i>
+                        <h3>Spiritual First</h3>
+                        <p>Bible before phone in the morning</p>
+                    </div>
+                    <div class="balance-card">
+                        <i class="fas fa-hourglass-half"></i>
+                        <h3>Time Limits</h3>
+                        <p>Use app timers and screen time tracking</p>
+                    </div>
+                    <div class="balance-card">
+                        <i class="fas fa-ban"></i>
+                        <h3>Tech-Free Zones</h3>
+                        <p>No devices at meals or in bedrooms</p>
+                    </div>
+                    <div class="balance-card">
+                        <i class="fas fa-hands"></i>
+                        <h3>Human Connection</h3>
+                        <p>Prioritize face-to-face conversations</p>
+                    </div>
+                </div>
+                
+                <div class="scripture">
+                    "So whether you eat or drink or whatever you do, do it all for the glory of God."
+                    <span class="scripture-ref">1 Corinthians 10:31</span>
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>Closing Prayer:</strong> "Lord, thank you for the gift of technology. Help us to use it wisely and for your glory. Give us discernment to recognize harmful influences and courage to make healthy choices. May our digital lives reflect your love and truth. Guide us to balance our online and offline worlds in ways that honor you. Amen."</p>
+                
+                <div class="activity-card" style="margin-top: 20px; background: rgba(255,255,255,0.7);">
+                    <div class="activity-title">
+                        <i class="fas fa-lightbulb"></i>
+                        Tech Wellness Resources
+                    </div>
+                    <ul style="padding-left: 20px;">
+                        <li>Bible App: YouVersion</li>
+                        <li>Parental Control: Bark or Covenant Eyes</li>
+                        <li>Focus Tools: Freedom or Forest apps</li>
+                        <li>Digital Detox Challenges</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="btn-container">
+            <a href="lesson-34.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i> Previous Lesson
+            </a>
+            <a href="lesson-36.html" class="nav-btn">
+                Next Lesson <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="catalogue.html" class="nav-btn">
+                <i class="fas fa-home"></i> Back to Catalogue
+            </a>
+        </div>
+    </div>
+    
+    <!-- Lesson-specific scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply animation to sections
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+            
+            // Screen time gauge interaction
+            const screenTimeBar = document.getElementById('screenTimeBar');
+            const screenTimeValues = ['25%', '50%', '75%', '100%'];
+            let currentIndex = 2;
+            
+            screenTimeBar.style.width = screenTimeValues[currentIndex];
+            
+            screenTimeBar.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % screenTimeValues.length;
+                screenTimeBar.style.width = screenTimeValues[currentIndex];
+                
+                const labels = ["Balanced", "Moderate", "High", "Excessive"];
+                const colors = ["#4CAF50", "#FFC107", "#FF9800", "#F44336"];
+                
+                // Create feedback message
+                const feedback = document.createElement('div');
+                feedback.className = 'challenge-box';
+                feedback.style.marginTop = '15px';
+                feedback.innerHTML = `
+                    <p>Your screen time level: <strong>${labels[currentIndex]}</strong></p>
+                    <p>${getFeedbackMessage(currentIndex)}</p>
+                `;
+                
+                // Remove previous feedback if exists
+                const prevFeedback = document.querySelector('.screen-time-gauge').nextElementSibling;
+                if (prevFeedback && prevFeedback.className === 'challenge-box') {
+                    prevFeedback.remove();
+                }
+                
+                this.parentElement.after(feedback);
+            });
+            
+            function getFeedbackMessage(level) {
+                const messages = [
+                    "Great job maintaining balance!",
+                    "Be mindful of your usage patterns",
+                    "Consider setting some boundaries",
+                    "Time for a digital detox? Let's talk strategies"
+                ];
+                return messages[level];
+            }
+            
+            // App evaluation interaction
+            const appIcons = document.querySelectorAll('.app-icon');
+            appIcons.forEach(icon => {
+                icon.addEventListener('click', function() {
+                    const appName = this.querySelector('i').className.split(' ')[1].split('-')[1];
+                    const appNames = {
+                        "instagram": "Instagram",
+                        "twitter": "Twitter",
+                        "whatsapp": "WhatsApp",
+                        "youtube": "YouTube",
+                        "facebook": "Facebook",
+                        "tiktok": "TikTok"
+                    };
+                    
+                    const evaluations = [
+                        "How does this app make you feel about yourself?",
+                        "What percentage of your time on this app is productive?",
+                        "How could you use this platform to share God's love?",
+                        "What boundaries might you need with this app?"
+                    ];
+                    
+                    const randomEvaluation = evaluations[Math.floor(Math.random() * evaluations.length)];
+                    
+                    alert(`Evaluating ${appNames[appName]}:\n\n${randomEvaluation}`);
+                });
+            });
+            
+            // Tech balance commitment
+            const commitBtn = document.createElement('button');
+            commitBtn.textContent = 'Make Tech Commitment';
+            commitBtn.className = 'nav-btn';
+            commitBtn.style.margin = '20px auto';
+            commitBtn.style.display = 'block';
+            
+            commitBtn.addEventListener('click', function() {
+                const commitments = [
+                    "I commit to no phone for first hour after waking",
+                    "I will set app time limits this week",
+                    "I will have one tech-free meal daily",
+                    "I will use tech to encourage someone daily"
+                ];
+                
+                const randomCommitment = commitments[Math.floor(Math.random() * commitments.length)];
+                
+                const commitmentDisplay = document.createElement('div');
+                commitmentDisplay.className = 'challenge-box';
+                commitmentDisplay.style.marginTop = '20px';
+                commitmentDisplay.innerHTML = `
+                    <h3>Your Tech Commitment</h3>
+                    <p>${randomCommitment}</p>
+                    <p><i>Write this down in your journal or set a phone reminder!</i></p>
+                `;
+                
+                this.parentElement.insertBefore(commitmentDisplay, this.nextSibling);
+            });
+            
+            document.querySelector('.tech-balance').after(commitBtn);
+        });
+    </script>
+</body>
+</html>
