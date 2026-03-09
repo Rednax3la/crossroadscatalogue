@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="icon" type="image/png" href="crossroads logo.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crossroads 2026 &mdash; Lesson Catalogue</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:linear-gradient(160deg,#1e1b4b 0%,#1e3a5f 50%,#134e4a 100%);background-attachment:fixed;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:#1e293b;padding:0 0 60px;}
+.hero{background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);padding:48px 20px 40px;text-align:center;}
+.year-badge{display:inline-block;background:linear-gradient(135deg,#d97706,#f97316);color:white;font-size:0.8rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px;}
+.hero h1{font-size:clamp(2rem,5vw,3.5rem);color:white;font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,0.3);}
+.hero-sub{font-size:clamp(0.9rem,2vw,1.1rem);color:rgba(255,255,255,0.7);max-width:600px;margin:0 auto 28px;line-height:1.6;}
+.stats-row{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:28px;}
+.stat-chip{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);color:white;padding:8px 18px;border-radius:100px;font-size:0.875rem;font-weight:600;display:flex;align-items:center;gap:7px;}
+.search-wrap{max-width:520px;margin:0 auto;position:relative;}
+.search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:1rem;pointer-events:none;}
+#searchInput{width:100%;padding:14px 20px 14px 46px;border:2px solid rgba(255,255,255,0.15);border-radius:100px;font-size:1rem;background:rgba(255,255,255,0.95);color:#1e293b;outline:none;transition:border-color 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+#searchInput:focus{border-color:#6366f1;box-shadow:0 0 0 4px rgba(99,102,241,0.2),0 4px 20px rgba(0,0,0,0.2);}
+#searchInput::placeholder{color:#94a3b8;}
+.container{max-width:1200px;margin:0 auto;padding:36px 20px 0;}
+.months-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
+.month-card{background:white;border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);transition:transform 0.3s ease,box-shadow 0.3s ease;cursor:pointer;}
+.month-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.25);}
+.month-header{padding:20px 22px 16px;display:flex;justify-content:space-between;align-items:center;}
+.month-info{flex:1;}
+.month-name{font-size:1.5rem;font-weight:800;color:white;letter-spacing:-0.02em;line-height:1.1;}
+.month-theme{font-size:0.72rem;font-weight:600;color:rgba(255,255,255,0.75);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;}
+.month-meta{display:flex;flex-direction:column;align-items:flex-end;gap:6px;}
+.lesson-count{background:rgba(255,255,255,0.22);color:white;padding:4px 12px;border-radius:100px;font-size:0.78rem;font-weight:700;white-space:nowrap;}
+.toggle-icon{color:rgba(255,255,255,0.7);font-size:0.9rem;transition:transform 0.3s ease;}
+.month-card.active .toggle-icon{transform:rotate(180deg);}
+.lessons-list{max-height:0;overflow:hidden;transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);}
+.month-card.active .lessons-list{max-height:900px;}
+.lessons-inner{padding:8px 0 14px;}
+.lesson-item{display:flex;align-items:center;padding:11px 20px;gap:14px;transition:background 0.15s;border-bottom:1px solid #f1f5f9;}
+.lesson-item:last-child{border-bottom:none;}
+.lesson-item:hover{background:#f8fafc;}
+.lesson-date-bubble{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;color:white;}
+.lesson-title-text{flex:1;font-size:0.92rem;font-weight:600;color:#1e293b;line-height:1.3;}
+.lesson-link{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#4f46e5,#0284c7);color:white;padding:7px 14px;border-radius:100px;text-decoration:none;font-size:0.78rem;font-weight:700;flex-shrink:0;transition:all 0.2s ease;box-shadow:0 2px 8px rgba(79,70,229,0.28);white-space:nowrap;}
+.lesson-link:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(79,70,229,0.4);}
+.event-item{display:flex;align-items:center;padding:11px 20px;gap:14px;background:#fffbeb;border-bottom:1px solid #fef3c7;}
+.event-item:last-child{border-bottom:none;}
+.event-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#d97706,#f97316);color:white;padding:5px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;white-space:nowrap;}
+.month-feb{background:linear-gradient(135deg,#7c3aed,#a855f7);}
+.month-mar{background:linear-gradient(135deg,#1d4ed8,#3b82f6);}
+.month-apr{background:linear-gradient(135deg,#0369a1,#0ea5e9);}
+.month-may{background:linear-gradient(135deg,#047857,#10b981);}
+.month-jun{background:linear-gradient(135deg,#065f46,#34d399);}
+.month-jul{background:linear-gradient(135deg,#b45309,#f59e0b);}
+.month-aug{background:linear-gradient(135deg,#c2410c,#fb923c);}
+.month-sep{background:linear-gradient(135deg,#9f1239,#f43f5e);}
+.month-oct{background:linear-gradient(135deg,#6d28d9,#8b5cf6);}
+.month-nov{background:linear-gradient(135deg,#1e3a5f,#3b82f6);}
+.month-dec{background:linear-gradient(135deg,#1e1b4b,#6366f1);}
+.date-feb{background:linear-gradient(135deg,#7c3aed,#a855f7);}
+.date-mar{background:linear-gradient(135deg,#1d4ed8,#3b82f6);}
+.date-apr{background:linear-gradient(135deg,#0369a1,#0ea5e9);}
+.date-may{background:linear-gradient(135deg,#047857,#10b981);}
+.date-jun{background:linear-gradient(135deg,#065f46,#34d399);}
+.date-jul{background:linear-gradient(135deg,#b45309,#f59e0b);}
+.date-aug{background:linear-gradient(135deg,#c2410c,#fb923c);}
+.date-sep{background:linear-gradient(135deg,#9f1239,#f43f5e);}
+.date-oct{background:linear-gradient(135deg,#6d28d9,#8b5cf6);}
+.date-nov{background:linear-gradient(135deg,#1e3a5f,#3b82f6);}
+.date-dec{background:linear-gradient(135deg,#1e1b4b,#6366f1);}
+footer{text-align:center;padding:36px 20px 20px;color:rgba(255,255,255,0.5);font-size:0.875rem;}
+@media(max-width:640px){
+.hero{padding:36px 16px 32px;}.stats-row{gap:10px;}.months-grid{grid-template-columns:1fr;}
+.container{padding:24px 12px 0;}.lesson-item{padding:10px 14px;gap:10px;}.event-item{padding:10px 14px;}
+.lesson-date-bubble{width:38px;height:38px;border-radius:10px;}.lesson-title-text{font-size:0.88rem;}
+.lesson-link{padding:6px 11px;font-size:0.75rem;}.month-name{font-size:1.3rem;}.stat-chip{font-size:0.8rem;padding:6px 14px;}
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="year-badge">2026 Schedule</div>
+  <h1>Crossroads<br>Lesson Catalogue</h1>
+  <p class="hero-sub">Comprehensive lesson templates for teen ministry facilitators &mdash; organised by month for easy reference.</p>
+  <div class="stats-row">
+    <div class="stat-chip"><i class="fas fa-book-open"></i> 44 Lessons</div>
+    <div class="stat-chip"><i class="fas fa-calendar-alt"></i> Feb &ndash; Dec 2026</div>
+    <div class="stat-chip"><i class="fas fa-users"></i> Ages 13&ndash;14</div>
+  </div>
+  <div class="search-wrap">
+    <i class="fas fa-search search-icon"></i>
+    <input type="text" id="searchInput" placeholder="Search lessons by topic or keyword...">
+  </div>
+</div>
+<div class="container">
+  <div class="months-grid" id="monthsGrid"></div>
+</div>
+<footer>
+  <p>Crossroads Ministry &copy; 2026 &nbsp;&bull;&nbsp; Designed for Facilitators &nbsp;&bull;&nbsp; Alexander Wambugu</p>
+</footer>
+<script>
+var schedule=[
+{month:"February",cls:"feb",theme:"My Story, God\u2019s Story",items:[
+{date:"1st",title:"Marks of Childhood",link:"lesson-4.html",type:"lesson"},
+{date:"8th",title:"Marks of Adulthood",link:"lesson-6.html",type:"lesson"},
+{date:"15th",title:"Creation",link:"lesson-7.html",type:"lesson"},
+{date:"22nd",title:"The Fall of Man",link:"lesson-8.html",type:"lesson"}
+]},
+{month:"March",cls:"mar",theme:"Walking The Talk",items:[
+{date:"1st",title:"Redemption",link:"lesson-9.html",type:"lesson"},
+{date:"8th",title:"Conversations With God",link:"lesson-10.html",type:"lesson"},
+{date:"15th",title:"Elements of the Conversation",link:"lesson-48.html",type:"lesson"},
+{date:"22nd",title:"Journalling",link:"lesson-11.html",type:"lesson"},
+{date:"29th",title:"Forgiveness (Movie)",link:"lesson-13.html",type:"lesson"}
+]},
+{month:"April",cls:"apr",theme:"Walking The Talk",items:[
+{date:"5th",title:"Easter Sunday",link:"lesson-16.html",type:"lesson"},
+{date:"12th",title:"Confirmation \/ Baptism",link:"lesson-14.html",type:"lesson"},
+{date:"19th",title:"Salvation \u2014 The Reason for Easter (Sleepover)",link:"lesson-15.html",type:"lesson"},
+{date:"26th",title:"Life as a Gift",link:"lesson-17.html",type:"lesson"}
+]},
+{month:"May",cls:"may",theme:"Walking The Talk",items:[
+{date:"3rd",title:"YOUTH WEEK",link:null,type:"event"},
+{date:"10th",title:"Fasting",link:"lesson-18.html",type:"lesson"},
+{date:"17th",title:"Privileges & Responsibilities",link:"lesson-19.html",type:"lesson"},
+{date:"24th",title:"Habit Formation & Building Resilience",link:"lesson-20.html",type:"lesson"},
+{date:"31st",title:"YOUTH JOINT SERVICE",link:null,type:"event"}
+]},
+{month:"June",cls:"jun",theme:"Equipped for the Journey",items:[
+{date:"7th",title:"Who Am I?",link:"lesson-21.html",type:"lesson"},
+{date:"14th",title:"Self-Worth & Self-Esteem",link:"lesson-22.html",type:"lesson"},
+{date:"21st",title:"iLead",link:"lesson-23.html",type:"lesson"},
+{date:"28th",title:"Materialism: My Servant or My Master?",link:"lesson-24.html",type:"lesson"}
+]},
+{month:"July",cls:"jul",theme:"",items:[
+{date:"5th",title:"Problem Solving",link:"lesson-25.html",type:"lesson"},
+{date:"12th",title:"Taking Initiative",link:"lesson-26.html",type:"lesson"},
+{date:"19th",title:"Bible Models & Role Models",link:"lesson-27.html",type:"lesson"},
+{date:"26th",title:"Friends, Family & Faith",link:"lesson-28.html",type:"lesson"}
+]},
+{month:"August",cls:"aug",theme:"",items:[
+{date:"2nd",title:"Saying No",link:"lesson-29.html",type:"lesson"},
+{date:"9th",title:"iContribute",link:"lesson-30.html",type:"lesson"},
+{date:"16th",title:"Academic Excellence",link:"lesson-31.html",type:"lesson"},
+{date:"23rd",title:"Drugs and Substance Abuse",link:"lesson-33.html",type:"lesson"},
+{date:"30th",title:"Media & Technology",link:"lesson-35.html",type:"lesson"}
+]},
+{month:"September",cls:"sep",theme:"Creating Positive Relationships",items:[
+{date:"6th",title:"Communication",link:"lesson-36.html",type:"lesson"},
+{date:"13th",title:"My Sexuality \u2014 Resisting Pressure & Abstinence",link:"lesson-37.html",type:"lesson"},
+{date:"20th",title:"Decision Making",link:"lesson-38.html",type:"lesson"},
+{date:"27th",title:"Maturity",link:"lesson-39.html",type:"lesson"}
+]},
+{month:"October",cls:"oct",theme:"",items:[
+{date:"4th",title:"Love",link:"lesson-40.html",type:"lesson"},
+{date:"11th",title:"Dating",link:"lesson-41.html",type:"lesson"},
+{date:"18th",title:"Dreams and Ambitions",link:"lesson-42.html",type:"lesson"},
+{date:"25th",title:"Discover Talents & Improve Skills",link:"lesson-43.html",type:"lesson"}
+]},
+{month:"November",cls:"nov",theme:"",items:[
+{date:"1st",title:"Emotional Regulation",link:"lesson-44.html",type:"lesson"},
+{date:"8th",title:"Building Healthy Boundaries",link:"lesson-45.html",type:"lesson"},
+{date:"15th",title:"Service",link:"lesson-49.html",type:"lesson"},
+{date:"22nd",title:"Peer Evangelism",link:"lesson-50.html",type:"lesson"},
+{date:"29th",title:"YOUTH JOINT SERVICE",link:null,type:"event"}
+]},
+{month:"December",cls:"dec",theme:"",items:[
+{date:"6th",title:"Movie",link:"lesson-46.html",type:"lesson"},
+{date:"13th",title:"Camp",link:"lesson-47.html",type:"lesson"}
+]}
+];
+var grid=document.getElementById("monthsGrid");
+function lessonCount(items){return items.filter(function(i){return i.type==="lesson";}).length;}
+schedule.forEach(function(m){
+  var card=document.createElement("div");
+  card.className="month-card";
+  card.dataset.month=m.month;
+  var itemsHtml=m.items.map(function(item){
+    if(item.type==="event"){
+      return '<div class="event-item"><div class="lesson-date-bubble date-'+m.cls+'">'+item.date+'</div><div class="lesson-title-text" style="color:#92400e">'+item.title+'</div><span class="event-badge"><i class="fas fa-star"></i> Event</span></div>';
+    }
+    return '<div class="lesson-item"><div class="lesson-date-bubble date-'+m.cls+'">'+item.date+'</div><div class="lesson-title-text">'+item.title+'</div><a href="'+item.link+'" class="lesson-link"><i class="fas fa-arrow-right"></i> View</a></div>';
+  }).join("");
+  var count=lessonCount(m.items);
+  var themeHtml=m.theme?'<div class="month-theme">'+m.theme+'</div>':"";
+  card.innerHTML=
+    '<div class="month-header month-'+m.cls+'">'
+    +'<div class="month-info"><div class="month-name">'+m.month+'</div>'+themeHtml+'</div>'
+    +'<div class="month-meta"><span class="lesson-count">'+count+' lesson'+(count!==1?"s":"")+'</span>'
+    +'<i class="fas fa-chevron-down toggle-icon"></i></div></div>'
+    +'<div class="lessons-list"><div class="lessons-inner">'+itemsHtml+'</div></div>';
+  card.querySelector(".month-header").addEventListener("click",function(){
+    card.classList.toggle("active");
+  });
+  grid.appendChild(card);
+});
+document.getElementById("searchInput").addEventListener("input",function(){
+  var q=this.value.toLowerCase().trim();
+  document.querySelectorAll(".month-card").forEach(function(card){
+    var hasVisible=false;
+    card.querySelectorAll(".lesson-item,.event-item").forEach(function(item){
+      var title=item.querySelector(".lesson-title-text").textContent.toLowerCase();
+      var match=!q||title.includes(q);
+      item.style.display=match?"":"none";
+      if(match)hasVisible=true;
+    });
+    card.style.display=(!q||hasVisible)?"":"none";
+    if(q&&hasVisible)card.classList.add("active");
+    else if(!q)card.classList.remove("active");
+  });
+});
+</script>
+</body>
+</html>
