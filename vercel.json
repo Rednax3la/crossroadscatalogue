@@ -1,13 +1,9 @@
 {
-  "routes": [
+  "cleanUrls": true,
+  "rewrites": [
     {
-      "src": "/",
-      "dest": "/catalogue.html"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1",
-      "continue": true
+      "source": "/",
+      "destination": "/catalogue.html"
     }
   ]
 }
