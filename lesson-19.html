@@ -76,9 +76,11 @@
             content: "";
             position: absolute;
             width: 5px;
-            height: 100px;
+            height: 40px;
             background: #8b5a2b;
-            top: -100px;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         
         /* Mother's Day elements */
@@ -154,8 +156,8 @@
         }
 
         @media (max-width: 640px) {
-            .balance-scale { flex-direction: column; align-items: center; gap: 20px; }
-            .scale-plate { width: 100px; height: 100px; }
+            .balance-scale { flex-direction: column; align-items: center; gap: 16px; }
+            .scale-plate { min-width: 200px; font-size: 0.85rem; }
         }
     </style>
 </head>

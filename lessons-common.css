@@ -126,7 +126,14 @@ li { margin-bottom:6px; color:var(--text-2); }
     h1{line-height:1.2}
 }
 
-/* Ensure all direct text content inside challenge-box is white */
-.challenge-box > div { color: rgba(255,255,255,0.95); }
-.challenge-box > ul, .challenge-box > ol { color: rgba(255,255,255,0.92); }
-.challenge-box > div strong, .challenge-box > div a { color: white; }
+/* Challenge-box card items: make them readable on dark background */
+.challenge-box [class*="-card"] {
+    background: rgba(255,255,255,0.14) !important;
+    color: rgba(255,255,255,0.95) !important;
+    border: 1px solid rgba(255,255,255,0.22) !important;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-weight: 600;
+}
+/* Titles / headings inside challenge-box */
+.challenge-box > div > strong, .challenge-box > div > b { color: white; }

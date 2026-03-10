@@ -155,6 +155,11 @@
             width: 20px;
             height: 20px;
         }
+
+        @media (max-width: 640px) {
+            .relationship-scale { flex-direction: column; gap: 16px; padding-top: 0; }
+            .scale-point::before { display: none; }
+        }
     </style>
 </head>
 <body>
