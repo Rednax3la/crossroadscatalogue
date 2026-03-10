@@ -124,6 +124,26 @@
             transform: translateY(-50%) rotate(45deg);
             z-index: -1;
         }
+
+        /* Mobile fix: prevent track-point overlap */
+        @media (max-width: 640px) {
+            .transformation-track {
+                height: 130px;
+                overflow: hidden;
+            }
+            .track-point {
+                width: 64px;
+                font-size: 0.62rem;
+                transform: translate(-50%, -50%);
+            }
+            .track-icon {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+            .slider-handle { display: none; }
+        }
     </style>
 </head>
 <body>

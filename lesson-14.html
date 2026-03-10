@@ -122,8 +122,8 @@
             background: #f5ecd7;
             border: 2px solid #8b5a2b;
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -131,22 +131,33 @@
             text-align: center;
             z-index: 2;
             position: relative;
-            padding: 5px;
+            padding: 8px;
+            font-size: 0.65rem;
+            line-height: 1.2;
+            word-break: break-word;
         }
         
+        .path-step i { font-size: 1.2rem !important; flex-shrink: 0; }
+
         .path-step::after {
             content: "";
             position: absolute;
-            width: 30px;
-            height: 5px;
+            width: 20px;
+            height: 4px;
             background: #8b5a2b;
-            right: -30px;
+            right: -20px;
             top: 50%;
             transform: translateY(-50%);
         }
         
         .path-step:last-child::after {
             display: none;
+        }
+        
+        @media (max-width: 640px) {
+            .decision-path { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .path-step::after { display: none; }
+            .path-step { width: 80px; height: 80px; }
         }
     </style>
 </head>

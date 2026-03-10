@@ -175,11 +175,11 @@
         }
         
         .path-step {
-            background: #f5ecd7;
+            background: rgba(255,255,255,0.92);
             border: 2px solid #8b5a2b;
             border-radius: 50%;
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -187,22 +187,44 @@
             text-align: center;
             z-index: 2;
             position: relative;
-            padding: 5px;
+            padding: 8px;
+            font-size: 0.6rem;
+            line-height: 1.2;
+            word-break: break-word;
         }
         
+        .path-step i { font-size: 1.1rem !important; flex-shrink: 0; }
+
         .path-step::after {
             content: "";
             position: absolute;
-            width: 30px;
-            height: 5px;
+            width: 20px;
+            height: 4px;
             background: #8b5a2b;
-            right: -30px;
+            right: -20px;
             top: 50%;
             transform: translateY(-50%);
         }
         
         .path-step:last-child::after {
             display: none;
+        }
+        
+        @media (max-width: 640px) {
+            .salvation-path { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .path-step::after { display: none; }
+            .path-step { width: 80px; height: 80px; }
+        }
+
+        /* Fix: inner activity-card text inherits white from special parent */
+        .activity-card.special .activity-card {
+            color: var(--text-1, #1e293b);
+        }
+        .activity-card.special .activity-card p {
+            color: var(--text-2, #475569);
+        }
+        .activity-card.special .activity-card .activity-title {
+            color: var(--primary, #6d28d9);
         }
     </style>
 </head>
@@ -449,7 +471,7 @@
             <a href="lesson-14.html" class="nav-btn">
                 <i class="fas fa-arrow-left"></i> Previous Lesson
             </a>
-            <a href="lesson-16.html" class="nav-btn">
+            <a href="lesson-17.html" class="nav-btn">
                 Next Lesson <i class="fas fa-arrow-right"></i>
             </a>
             <a href="catalogue.html" class="nav-btn">
