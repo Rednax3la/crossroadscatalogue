@@ -35,7 +35,15 @@
         .planner-area { background:rgba(26,42,108,0.1); padding:20px; border-radius:10px; margin:16px 0; border-left:4px solid #1a2a6c; }
         .week-planner { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:12px; }
         .day-cell { background:rgba(255,255,255,0.9); padding:6px 3px; border-radius:4px; border:1px solid #d4c0a1; text-align:center; font-size:0.75rem; min-width:0; overflow:hidden; }
-        .day-cell input { display:block; width:100%; min-width:0; border:none; background:transparent; text-align:center; font-size:0.7rem; padding:0; box-sizing:border-box; }
+        .planner-input {
+            display:block; width:100%; min-width:0; border:none; background:transparent;
+            text-align:center; font-size:0.7rem; padding:2px 0; outline:none;
+            cursor:text; min-height:1.2em; box-sizing:border-box;
+        }
+        .planner-input:empty::before {
+            content: attr(data-placeholder);
+            color: #aaa; pointer-events:none;
+        }
         .subject-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:8px; margin:12px 0; }
         .subject-card { background:rgba(255,255,255,0.9); padding:10px; border-radius:5px; border:1px solid #d4c0a1; text-align:center; cursor:pointer; font-size:0.88rem; }
         .scripture-reminders { display:grid; grid-template-columns:1fr; gap:14px; margin:16px 0; }
@@ -226,13 +234,13 @@
                         <div class="day-cell">Fri</div>
                         <div class="day-cell">Sat</div>
                         <div class="day-cell">Sun</div>
-                        <div class="day-cell"><input type="text" placeholder="Math" style="width: 100%; border: none; text-align: center;"></div>
-                        <div class="day-cell"><input type="text" placeholder="Science" style="width: 100%; border: none; text-align: center;"></div>
-                        <div class="day-cell"><input type="text" placeholder="English" style="width: 100%; border: none; text-align: center;"></div>
-                        <div class="day-cell"><input type="text" placeholder="History" style="width: 100%; border: none; text-align: center;"></div>
-                        <div class="day-cell"><input type="text" placeholder="Review" style="width: 100%; border: none; text-align: center;"></div>
-                        <div class="day-cell"><input type="text" placeholder="Rest" style="width: 100%; border: none; text-align: center;"></div>
-                        <div class="day-cell"><input type="text" placeholder="Prep" style="width: 100%; border: none; text-align: center;"></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="Math"></div></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="Science"></div></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="English"></div></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="History"></div></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="Review"></div></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="Rest"></div></div>
+                        <div class="day-cell"><div class="planner-input" contenteditable="true" data-placeholder="Prep"></div></div>
                     </div></div>
                     
                     <div class="subject-grid">
