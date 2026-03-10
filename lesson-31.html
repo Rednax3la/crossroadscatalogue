@@ -34,12 +34,14 @@
         }
         
         /* Academic elements */
+        .grade-tracker-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .grade-tracker {
             display: flex;
             justify-content: space-between;
             height: 80px;
             margin: 20px 0;
             position: relative;
+            min-width: 420px;
         }
         
         .grade-tracker::before {
@@ -115,7 +117,7 @@
         
         .strategy-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
@@ -143,11 +145,13 @@
             border-left: 4px solid #1a2a6c;
         }
         
+        .planner-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .week-planner {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
             margin-top: 15px;
+            min-width: 480px;
         }
         
         .day-cell {
@@ -301,11 +305,11 @@
                 <div class="point-card">
                     <div class="point-title">B. The Path to Excellence</div>
                     <p>Key elements of academic success:</p>
-                    <div class="grade-tracker">
+                    <div class="grade-tracker-wrap"><div class="grade-tracker">
                         <div class="grade-point">
                             <div class="grade-dot">D</div>
                             <div class="grade-label">Discipline</div>
-                        </div>
+                        </div></div>
                         <div class="grade-point">
                             <div class="grade-dot">I</div>
                             <div class="grade-label">Integrity</div>
@@ -382,7 +386,7 @@
                 
                 <div class="planner-area">
                     <h3>Weekly Study Planner</h3>
-                    <div class="week-planner">
+                    <div class="planner-scroll"><div class="week-planner">
                         <div class="day-cell">Mon</div>
                         <div class="day-cell">Tue</div>
                         <div class="day-cell">Wed</div>
@@ -397,7 +401,7 @@
                         <div class="day-cell"><input type="text" placeholder="Review" style="width: 100%; border: none; text-align: center;"></div>
                         <div class="day-cell"><input type="text" placeholder="Rest" style="width: 100%; border: none; text-align: center;"></div>
                         <div class="day-cell"><input type="text" placeholder="Prep" style="width: 100%; border: none; text-align: center;"></div>
-                    </div>
+                    </div></div>
                     
                     <div class="subject-grid">
                         <div class="subject-card">Math</div>

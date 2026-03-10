@@ -269,6 +269,8 @@
                         <div class="temptation-item" data-weight="1">"No one will know"</div>
                         <div class="temptation-item" data-weight="2">"God wants you happy"</div>
                         <div class="temptation-item" data-weight="3">"This will solve your problems"</div>
+                        <div class="temptation-item" data-weight="2">"Just this once"</div>
+                        <div class="temptation-item" data-weight="3">"Everyone else is doing it"</div>
                     </div>
                 </div>
                 
@@ -406,7 +408,7 @@
             temptationItems.forEach(item => {
                 item.addEventListener('click', function() {
                     const weight = parseInt(this.getAttribute('data-weight'));
-                    const side = this.closest('.scale-side').id === 'truthPlate' ? 'left' : 'right';
+                    const side = this.closest('.scale-side').querySelector('.scale-plate').id === 'truthPlate' ? 'left' : 'right';
                     
                     if (side === 'left') {
                         leftWeight += weight;

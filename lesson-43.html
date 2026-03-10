@@ -142,6 +142,10 @@
             from { width: 0; }
             to { width: var(--target-width); }
         }
+
+        @media (max-width: 640px) {
+            .talent-grid, .skill-grid { grid-template-columns: 1fr !important; }
+        }
     </style>
 </head>
 <body>

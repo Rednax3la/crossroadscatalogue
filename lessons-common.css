@@ -125,3 +125,8 @@ li { margin-bottom:6px; color:var(--text-2); }
     .challenge-box h3{font-size:1rem} .challenge-box p,.challenge-box li{font-size:0.9rem}
     h1{line-height:1.2}
 }
+
+/* Ensure all direct text content inside challenge-box is white */
+.challenge-box > div { color: rgba(255,255,255,0.95); }
+.challenge-box > ul, .challenge-box > ol { color: rgba(255,255,255,0.92); }
+.challenge-box > div strong, .challenge-box > div a { color: white; }

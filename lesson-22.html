@@ -40,15 +40,17 @@
             height: 30px;
             background: linear-gradient(to right, #b21f1f, #1a2a6c, #FFD700);
             border-radius: 15px;
-            margin: 20px 0;
+            margin: 20px 0 60px;
             position: relative;
+            cursor: pointer;
         }
         
         .scale-label {
             position: absolute;
             top: 35px;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             font-weight: bold;
+            white-space: nowrap;
         }
         
         .scale-label.low {
@@ -444,28 +446,32 @@
             const worthScale = document.querySelector('.worth-scale');
             let animationInterval;
             
-            worthScale.addEventListener('mouseover', function() {
-                let position = 0;
-                let direction = 1;
-                
-                animationInterval = setInterval(() => {
-                    position += direction * 5;
-                    
-                    if (position >= 100 || position <= 0) {
-                        direction *= -1;
-                    }
-                    
-                    const marker = document.getElementById('worthMarker');
-                    if (!marker) {
-                        createWorthMarker(position);
-                    } else {
-                        marker.style.left = `${position}%`;
-                    }
-                }, 100);
+            worthScale.addEventListener('mousemove', function(e) {
+                const rect = worthScale.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                let marker = document.getElementById('worthMarker');
+                if (!marker) { createWorthMarker(pct); }
+                else { marker.style.left = `${pct}%`; }
             });
             
-            worthScale.addEventListener('mouseout', function() {
+            worthScale.addEventListener('mouseleave', function() {
                 clearInterval(animationInterval);
+                const marker = document.getElementById('worthMarker');
+                if (marker) marker.remove();
+            });
+            
+            worthScale.addEventListener('touchmove', function(e) {
+                const rect = worthScale.getBoundingClientRect();
+                const x = e.touches[0].clientX - rect.left;
+                const pct = Math.max(0, Math.min(100, (x / rect.width) * 100));
+                let marker = document.getElementById('worthMarker');
+                if (!marker) { createWorthMarker(pct); }
+                else { marker.style.left = `${pct}%`; }
+                e.preventDefault();
+            }, { passive: false });
+            
+            worthScale.addEventListener('touchend', function() {
                 const marker = document.getElementById('worthMarker');
                 if (marker) marker.remove();
             });
