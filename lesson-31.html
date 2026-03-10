@@ -34,14 +34,12 @@
         }
         
         /* Academic elements */
-        .grade-tracker-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .grade-tracker {
             display: flex;
             justify-content: space-between;
             height: 80px;
             margin: 20px 0;
             position: relative;
-            min-width: 420px;
         }
         
         .grade-tracker::before {
@@ -90,7 +88,7 @@
         
         .study-types {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
@@ -145,13 +143,11 @@
             border-left: 4px solid #1a2a6c;
         }
         
-        .planner-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
         .week-planner {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 5px;
             margin-top: 15px;
-            min-width: 480px;
         }
         
         .day-cell {
@@ -181,7 +177,7 @@
         
         .scripture-reminders {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
@@ -223,6 +219,28 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+        }
+
+        @media (max-width: 640px) {
+            /* Grade tracker: wrap into two rows on mobile */
+            .grade-tracker {
+                flex-wrap: wrap;
+                height: auto;
+                justify-content: space-around;
+                gap: 10px;
+                padding: 10px 0;
+            }
+            .grade-tracker::before { display: none; }
+            .grade-point { width: 60px; }
+            .grade-label { font-size: 0.75rem; }
+            /* Week planner: 4 columns instead of 7 */
+            .week-planner {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            /* Scripture reminders: 1 column */
+            .scripture-reminders {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -305,7 +323,7 @@
                 <div class="point-card">
                     <div class="point-title">B. The Path to Excellence</div>
                     <p>Key elements of academic success:</p>
-                    <div class="grade-tracker-wrap"><div class="grade-tracker">
+                    <div class="grade-tracker">
                         <div class="grade-point">
                             <div class="grade-dot">D</div>
                             <div class="grade-label">Discipline</div>
@@ -326,7 +344,7 @@
                             <div class="grade-dot">G</div>
                             <div class="grade-label">Growth</div>
                         </div>
-                    </div></div>
+                    </div>
                     <div class="scripture">
                         "For the Lord gives wisdom; from his mouth come knowledge and understanding."
                         <span class="scripture-ref">Proverbs 2:6</span>
@@ -386,7 +404,7 @@
                 
                 <div class="planner-area">
                     <h3>Weekly Study Planner</h3>
-                    <div class="planner-scroll"><div class="week-planner">
+                    <div class="week-planner">
                         <div class="day-cell">Mon</div>
                         <div class="day-cell">Tue</div>
                         <div class="day-cell">Wed</div>
