@@ -56,9 +56,7 @@
             .grade-tracker::before { display:none; }
             .grade-point { width:52px; }
             .grade-label { font-size:0.7rem; }
-            /* Hide interactive planner on mobile: inputs have browser-enforced min-widths
-               that cannot be overridden inside an overflow:hidden scroll container */
-            .planner-area { display:none; }
+            /* Planner visible on mobile — contenteditable divs have no intrinsic min-width */
             .study-types { grid-template-columns:repeat(2,1fr); gap:10px; }
             .strategy-container { grid-template-columns:1fr; }
             .subject-grid { grid-template-columns:repeat(3,1fr); gap:6px; }
@@ -251,7 +249,6 @@
                         <div class="subject-card">Foreign Lang</div>
                         <div class="subject-card">Electives</div>
                     </div>
-                </div>
                 
                 <div class="activity-title" style="margin-top: 20px;">
                     <i class="fas fa-book-bible"></i>
