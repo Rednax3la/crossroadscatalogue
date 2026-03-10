@@ -8,239 +8,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="lessons-common.css">
     <style>
-        /* Lesson-specific styles */
         .academic-icon {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
+            display: inline-block; width: 35px; height: 35px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M30,30 L70,30 L70,70 L30,70 Z" fill="none" stroke="%231a2a6c" stroke-width="3"/><path d="M40,40 L60,40 L60,60 L40,60 Z" fill="none" stroke="%23b21f1f" stroke-width="3"/><path d="M50,20 L50,30" stroke="%238b5a2b" stroke-width="3"/></svg>') center/contain no-repeat;
-            margin: 0 5px;
-            vertical-align: middle;
-            animation: academicPulse 2s infinite;
+            margin: 0 5px; vertical-align: middle; animation: academicPulse 2s infinite;
         }
-        
-        @keyframes academicPulse {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-        
+        @keyframes academicPulse { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
         .wisdom-icon {
-            display: inline-block;
-            width: 35px;
-            height: 35px;
+            display: inline-block; width: 35px; height: 35px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50,20 Q60,40 50,60 Q40,40 50,20 Z" fill="%23FFD700" stroke="%238b5a2b" stroke-width="2"/><circle cx="50" cy="50" r="8" fill="%231a2a6c"/></svg>') center/contain no-repeat;
-            margin: 0 5px;
-            vertical-align: middle;
+            margin: 0 5px; vertical-align: middle;
         }
-        
-        /* Academic elements */
-        .grade-tracker {
-            display: flex;
-            justify-content: space-between;
-            height: 80px;
-            margin: 20px 0;
-            position: relative;
-        }
-        
-        .grade-tracker::before {
-            content: "";
-            position: absolute;
-            top: 40px;
-            left: 20px;
-            right: 20px;
-            height: 3px;
-            background: #8b5a2b;
-            z-index: 1;
-        }
-        
-        .grade-point {
-            position: relative;
-            width: 80px;
-            text-align: center;
-            z-index: 2;
-        }
-        
-        .grade-dot {
-            width: 30px;
-            height: 30px;
-            background: #1a2a6c;
-            border-radius: 50%;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .grade-dot:hover {
-            transform: scale(1.2);
-            background: #b21f1f;
-        }
-        
-        .grade-label {
-            margin-top: 10px;
-            font-size: 0.9rem;
-            color: #5a5a5a;
-        }
-        
-        .study-types {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .study-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid #d4c0a1;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-        
-        .study-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .study-card i {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            color: #1a2a6c;
-        }
-        
-        .strategy-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .strategy-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 8px;
-            padding: 15px;
-            border: 1px solid #d4c0a1;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .strategy-card:hover {
-            transform: translateX(5px);
-            border-left: 4px solid #1a2a6c;
-        }
-        
-        .planner-area {
-            background: rgba(26, 42, 108, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            min-height: 200px;
-            border-left: 4px solid #1a2a6c;
-        }
-        
-        .week-planner {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            margin-top: 15px;
-        }
-        
-        .day-cell {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 6px 3px;
-            border-radius: 5px;
-            border: 1px solid #d4c0a1;
-            text-align: center;
-            font-size: 0.75rem;
-            min-width: 0;
-            overflow: hidden;
-        }
-        .day-cell input { min-width: 0; width: 100%; font-size: 0.72rem; border: none; text-align: center; background: transparent; }
-        
-        .subject-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 10px;
-            margin: 15px 0;
-        }
-        
-        .subject-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #d4c0a1;
-            text-align: center;
-            cursor: pointer;
-        }
-        
-        .scripture-reminders {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .scripture-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid #d4c0a1;
-            font-style: italic;
-            position: relative;
-            border-left: 4px solid #1a2a6c;
-        }
-        
-        .goal-setter {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .goal-card {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #d4c0a1;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .goal-icon {
-            width: 50px;
-            height: 50px;
-            background: #1a2a6c;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
+        .grade-tracker { display:flex; justify-content:space-between; height:80px; margin:20px 0; position:relative; }
+        .grade-tracker::before { content:""; position:absolute; top:40px; left:20px; right:20px; height:3px; background:#8b5a2b; z-index:1; }
+        .grade-point { position:relative; width:80px; text-align:center; z-index:2; }
+        .grade-dot { width:30px; height:30px; background:#1a2a6c; border-radius:50%; margin:0 auto; display:flex; align-items:center; justify-content:center; color:white; font-weight:bold; cursor:pointer; transition:all 0.3s; }
+        .grade-dot:hover { transform:scale(1.2); background:#b21f1f; }
+        .grade-label { margin-top:10px; font-size:0.9rem; color:#5a5a5a; }
+        .study-types { display:grid; grid-template-columns:repeat(auto-fit,minmax(120px,1fr)); gap:14px; margin:16px 0; }
+        .study-card { background:rgba(255,255,255,0.9); border-radius:10px; padding:14px; border:1px solid #d4c0a1; text-align:center; transition:all 0.3s; }
+        .study-card:hover { transform:translateY(-4px); box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+        .study-card i { font-size:1.8rem; margin-bottom:8px; color:#1a2a6c; display:block; }
+        .strategy-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin:16px 0; }
+        .strategy-card { background:rgba(255,255,255,0.9); border-radius:8px; padding:14px; border:1px solid #d4c0a1; cursor:pointer; transition:all 0.3s; }
+        .strategy-card:hover { transform:translateX(4px); border-left:4px solid #1a2a6c; }
+        .planner-area { background:rgba(26,42,108,0.1); padding:20px; border-radius:10px; margin:16px 0; border-left:4px solid #1a2a6c; }
+        .week-planner { display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:12px; }
+        .day-cell { background:rgba(255,255,255,0.9); padding:6px 3px; border-radius:4px; border:1px solid #d4c0a1; text-align:center; font-size:0.75rem; min-width:0; overflow:hidden; }
+        .day-cell input { display:block; width:100%; min-width:0; border:none; background:transparent; text-align:center; font-size:0.7rem; padding:0; box-sizing:border-box; }
+        .subject-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr)); gap:8px; margin:12px 0; }
+        .subject-card { background:rgba(255,255,255,0.9); padding:10px; border-radius:5px; border:1px solid #d4c0a1; text-align:center; cursor:pointer; font-size:0.88rem; }
+        .scripture-reminders { display:grid; grid-template-columns:1fr; gap:14px; margin:16px 0; }
+        .scripture-card { background:rgba(255,255,255,0.9); border-radius:10px; padding:14px; border:1px solid #d4c0a1; font-style:italic; border-left:4px solid #1a2a6c; }
+        .goal-setter { display:flex; flex-direction:column; gap:12px; margin:16px 0; }
+        .goal-card { background:rgba(255,255,255,0.9); padding:14px; border-radius:8px; border:1px solid #d4c0a1; display:flex; align-items:flex-start; gap:14px; }
+        .goal-icon { width:44px; height:44px; background:#1a2a6c; color:white; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
         @media (max-width: 640px) {
-            .grade-tracker {
-                flex-wrap: wrap;
-                height: auto;
-                justify-content: space-around;
-                gap: 12px;
-                padding: 10px 0;
-            }
-            .grade-tracker::before { display: none; }
-            .grade-point { width: 56px; }
-            .grade-label { font-size: 0.72rem; }
-            /* Planner: tighten font, 3-col layout so header+input pairs visible */
-            .planner-area { padding: 12px; }
-            .week-planner {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 3px;
-            }
+            .grade-tracker { flex-wrap:wrap; height:auto; justify-content:space-around; gap:10px; padding:8px 0; }
+            .grade-tracker::before { display:none; }
+            .grade-point { width:52px; }
+            .grade-label { font-size:0.7rem; }
+            /* Hide interactive planner on mobile: inputs have browser-enforced min-widths
+               that cannot be overridden inside an overflow:hidden scroll container */
+            .planner-area { display:none; }
+            .study-types { grid-template-columns:repeat(2,1fr); gap:10px; }
+            .strategy-container { grid-template-columns:1fr; }
+            .subject-grid { grid-template-columns:repeat(3,1fr); gap:6px; }
+            .goal-card { align-items:flex-start; }
         }
     </style>
 </head>
