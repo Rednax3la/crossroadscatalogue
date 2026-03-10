@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:linear-gradient(160deg,#1e1b4b 0%,#1e3a5f 50%,#134e4a 100%);background-attachment:fixed;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:#1e293b;padding:0 0 60px;}
+body{background:linear-gradient(160deg,#2d1b69 0%,#3730a3 50%,#1e3a8a 100%);background-attachment:fixed;min-height:100vh;font-family:-apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:#1e293b;padding:0 0 60px;}
 .hero{background:rgba(255,255,255,0.06);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.1);padding:48px 20px 40px;text-align:center;}
 .year-badge{display:inline-block;background:linear-gradient(135deg,#d97706,#f97316);color:white;font-size:0.8rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px;}
 .hero h1{font-size:clamp(2rem,5vw,3.5rem);color:white;font-weight:900;line-height:1.1;letter-spacing:-0.03em;margin-bottom:12px;text-shadow:0 2px 20px rgba(0,0,0,0.3);}
@@ -18,7 +18,7 @@ body{background:linear-gradient(160deg,#1e1b4b 0%,#1e3a5f 50%,#134e4a 100%);back
 .search-wrap{max-width:520px;margin:0 auto;position:relative;}
 .search-icon{position:absolute;left:18px;top:50%;transform:translateY(-50%);color:#94a3b8;font-size:1rem;pointer-events:none;}
 #searchInput{width:100%;padding:14px 20px 14px 46px;border:2px solid rgba(255,255,255,0.15);border-radius:100px;font-size:1rem;background:rgba(255,255,255,0.95);color:#1e293b;outline:none;transition:border-color 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(0,0,0,0.2);}
-#searchInput:focus{border-color:#6366f1;box-shadow:0 0 0 4px rgba(99,102,241,0.2),0 4px 20px rgba(0,0,0,0.2);}
+#searchInput:focus{border-color:#8b5cf6;box-shadow:0 0 0 4px rgba(109,40,217,0.2),0 4px 20px rgba(0,0,0,0.2);}
 #searchInput::placeholder{color:#94a3b8;}
 .container{max-width:1200px;margin:0 auto;padding:36px 20px 0;}
 .months-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;}
@@ -40,33 +40,35 @@ body{background:linear-gradient(160deg,#1e1b4b 0%,#1e3a5f 50%,#134e4a 100%);back
 .lesson-item:hover{background:#f8fafc;}
 .lesson-date-bubble{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.8rem;flex-shrink:0;color:white;}
 .lesson-title-text{flex:1;font-size:0.92rem;font-weight:600;color:#1e293b;line-height:1.3;}
-.lesson-link{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#4f46e5,#0284c7);color:white;padding:7px 14px;border-radius:100px;text-decoration:none;font-size:0.78rem;font-weight:700;flex-shrink:0;transition:all 0.2s ease;box-shadow:0 2px 8px rgba(79,70,229,0.28);white-space:nowrap;}
-.lesson-link:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(79,70,229,0.4);}
+.lesson-link{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#6d28d9,#4338ca);color:white;padding:7px 14px;border-radius:100px;text-decoration:none;font-size:0.78rem;font-weight:700;flex-shrink:0;transition:all 0.2s ease;box-shadow:0 2px 8px rgba(109,40,217,0.28);white-space:nowrap;}
+.lesson-link:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(109,40,217,0.4);}
 .event-item{display:flex;align-items:center;padding:11px 20px;gap:14px;background:#fffbeb;border-bottom:1px solid #fef3c7;}
 .event-item:last-child{border-bottom:none;}
 .event-badge{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(135deg,#d97706,#f97316);color:white;padding:5px 12px;border-radius:100px;font-size:0.75rem;font-weight:700;white-space:nowrap;}
-.month-feb{background:linear-gradient(135deg,#7c3aed,#a855f7);}
-.month-mar{background:linear-gradient(135deg,#1d4ed8,#3b82f6);}
-.month-apr{background:linear-gradient(135deg,#0369a1,#0ea5e9);}
-.month-may{background:linear-gradient(135deg,#047857,#10b981);}
-.month-jun{background:linear-gradient(135deg,#065f46,#34d399);}
-.month-jul{background:linear-gradient(135deg,#b45309,#f59e0b);}
-.month-aug{background:linear-gradient(135deg,#c2410c,#fb923c);}
-.month-sep{background:linear-gradient(135deg,#9f1239,#f43f5e);}
-.month-oct{background:linear-gradient(135deg,#6d28d9,#8b5cf6);}
-.month-nov{background:linear-gradient(135deg,#1e3a5f,#3b82f6);}
-.month-dec{background:linear-gradient(135deg,#1e1b4b,#6366f1);}
-.date-feb{background:linear-gradient(135deg,#7c3aed,#a855f7);}
-.date-mar{background:linear-gradient(135deg,#1d4ed8,#3b82f6);}
-.date-apr{background:linear-gradient(135deg,#0369a1,#0ea5e9);}
-.date-may{background:linear-gradient(135deg,#047857,#10b981);}
-.date-jun{background:linear-gradient(135deg,#065f46,#34d399);}
-.date-jul{background:linear-gradient(135deg,#b45309,#f59e0b);}
-.date-aug{background:linear-gradient(135deg,#c2410c,#fb923c);}
-.date-sep{background:linear-gradient(135deg,#9f1239,#f43f5e);}
-.date-oct{background:linear-gradient(135deg,#6d28d9,#8b5cf6);}
-.date-nov{background:linear-gradient(135deg,#1e3a5f,#3b82f6);}
-.date-dec{background:linear-gradient(135deg,#1e1b4b,#6366f1);}
+.month-jan{background:linear-gradient(135deg,hsl(270,76%,28%),hsl(270,66%,50%));}
+.month-feb{background:linear-gradient(135deg,hsl(265,76%,29%),hsl(265,66%,51%));}
+.month-mar{background:linear-gradient(135deg,hsl(260,76%,30%),hsl(260,66%,51%));}
+.month-apr{background:linear-gradient(135deg,hsl(255,76%,31%),hsl(255,66%,52%));}
+.month-may{background:linear-gradient(135deg,hsl(250,75%,32%),hsl(250,65%,52%));}
+.month-jun{background:linear-gradient(135deg,hsl(245,75%,33%),hsl(245,65%,52%));}
+.month-jul{background:linear-gradient(135deg,hsl(240,75%,34%),hsl(240,65%,53%));}
+.month-aug{background:linear-gradient(135deg,hsl(235,74%,35%),hsl(235,64%,53%));}
+.month-sep{background:linear-gradient(135deg,hsl(230,74%,35%),hsl(230,64%,53%));}
+.month-oct{background:linear-gradient(135deg,hsl(225,74%,36%),hsl(225,64%,53%));}
+.month-nov{background:linear-gradient(135deg,hsl(222,73%,37%),hsl(222,63%,54%));}
+.month-dec{background:linear-gradient(135deg,hsl(220,73%,37%),hsl(220,63%,54%));}
+.date-jan{background:linear-gradient(135deg,hsl(270,76%,28%),hsl(270,66%,50%));}
+.date-feb{background:linear-gradient(135deg,hsl(265,76%,29%),hsl(265,66%,51%));}
+.date-mar{background:linear-gradient(135deg,hsl(260,76%,30%),hsl(260,66%,51%));}
+.date-apr{background:linear-gradient(135deg,hsl(255,76%,31%),hsl(255,66%,52%));}
+.date-may{background:linear-gradient(135deg,hsl(250,75%,32%),hsl(250,65%,52%));}
+.date-jun{background:linear-gradient(135deg,hsl(245,75%,33%),hsl(245,65%,52%));}
+.date-jul{background:linear-gradient(135deg,hsl(240,75%,34%),hsl(240,65%,53%));}
+.date-aug{background:linear-gradient(135deg,hsl(235,74%,35%),hsl(235,64%,53%));}
+.date-sep{background:linear-gradient(135deg,hsl(230,74%,35%),hsl(230,64%,53%));}
+.date-oct{background:linear-gradient(135deg,hsl(225,74%,36%),hsl(225,64%,53%));}
+.date-nov{background:linear-gradient(135deg,hsl(222,73%,37%),hsl(222,63%,54%));}
+.date-dec{background:linear-gradient(135deg,hsl(220,73%,37%),hsl(220,63%,54%));}
 footer{text-align:center;padding:36px 20px 20px;color:rgba(255,255,255,0.5);font-size:0.875rem;}
 @media(max-width:640px){
 .hero{padding:36px 16px 32px;}.stats-row{gap:10px;}.months-grid{grid-template-columns:1fr;}
@@ -82,8 +84,8 @@ footer{text-align:center;padding:36px 20px 20px;color:rgba(255,255,255,0.5);font
   <h1>Crossroads<br>Lesson Catalogue</h1>
   <p class="hero-sub">Comprehensive lesson templates for teen ministry facilitators &mdash; organised by month for easy reference.</p>
   <div class="stats-row">
-    <div class="stat-chip"><i class="fas fa-book-open"></i> 44 Lessons</div>
-    <div class="stat-chip"><i class="fas fa-calendar-alt"></i> Feb &ndash; Dec 2026</div>
+    <div class="stat-chip"><i class="fas fa-book-open"></i> 46 Lessons</div>
+    <div class="stat-chip"><i class="fas fa-calendar-alt"></i> Jan &ndash; Dec</div>
     <div class="stat-chip"><i class="fas fa-users"></i> Ages 13&ndash;14</div>
   </div>
   <div class="search-wrap">
@@ -99,6 +101,11 @@ footer{text-align:center;padding:36px 20px 20px;color:rgba(255,255,255,0.5);font
 </footer>
 <script>
 var schedule=[
+{month:"January",cls:"jan",theme:"My Story, God’s Story",items:[
+{date:"4th",title:"Introduction to Crossroads",link:"lesson-1.html",type:"lesson"},
+{date:"11th",title:"The Gospel",link:"lesson-2.html",type:"lesson"},
+{date:"18th",title:"Who is Jesus?",link:"lesson-3.html",type:"lesson"}
+]},
 {month:"February",cls:"feb",theme:"My Story, God\u2019s Story",items:[
 {date:"1st",title:"Marks of Childhood",link:"lesson-4.html",type:"lesson"},
 {date:"8th",title:"Marks of Adulthood",link:"lesson-6.html",type:"lesson"},
