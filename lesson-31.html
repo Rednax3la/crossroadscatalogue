@@ -152,12 +152,15 @@
         
         .day-cell {
             background: rgba(255, 255, 255, 0.9);
-            padding: 10px 5px;
+            padding: 6px 3px;
             border-radius: 5px;
             border: 1px solid #d4c0a1;
             text-align: center;
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            min-width: 0;
+            overflow: hidden;
         }
+        .day-cell input { min-width: 0; width: 100%; font-size: 0.72rem; border: none; text-align: center; background: transparent; }
         
         .subject-grid {
             display: grid;
@@ -177,7 +180,7 @@
         
         .scripture-reminders {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(1fr, 1fr));
+            grid-template-columns: 1fr;
             gap: 15px;
             margin: 20px 0;
         }
@@ -222,24 +225,21 @@
         }
 
         @media (max-width: 640px) {
-            /* Grade tracker: wrap into two rows on mobile */
             .grade-tracker {
                 flex-wrap: wrap;
                 height: auto;
                 justify-content: space-around;
-                gap: 10px;
+                gap: 12px;
                 padding: 10px 0;
             }
             .grade-tracker::before { display: none; }
-            .grade-point { width: 60px; }
-            .grade-label { font-size: 0.75rem; }
-            /* Week planner: 4 columns instead of 7 */
+            .grade-point { width: 56px; }
+            .grade-label { font-size: 0.72rem; }
+            /* Planner: tighten font, 3-col layout so header+input pairs visible */
+            .planner-area { padding: 12px; }
             .week-planner {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            /* Scripture reminders: 1 column */
-            .scripture-reminders {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 3px;
             }
         }
     </style>
